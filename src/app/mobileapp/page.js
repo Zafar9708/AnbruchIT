@@ -17,22 +17,23 @@ const MobileAppDevelopmentPage = () => {
       <Header />
       <Navbar />
       <header className="relative bg-blue-50 text-gray-800 py-24 bg-cover bg-center" style={{ backgroundImage: "url('https://example.com/your-background-image.jpg')" }}>
-        {/* <div className="absolute inset-0 bg-gray-300 opacity-50"></div> */}
-        <div className="relative z-10 container mx-auto text-center mt-14 mb-1">
-          <h1 className="text-5xl font-extrabold leading-tight relative">
-            Mobile App Development
+    {/* <div className="absolute inset-0 bg-gray-300 opacity-50"></div> */}
+    <div className="relative z-10 container mx-auto text-center mt-14 mb-1">
+        <h1 className="text-5xl font-extrabold leading-tight relative">
+            Design & Build Exceptional Solutions
             <span className="absolute inset-0 bg-gradient-to-r opacity-30 rounded-lg"></span>
-          </h1>
-          <p className="text-lg md:text-xl mt-4 max-w-2xl mx-auto font-semibold leading-relaxed">
-            We create powerful mobile applications that drive your business forward, providing top-notch solutions for iOS and Android.
-          </p>
-          <div className="mt-8">
+        </h1>
+        <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto font-semibold leading-relaxed">
+            Transform your ideas into reality with our expert design and development services. We specialize in crafting tailored solutions that elevate your brand and enhance user experiences across all platforms.
+        </p>
+        <div className="mt-8">
             <a href="/contact" className="bg-blue-950 text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
-              Get in Touch
+                Get in Touch
             </a>
-          </div>
         </div>
-      </header>
+    </div>
+</header>
+
 
       <main className="container mx-auto py-16 px-4 bg-gray-200">
         {/* Hero Section */}
@@ -130,13 +131,13 @@ const MobileAppDevelopmentPage = () => {
             </div>
           </div>
         </section>
-        <section className="bg-gray-200 py-16">
+        <section className="bg-gray-200 py-16" data-aos="zoom-in-up">
           <div className="container mx-auto text-center">
             <h2 className="text-3xl text-black font-semibold mb-6">Our Work</h2>
             <p className="text-lg text-black mb-8">
               Check out some of our recent projects to see how we bring our clients' visions to life.
             </p>
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3" data-aos="zoom-in-up">
               {/* Project 1 */}
               <div className="bg-gray-100 text-black p-6 rounded-lg shadow-lg">
                 <img
@@ -152,7 +153,7 @@ const MobileAppDevelopmentPage = () => {
               </div>
 
               {/* Project 2 */}
-              <div className="bg-gray-100 text-black p-6 rounded-lg shadow-lg">
+              <div className="bg-gray-100 text-black p-6 rounded-lg shadow-lg" data-aos="zoom-in-up">
                 <img
                   src='https://a.storyblok.com/f/99519/1100x619/1bd432fd52/website-project-management-build-phase.png'
                   alt='Tech Trends
@@ -166,7 +167,7 @@ const MobileAppDevelopmentPage = () => {
               </div>
 
               {/* Project 3 */}
-              <div className="bg-gray-100 text-black p-6 rounded-lg shadow-lg">
+              <div className="bg-gray-100 text-black p-6 rounded-lg shadow-lg" data-aos="zoom-in-up">
                 <img
                   src='https://www.zilliondesigns.com/blog/wp-content/uploads/Web-Design-Trend-2024-1280x720.jpg'
                   alt='Civic Connect'
@@ -182,15 +183,15 @@ const MobileAppDevelopmentPage = () => {
         </section>
 
         {/* Portfolio Section */}
-        <section id="portfolio" className="py-16 bg-gray-100">
-          <h2 className="text-3xl font-bold text-center mb-8">
+        <section id="portfolio" className="py-16">
+          <h2 className="text-3xl font-bold text-center mb-2">
             Our Portfolio
           </h2>
           <div className="max-w-5xl mx-auto text-center">
             <p className="text-lg font-semibold mb-12">
               Explore some of the standout projects we’ve delivered, demonstrating our expertise and the results we've achieved.
             </p>
-            <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3" data-aos="zoom-in-up">
+            <div className="grid gap-12 md:grid-cols-4 lg:grid-cols-3" data-aos="zoom-in-up">
               {/* Portfolio Item */}
               {[ 
                 { title: 'Quantum Leap', description: 'Quantum Leap redefines mobile technology with its groundbreaking features and advanced functionality.', imageUrl: 'https://www.orientsoftware.com/Themes/Content/Images/blog/2023-11-07/practical-quantum-app-what-is.jpg' },
@@ -213,61 +214,7 @@ const MobileAppDevelopmentPage = () => {
 
 
 {/* Contact Section */}
-<section id="contact" className="py-16 px-4 bg-white">
-        <div className="container mx-auto flex flex-col md:flex-row items-start">
-          {/* Contact Information */}
-          <div className="md:w-1/2 mb-12 md:mb-0">
-            <h2 className="text-3xl font-bold mb-6 text-gray-800">Contact Us</h2>
-            <p className="text-lg text-gray-700 mb-6">
-              We are here to answer your questions and help you get started on your path to success.
-            </p>
-            <ul className="text-gray-700">
-              <li className="flex items-center mb-4"><svg className="w-6 h-6 mr-3 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7l4.293-4.293a1 1 0 011.414 0L12 5l3.293-3.293a1 1 0 011.414 0L21 7m-6 7l4.293-4.293a1 1 0 011.414 0L21 12m-6 7l4.293-4.293a1 1 0 011.414 0L21 19m-6 7l4.293-4.293a1 1 0 011.414 0L21 26" /></svg><strong>Phone:</strong> +1 (123) 456-7890</li>
-              <li className="flex items-center mb-4"><svg className="w-6 h-6 mr-3 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7l4.293-4.293a1 1 0 011.414 0L12 5l3.293-3.293a1 1 0 011.414 0L21 7m-6 7l4.293-4.293a1 1 0 011.414 0L21 12m-6 7l4.293-4.293a1 1 0 011.414 0L21 19m-6 7l4.293-4.293a1 1 0 011.414 0L21 26" /></svg><strong>Email:</strong> info@anbruchIT.com</li>
-              <li className="flex items-center"><svg className="w-6 h-6 mr-3 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7l4.293-4.293a1 1 0 011.414 0L12 5l3.293-3.293a1 1 0 011.414 0L21 7m-6 7l4.293-4.293a1 1 0 011.414 0L21 12m-6 7l4.293-4.293a1 1 0 011.414 0L21 19m-6 7l4.293-4.293a1 1 0 011.414 0L21 26" /></svg><strong>Address:</strong>D-76,Noida Sector 62,Uttar Pradesh,201301</li>
-            </ul>
-          </div>
-
-          {/* Contact Form */}
-          <div className="md:w-1/2">
-            <form className="bg-blue-950 p-8 rounded-lg shadow-lg">
-              <div className="flex flex-col mb-6">
-                <label htmlFor="name" className="text-lg font-medium mb-2 text-white">Full Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-                  placeholder="Your Name"
-                />
-              </div>
-              <div className="flex flex-col mb-6">
-                <label htmlFor="email" className="text-lg font-medium mb-2 text-white">Email Address</label>
-                <input
-                  type="email"
-                  id="email"
-                  className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-                  placeholder="Your Email"
-                />
-              </div>
-              <div className="flex flex-col mb-6">
-                <label htmlFor="message" className="text-lg font-medium mb-2 text-white">Message</label>
-                <textarea
-                  id="message"
-                  rows="4"
-                  className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-                  placeholder="Your Message"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300"
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
-        </div>
-      </section>      </main>
+      </main>
 
       <Footer />
     </div>

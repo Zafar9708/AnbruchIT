@@ -62,7 +62,7 @@ const Partner = () => {
     <section style={containerStyle}>
       <div className="container mx-auto py-12 px-8 bg-gray-100">
         <div className="text-center mb-5">
-          <h2 className="text-4xl font-extrabold text-black mb-2">Our Esteemed Clients</h2>
+          <h2 className="text-4xl font-extrabold text-black mb-2">Our Partners</h2>
           {/* <hr className="mx-auto mt-0 mb-4 w-1/6" /> */}
         </div>
 

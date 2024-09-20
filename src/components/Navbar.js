@@ -28,7 +28,7 @@ const Navbar = () => {
         <div className="flex-shrink-0">
           <Link href="/">
             <Image
-              src="/anbruchlogo.jpg.jpg"
+              src="/ANBRUCH IT_transparent_bg.png"
               width={140}
               height={140}
               alt="Website Logo"
@@ -36,7 +36,7 @@ const Navbar = () => {
           </Link>
         </div>
         <nav className="mx-auto flex-grow">
-          <ul className="flex space-x-6">
+          <ul className="flex space-x-10">
             <li>
               <Link href="/" className="hover:text-blue-300 transition-colors duration-300 ml-80">Home</Link>
             </li>
@@ -54,27 +54,25 @@ const Navbar = () => {
                 />
               </button>
               <ul className={`absolute left-0 top-4 mt-2 bg-white text-black shadow-lg border border-white w-64 ${selectedService ? 'block' : 'hidden'} group-hover:block z-10 rounded-lg`}>
-                <li className='text-center'>
+                {/* <li className='text-center'>
                   <button onClick={() => setSelectedService('Custom App Development')} className="block px-4 py-2 hover:bg-gray-200 transition-colors duration-300 text-sm">
-                    <Link href="/customapp">Custom App Development</Link><br></br>
-                    {/* <Link href="/customapp">Mobile App Development</Link> */}
+                    <Link href="/customapp">Custom App Development</Link><br></br>   
                   </button>
-                </li>
+                </li> */}
                 {/* Other service items */}
-              
+            
             
                 <li className='text-center'>
                   <button onClick={() => setSelectedService('Custom App Development')} className="block px-4 py-2 hover:bg-gray-100 transition-colors duration-300 text-sm">
-                    <Link href="/mobileapp">Mobile App Development</Link><br></br>
+                    <Link href="/mobileapp">Design & Build</Link><br></br>
                     {/* <Link href="/customapp">Mobile App Development</Link> */}
                   </button>
                 </li>
-                <li className='text-center'>
+                {/* <li className='text-center'>
                   <button onClick={() => setSelectedService('Custom App Development')} className="block px-4 py-2 hover:bg-gray-100 transition-colors duration-300 text-sm">
                     <Link href="/techconsulting">Tech Consulting</Link><br></br>
-                    {/* <Link href="/customapp">Mobile App Development</Link> */}
                   </button>
-                </li>
+                </li> */}
                 {/* <li className='text-center'>
                   <button onClick={() => setSelectedService('Custom App Development')} className="block px-4 py-2 hover:bg-gray-100 transition-colors duration-300 text-sm">
                     <Link href="/webdevelop">Web Development</Link><br></br>
@@ -88,28 +86,41 @@ const Navbar = () => {
                 </li>
                 <li className='text-center'>
                   <button onClick={() => setSelectedService('Custom App Development')} className="block px-4 py-2 hover:bg-gray-100 transition-colors duration-300 text-sm">
-                    <Link href="/analytics">Analytics</Link><br></br>
+                    <Link href="/managedservice">Advisory & Managed Services</Link><br></br>
                     {/* <Link href="/customapp">Mobile App Development</Link> */}
                   </button>
                 </li>
+
+                <li className='text-center'>
+                  <button onClick={() => setSelectedService('Custom App Development')} className="block px-4 py-2 hover:bg-gray-100 transition-colors duration-300 text-sm">
+                    <Link href="/sfdc">Salesforce Services</Link><br></br>
+                    {/* <Link href="/customapp">Mobile App Development</Link> */}
+                  </button>
+                </li>
+
+                <li className='text-center'>
+                  <button onClick={() => setSelectedService('Custom App Development')} className="block px-4 py-2 hover:bg-gray-100 transition-colors duration-300 text-sm">
+                    <Link href="/odooCustomApp">Odoo Services</Link><br></br>
+                    {/* <Link href="/customapp">Mobile App Development</Link> */}
+                  </button>
+                </li>
+
                 <li className='text-center'>
                   <button onClick={() => setSelectedService('Custom App Development')} className="block px-4 py-2 hover:bg-gray-100 transition-colors duration-300 text-sm">
                     <Link href="/qualityAuth">Quality Automation</Link><br></br>
                     {/* <Link href="/customapp">Mobile App Development</Link> */}
                   </button>
                 </li>
+
                 <li className='text-center'>
                   <button onClick={() => setSelectedService('Custom App Development')} className="block px-4 py-2 hover:bg-gray-100 transition-colors duration-300 text-sm">
-                    <Link href="/sfdc">SFDC</Link><br></br>
+                    <Link href="/analytics">Web Analytics</Link><br></br>
                     {/* <Link href="/customapp">Mobile App Development</Link> */}
                   </button>
                 </li>
-                <li className='text-center'>
-                  <button onClick={() => setSelectedService('Custom App Development')} className="block px-4 py-2 hover:bg-gray-100 transition-colors duration-300 text-sm">
-                    <Link href="/managedservice">Managed Services</Link><br></br>
-                    {/* <Link href="/customapp">Mobile App Development</Link> */}
-                  </button>
-                </li>
+                
+                
+                
                 <li className='text-center'>
                   <button onClick={() => setSelectedService('Custom App Development')} className="block px-4 py-2 hover:bg-gray-100 transition-colors duration-300 text-sm">
                     <Link href="/staffAugmentation">Staff Augmentation Services</Link><br></br>
@@ -120,7 +131,7 @@ const Navbar = () => {
               </ul>
               
             </li>
-            <li className="relative group">
+            {/* <li className="relative group">
               <button onClick={handleOdooDropdownToggle} className="flex items-center hover:text-blue-300 transition-colors duration-300">
                 Odoo
                 <FontAwesomeIcon icon={faChevronDown}
@@ -153,15 +164,15 @@ const Navbar = () => {
                 <li>
                   <button onClick={() => setSelectedOdoo('odoo1')} className="block px-4 py-2 hover:bg-gray-100 transition-colors duration-300 text-sm"> <Link href="/odooMarketPlace">Odoo Markeplace Pioneers</Link></button>
                 </li>
-                {/* Other Odoo items */}
+              
               </ul>
-            </li>
+            </li> */}
             <li>
-              <Link href="/contact" className="hover:text-blue-300 transition-colors duration-300">Contact</Link>
+              <Link href="/gift" className="hover:text-blue-300 transition-colors duration-300">Gift Card</Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/careerpage" className="hover:text-blue-300 transition-colors duration-300">Careers</Link>
-            </li>
+            </li> */}
           </ul>
         </nav>
         {/* <div className="relative ml-4">

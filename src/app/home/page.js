@@ -24,7 +24,7 @@ import Industries from '@/components/Industries'
             <OurFeature/>
             <Digital/>
             <Industries/>
-            <Partner/>
+            {/* <Partner/> */}
 
             <CountryCustomer/>
             {/* <ClientTestimonial/> */}
