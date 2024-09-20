@@ -12,7 +12,7 @@ const Development = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-white text-gray-950 py-24">
+      <section className="bg-gray-50 text-gray-950 py-24">
         <div className="container mx-auto text-center" data-aos="zoom-in-up">
           <h1 className="text-4xl md:text-4xl font-bold">
             <span className="text-royal-blue">V</span>

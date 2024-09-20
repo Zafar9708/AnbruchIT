@@ -25,12 +25,12 @@ const Navbar = () => {
   return (
     <header className="bg-white text-lg text-gray-950 text-center mb-2 fixed top-0 left-0 w-full z-50">
       <div className="container mx-auto px-6 py-1 flex items-center">
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 p-2">
           <Link href="/">
             <Image
               src="/ANBRUCH IT_transparent_bg.png"
-              width={140}
-              height={140}
+              width={160}
+              height={540}
               alt="Website Logo"
             />
           </Link>

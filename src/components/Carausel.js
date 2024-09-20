@@ -8,7 +8,7 @@ const Carausel = () => {
   const containerStyle = {
     display: 'flex',
     alignItems: 'center',
-    height: '750px',
+    height: '650px',
     backgroundColor: 'white', // Light background
     padding: '20px',
     borderRadius: '10px',
