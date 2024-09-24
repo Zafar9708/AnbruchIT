@@ -25,7 +25,7 @@ const GiftCardPage = () => {
     },
     {
       id: 3,
-      image: 'https://cdn.igp.com/f_auto,q_auto,t_pnopt19prodlp/products/p-makemytrip-holiday-e-gift-card-112667-m.jpg',
+      image: 'https://vouchervia.com/wp-content/uploads/2024/04/gift_voucher-5.png',
       title: 'MakeMyTrip E-Gift (Instant Voucher)',
       details: 'Flat 6% OFF | Applicable on payment via UPI',
       discount: '6% OFF',
@@ -117,7 +117,7 @@ const GiftCardPage = () => {
 
       {/* Carousel Section */}
       {/* Carousel Section */}
-<div className="max-w-8xl mx-auto my-8">
+<div className="max-w-8xl">
   <Slider {...carouselSettings}>
     {giftCards.map((card) => (
       <div key={card.id} className="relative cursor-pointer">
@@ -125,7 +125,7 @@ const GiftCardPage = () => {
           <img
             src={card.image}
             alt={card.title}
-            className="w-full h-64 object-cover object-center rounded-lg"
+            className="w-full h-96 object-cover object-center rounded-lg"
             style={{ imageRendering: 'crisp-edges' }} // Optional: improve rendering
           />
         </Link>

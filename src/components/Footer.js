@@ -11,8 +11,8 @@ const Footer = () => {
           <div className="w-full md:w-1/4 mb-6">
             <h3 className="text-lg font-semibold mb-4">Anbruch IT</h3>
             <p className="text-gray-400 mb-2">Phone: 0120-496-3453</p>
-            {/* <p className="text-gray-400 mb-2">Noida, Uttar Pradesh, 201301</p>
-            <p className="text-gray-400 mb-2">Phone: 0120-496-3453</p> */}
+            <p className="text-gray-400 mb-2">Noida, Uttar Pradesh, 201301</p>
+            <p className="text-gray-400 mb-2">Phone: 0120-496-3453</p> 
 
 
             <p className="text-gray-400">Email: info@anbruch.com
@@ -35,12 +35,12 @@ const Footer = () => {
           <div className="w-full md:w-1/4 mb-6">
             <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
             <div className="flex space-x-4">
-              <a href="https://www.facebook.com/wrocustechnologies" className="text-gray-400 hover:text-white"><FaFacebookF /></a>
+              {/* <a href="https://www.facebook.com/wrocustechnologies" className="text-gray-400 hover:text-white"><FaFacebookF /></a> */}
               <a href="" className="text-gray-400 hover:text-white"><FaTwitter /></a>
               <a href="https://www.linkedin.com/company/anbruchit/?viewAsMember=true" className="text-gray-400 hover:text-white"><FaLinkedinIn /></a>
-              <a href="https://www.instagram.com/wrocustechnologies/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
+              {/* <a href="https://www.instagram.com/wrocustechnologies/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
                         <FaInstagram size={16} />
-                    </a>
+                    </a> */}
             </div>
           </div>
 
