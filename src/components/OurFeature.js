@@ -12,7 +12,7 @@ const OurFeature = () => {
   }, []);
 
   return (
-    <div className="relative py-12 px-6 bg-black" data-aos="zoom-in-up">
+    <div className="relative py-4 px-6 bg-black" data-aos="zoom-in-up">
       {/* Heading */}
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold text-blue-600 mb-4">Why Choose Us</h1>

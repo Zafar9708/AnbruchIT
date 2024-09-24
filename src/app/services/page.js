@@ -3,10 +3,8 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
 import OtherService from '@/components/OtherService';
-import OtherService1 from '@/components/OtherService1';
 import SuccessStory from '@/components/SuccessStory';
 import React from 'react';
-import Development1 from '@/components/Development1';
 const ServicePage = () => {
 
   return (

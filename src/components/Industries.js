@@ -1,150 +1,140 @@
-'use client'
-import React, { useEffect } from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 import { initializeAOS } from '@/utils/AosSetup';
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
-import Navbar from '@/components/Navbar';
 import Link from 'next/link';
 
 const Industries = () => {
     useEffect(() => {
         const cleanupAOS = initializeAOS();
         return cleanupAOS;
-      }, []);
-  return (
-    <div className="bg-white min-h-screen flex flex-col">
-      {/* <Header />
-      <Navbar /> */}
+    }, []);
 
-      {/* Hero Section */}
-      <section className="py-16 text-center text-black">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Industries We Serve
-          </h1>
-          <p className="text-lg md:text-xl">
-            Discover how our innovative solutions impact a diverse range of industries.
-          </p>
-        </div>
-      </section>
+    const industries = [
+        {
+            href: '/industry1',
+            img: 'https://www.dbswebsite.com/uploads/DBS-20240126-article-homepage-great-design-healthcare-website-PX-5505955421-min.jpg',
+            title: 'Healthcare',
+            description: 'Tailored solutions for the healthcare industry that enhance patient care and operational efficiency.',
+        },
+        {
+            href: '/industry2',
+            img: 'https://www.keyideasinfotech.com/wp-content/uploads/2022/10/finance-thumb.webp',
+            title: 'Finance',
+            description: 'Enhance security, compliance, and performance in the financial sector with our advanced solutions.',
+        },
+        {
+            href: '/industry3',
+            img: 'https://media.istockphoto.com/id/1405760376/vector/online-shopping-design-graphic-elements-signs-symbols-mobile-marketing-and-digital-marketing.jpg?s=612x612&w=0&k=20&c=2DSpkY9ktsAfzBOcZUMkZThW3B6kvGYG1cHQ3yeaPJg=',
+            title: 'Retail',
+            description: 'Transform the retail experience with solutions designed to streamline operations and boost sales.',
+        },
+        {
+            href: '/industry4',
+            img: 'https://img.freepik.com/premium-photo/automation-hightech-machinery-factory-show-industrial-automation_1037297-54997.jpg',
+            title: 'Manufacturing',
+            description: 'Improve productivity and supply chain management with our advanced manufacturing solutions.',
+        },
+        {
+            href: '/industry5',
+            img: 'https://static.vecteezy.com/system/resources/thumbnails/027/468/676/small/businessman-holding-digital-globe-in-palm-for-logistics-import-export-background-and-container-cargo-freight-ship-transport-concept-photo.jpg',
+            title: 'Logistics',
+            description: 'Optimize your supply chain and delivery processes with our logistics solutions.',
+        },
+        {
+            href: '/industry6',
+            img: 'https://media.istockphoto.com/id/1408387701/photo/social-media-marketing-digitally-generated-image-engagement.jpg?s=612x612&w=0&k=20&c=VVAxxwhrZZ7amcPYJr08LLZJTyoBVMN6gyzDk-4CXos=',
+            title: 'Media',
+            description: 'Enhance your media strategies with our innovative solutions tailored for the industry.',
+        },
+        {
+            href: '/industry7',
+            img: 'https://blog.icons8.com/wp-content/uploads/2020/02/education-website-design.png',
+            title: 'Education',
+            description: 'Enhance learning experiences and streamline administration with our innovative educational solutions.',
+        },
+    ];
 
-      {/* Cards Section */}
-      <section className="py-8 px-2">
-        <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" data-aos="zoom-in-up">
-          {/* Card 1 */}
-          <Link href='/industry1' legacyBehavior>
-            <a className="relative block bg-blue-950 text-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
-              <div className="relative">
-                <img
-                  src="https://www.dbswebsite.com/uploads/DBS-20240126-article-homepage-great-design-healthcare-website-PX-5505955421-min.jpg"
-                  alt="Healthcare"
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-300"></div>
-              </div>
-              <div className="p-6 relative z-10">
-                <h2 className="text-2xl font-semibold mb-3">Healthcare</h2>
-                <p>
-                  Tailored solutions for the healthcare industry that enhance patient care and operational efficiency.
-                </p>
-              </div>
-            </a>
-          </Link>
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [showCards, setShowCards] = useState([0, 1, 2, 3]);
 
-          {/* Card 2 */}
-          <Link href='/industry2' legacyBehavior>
-            <a className="relative block bg-blue-950 text-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
-              <div className="relative">
-                <img
-                  src="https://www.keyideasinfotech.com/wp-content/uploads/2022/10/finance-thumb.webp"
-                  alt="Finance"
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-300"></div>
-              </div>
-              <div className="p-6 relative z-10">
-                <h2 className="text-2xl font-semibold mb-3">Finance</h2>
-                <p>
-                  Enhance security, compliance, and performance in the financial sector with our advanced solutions.
-                </p>
-              </div>
-            </a>
-          </Link>
-
-          {/* Card 3 */}
-          <Link href='/industry3' legacyBehavior>
-            <a className="relative block bg-blue-950 text-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
-              <div className="relative">
-                <img
-                  src="https://media.istockphoto.com/id/1405760376/vector/online-shopping-design-graphic-elements-signs-symbols-mobile-marketing-and-digital-marketing.jpg?s=612x612&w=0&k=20&c=2DSpkY9ktsAfzBOcZUMkZThW3B6kvGYG1cHQ3yeaPJg="
-                  alt="Retail"
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-300"></div>
-              </div>
-              <div className="p-6 relative z-10">
-                <h2 className="text-2xl font-semibold mb-3">Retail</h2>
-                <p>
-                  Transform the retail experience with solutions designed to streamline operations and boost sales.
-                </p>
-              </div>
-            </a>
-          </Link>
-
-          {/* Card 4 */}
-          <Link href='/industry4' legacyBehavior>
-            <a className="relative block bg-blue-950 text-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
-              <div className="relative">
-                <img
-                  src="https://img.freepik.com/premium-photo/automation-hightech-machinery-factory-show-industrial-automation_1037297-54997.jpg"
-                  alt="Manufacturing"
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-300"></div>
-              </div>
-              <div className="p-6 relative z-10">
-                <h2 className="text-2xl font-semibold mb-3">Manufacturing</h2>
-                <p>
-                  Improve productivity and supply chain management with our advanced manufacturing solutions.
-                </p>
-              </div>
-            </a>
-          </Link>
-
-          {/* Card 5 */}
-          {/* <Link href='/industry5' legacyBehavior>
-            <a className="relative block bg-white text-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
-              <div className="relative">
-                <img
-                  src="https://source.unsplash.com/random/800x600?education"
-                  alt="Education"
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-300"></div>
-              </div>
-              <div className="p-6 relative z-10">
-                <h2 className="text-2xl font-semibold mb-3">Education</h2>
-                <p>
-                  Enhance learning experiences and streamline administration with our innovative educational solutions.
-                </p>
-              </div>
-            </a>
-          </Link> */}
-        </div>
-      </section>
-
-      
-
-      {/* Inline Styles */}
-      <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
-        body {
-          font-family: 'Poppins', sans-serif;
+    const handleShowMoreRight = () => {
+        if (currentIndex < industries.length - 4) {
+            setCurrentIndex((prev) => prev + 1);
+            setShowCards((prev) => [...prev.slice(1), currentIndex + 4]);
         }
-      `}</style>
-    </div>
-  );
+    };
+
+    const handleShowMoreLeft = () => {
+        if (currentIndex > 0) {
+            setCurrentIndex((prev) => prev - 1);
+            setShowCards((prev) => [currentIndex - 1, ...prev.slice(0, 3)]);
+        }
+    };
+
+    return (
+        <div className="bg-blue-50  flex flex-col">
+            {/* Hero Section */}
+            <section className="py-5 text-center  text-black" data-aos="zoom-in-up">
+                <div className="container mx-auto px-4">
+                    <h1 className="text-4xl md:text-5xl font-bold mb-4">Industries We Serve</h1>
+                    <p className="text-lg md:text-xl">
+                        Discover how our innovative solutions impact a diverse range of industries.
+                    </p>
+                </div>
+            </section>
+
+            {/* Cards Section */}
+            <section className="py-8 px-2">
+                <div className="container mx-auto">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" data-aos="zoom-in-up">
+                        {showCards.map((index) => (
+                            <Link key={index} href={industries[index].href} legacyBehavior>
+                                <a className={`relative block bg-blue-950 text-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group`} data-aos="zoom-in-up">
+                                    <div className="relative" data-aos="zoom-in-up">
+                                        <img
+                                            src={industries[index].img}
+                                            alt={industries[index].title}
+                                            className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-300"></div>
+                                    </div>
+                                    <div className="p-6 relative z-10">
+                                        <h2 className="text-2xl font-semibold mb-3">{industries[index].title}</h2>
+                                        <p>{industries[index].description}</p>
+                                    </div>
+                                </a>
+                            </Link>
+                        ))}
+                    </div>
+
+                    {/* Dotted line with arrows */}
+                    <div className="flex items-center justify-center mt-6">
+                        <button onClick={handleShowMoreLeft} disabled={currentIndex === 0} className="mx-4">
+                            <span className="text-2xl">&#9664;</span> {/* Left Arrow */}
+                        </button>
+                        <div className="flex items-center">
+                            <div className="h-1 w-1 rounded-full bg-gray-300 mx-1" />
+                            <div className="h-1 w-1 rounded-full bg-gray-300 mx-1" />
+                            <div className="h-1 w-1 rounded-full bg-gray-300 mx-1" />
+                            <div className="h-1 w-1 rounded-full bg-gray-300 mx-1" />
+                        </div>
+                        <button onClick={handleShowMoreRight} disabled={currentIndex >= industries.length - 4} className="mx-4">
+                            <span className="text-2xl">&#9654;</span> {/* Right Arrow */}
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            {/* Inline Styles */}
+            <style jsx global>{`
+                @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+                body {
+                    font-family: 'Poppins', sans-serif;
+                }
+            `}</style>
+        </div>
+    );
 };
 
 export default Industries;

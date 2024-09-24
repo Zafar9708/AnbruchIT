@@ -2,51 +2,66 @@ import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import React from 'react';
 
-const GiftCard = () => {
-    return (
-        <div>
-            <Navbar />
-        <div className="min-h-screen flex flex-col justify-center items-center bg-gray-50 py-12 px-4 sm:px-12 lg:px-8">
-            
-            <div className="max-w-3xl w-full py-24">
-                <h1 className="text-4xl font-extrabold text-gray-800 text-center">
-                    Company Gift Cards: Celebrating Our Team and Clients
-                </h1>
-                <p className="mt-2 text-lg text-gray-600 text-center">
-                    At [AnbruchIT], we believe in recognizing hard work and fostering relationships. Our gift cards are a token of appreciation for our employees and clients, celebrating milestones, achievements, and special occasions.
-                </p>
+const GiftCardPage = () => {
+    
+  const giftCards = [
+    {
+      id: 1,
+      image: 'https://lh3.googleusercontent.com/0fVh7YLw9Ir5g3Uj0iOErUTEwHITaAGX2Y83dUNuxob2q-4ZuDlcmMeDqj9XNJ0ny1m1uLw4bbzRtdEwhiyK8uXhEEY9-lZ3rPPtg4w=s750', // Replace with your image URL
+      title: 'Amazon E-Gift (Instant Voucher)',
+      discount: '4% OFF',
+      details: 'Flat 4% OFF | Applicable on payment via UPI',
+    },
+    {
+      id: 2,
+      image: 'https://www.jiomart.com/images/cms/offers/1697548436_Jio-mart-910.jpg', // Replace with your image URL
+      title: 'Reliance Jio Mart E-Gift (Instant Voucher)',
+      details: 'Flat 5% OFF | Applicable on payment via UPI',
+      discount: '5% OFF',
+    },
+    {
+      id: 3,
+      image: '/path/to/make-my-trip-gift-card.jpg', // Replace with your image URL
+      title: 'MakeMyTrip E-Gift (Instant Voucher)',
+      details: 'Flat 6% OFF | Applicable on payment via UPI',
+      discount: '6% OFF',
+    },
+    {
+      id: 4,
+      image: '/path/to/reliance-smart-bazaar-gift-card.jpg', // Replace with your image URL
+      title: 'Reliance Smart Bazaar E-Gift (Instant Voucher)',
+      details: 'Flat 3% OFF | Applicable on payment via UPI',
+      discount: '3% OFF',
+    },
+  ];
 
-                <div className="bg-white shadow-md rounded-lg p-6">
-                    <h2 className="text-2xl font-semibold text-gray-800">Who Receives Our Gift Cards?</h2>
-                    <ul className="mt-4 list-disc list-inside text-gray-700 space-y-2">
-                        <li><strong>Employees:</strong> To celebrate achievements, anniversaries, and outstanding performance.</li>
-                        <li><strong>Clients:</strong> As a gesture of gratitude for their partnership and trust in our services.</li>
-                        <li><strong>Partners:</strong> To strengthen business relationships and show appreciation.</li>
-                        <li><strong>Community Contributors:</strong> Acknowledging those who support our initiatives and values.</li>
-                    </ul>
-                </div>
-
-                <div className="bg-white shadow-md rounded-lg p-6">
-                    <h2 className="text-2xl font-semibold text-gray-800">Why Our Gift Cards Matter</h2>
-                    <ul className="mt-4 list-disc list-inside text-gray-700 space-y-2">
-                        <li>**Recognition of Efforts**: Gift cards serve as a tangible acknowledgment of hard work and dedication.</li>
-                        <li>**Boosts Morale**: Encourages a positive work environment and strengthens team spirit.</li>
-                        <li>**Strengthens Relationships**: Fosters loyalty and appreciation between clients and the company.</li>
-                        <li>**Versatile Usage**: Recipients can use the gift cards for various products or services that benefit them.</li>
-                    </ul>
-                </div>
-
-                <div className="mt-8 text-center">
-                    <a href="/about" className="inline-block bg-blue-600 text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-blue-500 transition-colors duration-300">
-                        Learn More About Our Company
-                    </a>
-                </div>
+  return (
+    <div>
+        <Navbar/>
+    <div className="max-w-7xl mx-auto p-5">
+      <h1 className="text-3xl font-bold text-center mb-6">Hot Deals and Best Sellers</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {giftCards.map((card) => (
+          <div key={card.id} className="relative border rounded-lg overflow-hidden shadow-lg">
+            <img 
+              src={card.image}
+              alt={card.title}
+              className="w-full h-48 object-cover"
+            />
+            <div className="absolute bottom-2 left-2 bg-red-500 text-white text-xs font-bold py-1 px-2 rounded">
+              {card.discount}
             </div>
-            
-        </div>
-        <Footer/>
-        </div>
-    );
+            <div className="p-4">
+              <h2 className="font-semibold">{card.title}</h2>
+              <p className="text-sm text-gray-600">{card.details}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    <Footer/>
+    </div>
+  );
 };
 
-export default GiftCard;
+export default GiftCardPage;

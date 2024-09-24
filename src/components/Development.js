@@ -12,9 +12,9 @@ const Development = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gray-50 text-gray-950 py-24">
+      <section className="bg-white text-gray-950 py-4">
         <div className="container mx-auto text-center" data-aos="zoom-in-up">
-          <h1 className="text-4xl md:text-4xl font-bold">
+          <h1 className="text-2xl md:text-3xl font-bold">
             <span className="text-royal-blue">V</span>
             isualize.
             <span className="text-royal-blue">E</span>
@@ -22,13 +22,13 @@ const Development = () => {
             <span className="text-royal-blue">G</span>
             uarantee - Our Services
           </h1>
-          <p className="text-lg md:text-xl mt-4">Explore our tailored solutions to elevate your business.</p>
+          <p className="text-md md:text-lg mt-2">Explore our tailored solutions to elevate your business.</p>
         </div>
       </section>
 
       {/* Service Cards Section */}
       <section className="py-8 px-2" data-aos="zoom-in-up">
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
             {
               href: '/webdevelop',
@@ -85,7 +85,7 @@ const Development = () => {
               ],
             },
           ].map(({ href, title, description, images }) => (
-            <div key={title} className="relative block bg-white rounded-lg shadow-md overflow-hidden group h-96" data-aos="zoom-in-up">
+            <div key={title} className="relative block bg-white rounded-lg shadow-md overflow-hidden group h-72 sm:h-80 md:h-96 transition-all duration-300" data-aos="zoom-in-up">
               <Link href={href} className="relative h-full">
                 <img
                   src={images[0]}
@@ -99,8 +99,8 @@ const Development = () => {
                   className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100"
                   style={{ filter: 'brightness(0.50)' }}
                 />
-                <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black via-transparent to-transparent transition-transform duration-300 group-hover:transform group-hover:-translate-y-2">
-                  <button className="text-black font-bold text-md w-52 text-left bg-white rounded-md p-1 hover:bg-gray-200 transition mb-4">
+                <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 bg-gradient-to-t from-black via-transparent to-transparent transition-transform duration-300 group-hover:transform group-hover:-translate-y-2">
+                  <button className="text-black font-bold text-md w-40 sm:w-52 text-left bg-white rounded-md p-1 hover:bg-gray-200 transition mb-4">
                     {title}
                   </button>
                   <p className="text-gray-300 transition-transform duration-300 group-hover:translate-y-[-10%]">{description}</p>

@@ -1,16 +1,29 @@
 'use client';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carousel styles
 import { Carousel } from 'react-responsive-carousel';
 
-// Define the component
 const Carausel = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Adjust the breakpoint as needed
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial check
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const containerStyle = {
     display: 'flex',
+    flexDirection: 'row', // Default to row for desktop
     alignItems: 'center',
     height: '650px',
-    backgroundColor: 'white', // Light background
-    padding: '20px',
+    backgroundColor: '#e3f2fd', // Light background
+    padding: '18px',
     borderRadius: '10px',
     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)', // Subtle shadow for depth
   };
@@ -33,18 +46,18 @@ const Carausel = () => {
   };
 
   const headingStyle = {
-    fontSize: '1.8em',
+    fontSize: '1.6em',
     marginBottom: '10px',
     fontWeight: 'bold',
     textTransform: 'uppercase',
-    letterSpacing: '1px', // Spacing between letters
+    letterSpacing: '1px',
     color: '#0056b3', // Primary color
   };
 
   const middleTextStyle = {
-    fontSize: '3.2em',
-    fontWeight: 'bold',
-    lineHeight: '1.1',
+    fontSize: '3.0em',
+    fontWeight: '700',
+    lineHeight: '1.3',
     margin: '10px 0',
     color: '#007bff', // Primary color for the main text
   };
@@ -52,7 +65,7 @@ const Carausel = () => {
   const paragraphStyle = {
     fontSize: '1.2em',
     marginBottom: '20px',
-    lineHeight: '1.6', // Increased line height for readability
+    lineHeight: '1.6',
     color: '#555', // Softer color for the paragraph
   };
 
@@ -76,20 +89,18 @@ const Carausel = () => {
   return (
     <Carousel
       showArrows={true}
-      showStatus={false}
       showThumbs={false}
       infiniteLoop={true}
       autoPlay={true}
       interval={4000}
-      showIndicators={false}
       swipeable={false}
     >
       {/* First Section */}
       <div style={containerStyle}>
         <div style={textContainerStyle}>
           <h2 style={headingStyle}>Services</h2>
-          <h1 style={middleTextStyle}>End to End Implementation & <br /> Integration Services</h1>
-          <p style={paragraphStyle}>Salesforce & Odoo</p>
+          <h1 className="sm:text-md" style={middleTextStyle}>End to End Implementation & <br /> Integration Services</h1>
+          <p style={paragraphStyle}>Expertise in Salesforce & Odoo for seamless integration.</p>
           <button style={buttonStyle} 
             onMouseOver={(e) => e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor} 
             onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#007bff'}
@@ -99,19 +110,21 @@ const Carausel = () => {
             Learn More
           </button>
         </div>
-        <img 
-          src='https://eshopsync.com/wp-content/uploads/2021/04/Odoo-salesforce-Connector.png' 
-          alt='Service Image' 
-          style={imageStyle} 
-        />
+        {!isMobile && ( // Only show the image on non-mobile devices
+          <img 
+            src='https://eshopsync.com/wp-content/uploads/2021/04/Odoo-salesforce-Connector.png' 
+            alt='Service Image' 
+            style={imageStyle} 
+          />
+        )}
       </div>
 
       {/* Second Section */}
       <div style={containerStyle}>
         <div style={textContainerStyle}>
           <h2 style={headingStyle}>Resources</h2>
-          <h1 style={middleTextStyle}>Develop big with our qualified Tech Resources</h1>
-          <p style={paragraphStyle}>ReactJs, NextJs, Angular, VueJs, React Native</p>
+          <h1 style={middleTextStyle}>Develop Big with Our Qualified Tech Resources</h1>
+          <p style={paragraphStyle}>ReactJs, NextJs, Angular, VueJs, React Native — find the right tools for your projects.</p>
           <button style={buttonStyle} 
             onMouseOver={(e) => e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor} 
             onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#007bff'}
@@ -121,11 +134,13 @@ const Carausel = () => {
             Learn More
           </button>
         </div>
-        <img 
-          src='https://media.licdn.com/dms/image/D4E12AQELnQ0rQAGR_w/article-cover_image-shrink_600_2000/0/1693798220141?e=2147483647&v=beta&t=JJziKBJBls3syZ5MBKYRMBpeZSIqWjkKRx82S8xJpWk' 
-          alt='Resources Image' 
-          style={imageStyle} 
-        />
+        {!isMobile && (
+          <img 
+            src='https://media.licdn.com/dms/image/D4E12AQELnQ0rQAGR_w/article-cover_image-shrink_600_2000/0/1693798220141?e=2147483647&v=beta&t=JJziKBJBls3syZ5MBKYRMBpeZSIqWjkKRx82S8xJpWk' 
+            alt='Resources Image' 
+            style={imageStyle} 
+          />
+        )}
       </div>
 
       {/* Third Section */}
@@ -133,6 +148,7 @@ const Carausel = () => {
         <div style={textContainerStyle}>
           <h2 style={headingStyle}>Solutions</h2>
           <h1 style={middleTextStyle}>Gifting Solutions for Every Occasion</h1>
+          <p style={paragraphStyle}>Discover perfect gifts tailored to every celebration.</p>
           <button style={buttonStyle} 
             onMouseOver={(e) => e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor} 
             onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#007bff'}
@@ -142,11 +158,13 @@ const Carausel = () => {
             Learn More
           </button>
         </div>
-        <img 
-          src='https://www.kindpng.com/picc/m/578-5780272_gift-cards-png-transparent-png.png' 
-          alt='Solutions Image' 
-          style={imageStyle} 
-        />
+        {!isMobile && (
+          <img 
+            src='https://www.kindpng.com/picc/m/578-5780272_gift-cards-png-transparent-png.png' 
+            alt='Solutions Image' 
+            style={imageStyle} 
+          />
+        )}
       </div>
     </Carousel>
   );

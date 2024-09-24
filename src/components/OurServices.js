@@ -1,6 +1,5 @@
 import React from 'react';
 import Development from './Development';
-import Development1 from './Development1';
 
 // const services = [
 //     {
