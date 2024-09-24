@@ -20,7 +20,7 @@ const About = () => {
         <div>
             <Header />
             <Navbar />
-            <h2 className="text-3xl font-bold mb-4">About Us</h2>
+            {/* <h2 className="text-3xl font-bold mb-4">About Us</h2> */}
             <div className="relative bg-black text-white overflow-hidden" data-aos="zoom-in-up">
                 <div className="absolute inset-0">
                     <img

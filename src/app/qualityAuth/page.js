@@ -12,12 +12,12 @@ const QualityAutoPage = () => {
         return cleanupAOS;
       }, []);
     return (
-        <div className="min-h-screen bg-white">
+        <div className="bg-white">
             <Header />
             <Navbar />
 
             {/* Hero Section */}
-            <section className="relative bg-blue-50 mt-12 text-black py-24">
+            <section className="relative bg-blue-50 text-black py-16">
                 <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: 'url(/images/hero-bg.jpg)' }}></div>
                 <div className="relative container mx-auto px-4 text-center">
                     <h1 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
@@ -60,7 +60,7 @@ const QualityAutoPage = () => {
                         {/* Service Card 3 */}
                         <div className="bg-blue-950 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105" data-aos="zoom-in-up">
                             <div className="flex justify-center mb-4">
-                                <img src="https://play-lh.googleusercontent.com/1VNHIOqQWRHesHR3lGG8QDf9NBnQxeuEUv5vzNBtgtPeBlULTut9ZGC5Z2OxjuG5FrYQ" alt="Real-Time Monitoring" className="w-60 h-40"/>
+                                <img src="https://images.business.com/app/uploads/2022/03/23021742/Marketing-data-analytics_NicoElNino_BDC-3.png" alt="Real-Time Monitoring" className="w-60 h-40"/>
                             </div>
                             <h3 className="text-2xl font-semibold mb-4 text-white">Real-Time Monitoring</h3>
                             <p className="text-white">
@@ -154,76 +154,6 @@ const QualityAutoPage = () => {
                 </div>
             </section>
 
-            <section id="contact" className="py-16 px-4 bg-white"  data-aos="zoom-in-up">
-                <div className="container mx-auto flex flex-col md:flex-row items-start">
-                    {/* Contact Information */}
-                    <div className="md:w-1/2 mb-12 md:mb-0">
-                        <h2 className="text-3xl font-bold mb-6 text-gray-800">Contact Us</h2>
-                        <p className="text-lg text-gray-700 mb-6">
-                            We are here to answer your questions and help you get started on your path to automation excellence.
-                        </p>
-                        <ul className="text-gray-700">
-                            <li className="flex items-center mb-4">
-                                <svg className="w-6 h-6 mr-3 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7l4.293-4.293a1 1 0 011.414 0L12 5l3.293-3.293a1 1 0 011.414 0L21 7m-6 7l4.293-4.293a1 1 0 011.414 0L21 12m-6 7l4.293-4.293a1 1 0 011.414 0L21 19m-6 7l4.293-4.293a1 1 0 011.414 0L21 26" />
-                                </svg>
-                                <strong>Phone:</strong> +1 (123) 456-7890
-                            </li>
-                            <li className="flex items-center mb-4">
-                                <svg className="w-6 h-6 mr-3 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7l4.293-4.293a1 1 0 011.414 0L12 5l3.293-3.293a1 1 0 011.414 0L21 7m-6 7l4.293-4.293a1 1 0 011.414 0L21 12m-6 7l4.293-4.293a1 1 0 011.414 0L21 19m-6 7l4.293-4.293a1 1 0 011.414 0L21 26" />
-                                </svg>
-                                <strong>Email:</strong> info@anbruchIT.com
-                            </li>
-                            <li className="flex items-center">
-                                <svg className="w-6 h-6 mr-3 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7l4.293-4.293a1 1 0 011.414 0L12 5l3.293-3.293a1 1 0 011.414 0L21 7m-6 7l4.293-4.293a1 1 0 011.414 0L21 12m-6 7l4.293-4.293a1 1 0 011.414 0L21 19m-6 7l4.293-4.293a1 1 0 011.414 0L21 26" />
-                                </svg>
-                                <strong>Address:</strong> D-76, Noida Sector 62, Uttar Pradesh, 201301
-                            </li>
-                        </ul>
-                    </div>
-
-                    {/* Contact Form */}
-                    <div className="md:w-1/2" data-aos="zoom-in-up">
-                        <form className="bg-blue-950 p-8 rounded-lg shadow-lg">
-                            <div className="flex flex-col mb-6">
-                                <label htmlFor="name" className="text-lg font-medium mb-2 text-white">Full Name</label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-                                    placeholder="Your Name"
-                                />
-                            </div>
-                            <div className="flex flex-col mb-6">
-                                <label htmlFor="email" className="text-lg font-medium mb-2 text-white">Email Address</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-                                    placeholder="Your Email"
-                                />
-                            </div>
-                            <div className="flex flex-col mb-6">
-                                <label htmlFor="message" className="text-lg font-medium mb-2 text-white">Message</label>
-                                <textarea
-                                    id="message"
-                                    rows="4"
-                                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-                                    placeholder="Your Message"
-                                ></textarea>
-                            </div>
-                            <button
-                                type="submit"
-                                className="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300"
-                            >
-                                Send Message
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </section>
 
             <Footer />
         </div>

@@ -1,72 +1,74 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carousel styles
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import Link from 'next/link';
 
-const Carausel = () => {
+const CarouselComponent = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); // Adjust the breakpoint as needed
+      setIsMobile(window.innerWidth <= 768);
     };
 
     window.addEventListener('resize', handleResize);
-    handleResize(); // Initial check
+    handleResize();
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const containerStyle = {
     display: 'flex',
-    flexDirection: 'row', // Default to row for desktop
+    flexDirection: isMobile ? 'column' : 'row',
     alignItems: 'center',
-    height: '650px',
-    backgroundColor: '#e3f2fd', // Light background
+    height: isMobile ? 'auto' : '500px',
+    backgroundColor: '#e3f2fd',
     padding: '18px',
     borderRadius: '10px',
-    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)', // Subtle shadow for depth
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
   };
 
   const textContainerStyle = {
     flex: 1,
-    padding: '40px',
-    color: '#333', // Darker text color for contrast
+    padding: isMobile ? '20px' : '40px',
+    color: '#333',
     textAlign: 'left',
     fontFamily: '"Poppins", sans-serif',
   };
 
   const imageStyle = {
-    maxWidth: '700px', // Set a maximum width for the image
-    width: '100%', // Allow it to scale responsively
-    height: 'auto', // Maintain aspect ratio
+    maxWidth: '100%',
+    width: isMobile ? '100%' : '750px',
+    height: 'auto',
     objectFit: 'cover',
     borderRadius: '10px',
-    marginLeft: '20px', // Margin to separate text and image
+    marginLeft: isMobile ? '0' : '20px',
+    marginTop: isMobile ? '20px' : '0',
   };
 
   const headingStyle = {
-    fontSize: '1.6em',
+    fontSize: isMobile ? '1.4em' : '1.6em',
     marginBottom: '10px',
     fontWeight: 'bold',
     textTransform: 'uppercase',
     letterSpacing: '1px',
-    color: '#0056b3', // Primary color
+    color: '#0056b3',
   };
 
   const middleTextStyle = {
-    fontSize: '3.0em',
+    fontSize: isMobile ? '2em' : '2.5em',
     fontWeight: '700',
     lineHeight: '1.3',
     margin: '10px 0',
-    color: '#007bff', // Primary color for the main text
+    color: '#007bff',
   };
 
   const paragraphStyle = {
-    fontSize: '1.2em',
+    fontSize: isMobile ? '1em' : '1.2em',
     marginBottom: '20px',
     lineHeight: '1.6',
-    color: '#555', // Softer color for the paragraph
+    color: '#555',
   };
 
   const buttonStyle = {
@@ -78,12 +80,12 @@ const Carausel = () => {
     fontSize: '1.2em',
     cursor: 'pointer',
     transition: 'background-color 0.3s, transform 0.3s',
-    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)', // Subtle shadow on button
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
   };
 
   const buttonHoverStyle = {
-    backgroundColor: '#0056b3', // Darker shade for hover effect
-    transform: 'scale(1.05)', // Slightly grow button on hover
+    backgroundColor: '#0056b3',
+    transform: 'scale(1.05)',
   };
 
   return (
@@ -99,22 +101,31 @@ const Carausel = () => {
       <div style={containerStyle}>
         <div style={textContainerStyle}>
           <h2 style={headingStyle}>Services</h2>
-          <h1 className="sm:text-md" style={middleTextStyle}>End to End Implementation & <br /> Integration Services</h1>
-          <p style={paragraphStyle}>Expertise in Salesforce & Odoo for seamless integration.</p>
-          <button style={buttonStyle} 
-            onMouseOver={(e) => e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor} 
-            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#007bff'}
-            onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.95)'}
-            onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
-          >
-            Learn More
-          </button>
+          <h1 style={middleTextStyle}>
+            End to End Implementation & <br /> Integration Services
+          </h1>
+          <p style={paragraphStyle}>
+            Our expert team specializes in seamless integration of Salesforce and Odoo. 
+            We ensure that your business processes are optimized for success, with 
+            tailored solutions that meet your unique needs.
+          </p>
+          <Link href="/sfdc">
+            <button
+              style={buttonStyle}
+              onMouseOver={(e) => e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor}
+              onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#007bff'}
+              onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.95)'}
+              onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
+            >
+              Learn More
+            </button>
+          </Link>
         </div>
-        {!isMobile && ( // Only show the image on non-mobile devices
-          <img 
-            src='https://eshopsync.com/wp-content/uploads/2021/04/Odoo-salesforce-Connector.png' 
-            alt='Service Image' 
-            style={imageStyle} 
+        {!isMobile && (
+          <img
+            src={'od-removebg.png'}
+            alt='Service Image'
+            style={imageStyle}
           />
         )}
       </div>
@@ -124,21 +135,28 @@ const Carausel = () => {
         <div style={textContainerStyle}>
           <h2 style={headingStyle}>Resources</h2>
           <h1 style={middleTextStyle}>Develop Big with Our Qualified Tech Resources</h1>
-          <p style={paragraphStyle}>ReactJs, NextJs, Angular, VueJs, React Native — find the right tools for your projects.</p>
-          <button style={buttonStyle} 
-            onMouseOver={(e) => e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor} 
-            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#007bff'}
-            onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.95)'}
-            onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
-          >
-            Learn More
-          </button>
+          <p style={paragraphStyle}>
+            Explore our range of resources to enhance your development projects. 
+            From ReactJs to Angular, we provide the tools and frameworks that 
+            empower your development teams to create outstanding applications.
+          </p>
+          <Link href="/mobileapp">
+            <button
+              style={buttonStyle}
+              onMouseOver={(e) => e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor}
+              onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#007bff'}
+              onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.95)'}
+              onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
+            >
+              Learn More
+            </button>
+          </Link>
         </div>
         {!isMobile && (
-          <img 
-            src='https://media.licdn.com/dms/image/D4E12AQELnQ0rQAGR_w/article-cover_image-shrink_600_2000/0/1693798220141?e=2147483647&v=beta&t=JJziKBJBls3syZ5MBKYRMBpeZSIqWjkKRx82S8xJpWk' 
-            alt='Resources Image' 
-            style={imageStyle} 
+          <img
+            src={'edit-removebg-preview.png'}
+            alt='Resources Image'
+            style={imageStyle}
           />
         )}
       </div>
@@ -148,21 +166,28 @@ const Carausel = () => {
         <div style={textContainerStyle}>
           <h2 style={headingStyle}>Solutions</h2>
           <h1 style={middleTextStyle}>Gifting Solutions for Every Occasion</h1>
-          <p style={paragraphStyle}>Discover perfect gifts tailored to every celebration.</p>
-          <button style={buttonStyle} 
-            onMouseOver={(e) => e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor} 
-            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#007bff'}
-            onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.95)'}
-            onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
-          >
-            Learn More
-          </button>
+          <p style={paragraphStyle}>
+            Discover a wide range of gifting solutions tailored to every celebration. 
+            Whether it’s for birthdays, anniversaries, or corporate events, we have 
+            the perfect gifts to make your occasions memorable.
+          </p>
+          <Link href="/gift">
+            <button
+              style={buttonStyle}
+              onMouseOver={(e) => e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor}
+              onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#007bff'}
+              onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.95)'}
+              onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
+            >
+              Learn More
+            </button>
+          </Link>
         </div>
         {!isMobile && (
-          <img 
-            src='https://www.kindpng.com/picc/m/578-5780272_gift-cards-png-transparent-png.png' 
-            alt='Solutions Image' 
-            style={imageStyle} 
+          <img
+            src={'gift-removebg-preview.png'}
+            alt='Solutions Image'
+            style={imageStyle}
           />
         )}
       </div>
@@ -170,4 +195,4 @@ const Carausel = () => {
   );
 };
 
-export default Carausel;
+export default CarouselComponent;

@@ -12,12 +12,12 @@ const SfdcPage = () => {
     }, []);
 
     return (
-        <div className="min-h-screen bg-white">
+        <div>
             <Header />
             <Navbar />
 
             {/* Hero Section */}
-            <section className="relative bg-blue-50 mt-12 text-black py-24">
+            <section className="relative bg-blue-50  text-black py-16">
                 <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: 'url(/images/sfdc-hero-bg.jpg)' }}></div>
                 <div className="relative container mx-auto px-4 text-center">
                     <h1 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
@@ -78,27 +78,27 @@ const SfdcPage = () => {
                     <div className="flex flex-wrap justify-center gap-12">
                         {/* Case Study 1 */}
                         <div className="bg-white p-8 rounded-lg shadow-lg max-w-xs">
-                            <h3 className="text-2xl font-semibold mb-4 text-blue-950">How Company X Increased Sales by 30%</h3>
+                            <h3 className="text-2xl font-semibold mb-4 text-blue-950">How TimesNow Increased Sales by 30%</h3>
                             <p className="text-blue-950 mb-4">
-                                Discover how Company X leveraged Salesforce Sales Cloud to drive significant sales growth and optimize their sales processes.
+                                Discover how TimesNow leveraged Salesforce Sales Cloud to drive significant sales growth and optimize their sales processes.
                             </p>
                             <a href="/case-studies/company-x" className="text-blue-600 hover:underline">Read More</a>
                         </div>
 
                         {/* Case Study 2 */}
                         <div className="bg-white p-8 rounded-lg shadow-lg max-w-xs">
-                            <h3 className="text-2xl font-semibold mb-4 text-blue-950">Customer Service Excellence at Company Y</h3>
+                            <h3 className="text-2xl font-semibold mb-4 text-blue-950">Customer Service Excellence at Times Of India</h3>
                             <p className="text-blue-950 mb-4">
-                                Learn how Company Y improved their customer service experience with Salesforce Service Cloud, resulting in higher customer satisfaction.
+                                Learn how Times Of India improved their customer service experience with Salesforce Service Cloud, resulting in higher customer satisfaction.
                             </p>
                             <a href="/case-studies/company-y" className="text-blue-600 hover:underline">Read More</a>
                         </div>
 
                         {/* Case Study 3 */}
                         <div className="bg-white p-8 rounded-lg shadow-lg max-w-xs">
-                            <h3 className="text-2xl font-semibold mb-4 text-blue-950">Marketing Transformation at Company Z</h3>
+                            <h3 className="text-2xl font-semibold mb-4 text-blue-950">Marketing Transformation at CeaseFire</h3>
                             <p className="text-blue-950 mb-4">
-                                Explore how Company Z transformed their marketing strategy using Salesforce Marketing Cloud, driving impactful campaign results.
+                                Explore how CeaseFire transformed their marketing strategy using Salesforce Marketing Cloud, driving impactful campaign results.
                             </p>
                             <a href="/case-studies/company-z" className="text-blue-600 hover:underline">Read More</a>
                         </div>
@@ -155,76 +155,7 @@ const SfdcPage = () => {
             </section>
 
             {/* Contact Information and Form */}
-            <section id="contact-form" className="py-16 px-4 bg-white" data-aos="zoom-in-up">
-                <div className="container mx-auto flex flex-col md:flex-row items-start">
-                    {/* Contact Information */}
-                    <div className="md:w-1/2 mb-12 md:mb-0">
-                        <h2 className="text-3xl font-bold mb-6 text-gray-800">Get in Touch</h2>
-                        <p className="text-lg text-gray-700 mb-6">
-                            We're here to assist with your Salesforce needs and answer any questions you may have.
-                        </p>
-                        <ul className="text-gray-700">
-                            <li className="flex items-center mb-4">
-                                <svg className="w-6 h-6 mr-3 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7l4.293-4.293a1 1 0 011.414 0L12 5l3.293-3.293a1 1 0 011.414 0L21 7m-6 7l4.293-4.293a1 1 0 011.414 0L21 12m-6 7l4.293-4.293a1 1 0 011.414 0L21 19m-6 7l4.293-4.293a1 1 0 011.414 0L21 26" />
-                                </svg>
-                                <strong>Phone:</strong> +1 (123) 456-7890
-                            </li>
-                            <li className="flex items-center mb-4">
-                                <svg className="w-6 h-6 mr-3 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7l4.293-4.293a1 1 0 011.414 0L12 5l3.293-3.293a1 1 0 011.414 0L21 7m-6 7l4.293-4.293a1 1 0 011.414 0L21 12m-6 7l4.293-4.293a1 1 0 011.414 0L21 19m-6 7l4.293-4.293a1 1 0 011.414 0L21 26" />
-                                </svg>
-                                <strong>Email:</strong> info@example.com
-                            </li>
-                            <li className="flex items-center">
-                                <svg className="w-6 h-6 mr-3 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7l4.293-4.293a1 1 0 011.414 0L12 5l3.293-3.293a1 1 0 011.414 0L21 7m-6 7l4.293-4.293a1 1 0 011.414 0L21 12m-6 7l4.293-4.293a1 1 0 011.414 0L21 19m-6 7l4.293-4.293a1 1 0 011.414 0L21 26" />
-                                </svg>
-                                <strong>Address:</strong> 123 Salesforce Avenue, San Francisco, CA, 94105
-                            </li>
-                        </ul>
-                    </div>
-
-                    {/* Contact Form */}
-                    <div className="md:w-1/2" data-aos="zoom-in-up">
-                        <form className="bg-blue-950 p-8 rounded-lg shadow-lg">
-                            <div className="flex flex-col mb-6">
-                                <label htmlFor="name" className="text-lg font-medium mb-2 text-white">Full Name</label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-                                    placeholder="Your Name"
-                                />
-                            </div>
-                            <div className="flex flex-col mb-6">
-                                <label htmlFor="email" className="text-lg font-medium mb-2 text-white">Email Address</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-                                    placeholder="Your Email"
-                                />
-                            </div>
-                            <div className="flex flex-col mb-6">
-                                <label htmlFor="message" className="text-lg font-medium mb-2 text-white">Message</label>
-                                <textarea
-                                    id="message"
-                                    rows="4"
-                                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-                                    placeholder="Your Message"
-                                ></textarea>
-                            </div>
-                            <button
-                                type="submit"
-                                className="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300"
-                            >
-                                Send Message
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </section>
+           
 
             <Footer />
         </div>

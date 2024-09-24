@@ -16,7 +16,7 @@ const MobileAppDevelopmentPage = () => {
     <div>
       <Header />
       <Navbar />
-      <header className="relative bg-blue-50 text-gray-800 py-24 bg-cover bg-center" style={{ backgroundImage: "url('https://example.com/your-background-image.jpg')" }}>
+      <header className="relative bg-blue-50 text-gray-800 py-8 bg-cover bg-center" style={{ backgroundImage: "url('https://example.com/your-background-image.jpg')" }}>
     {/* <div className="absolute inset-0 bg-gray-300 opacity-50"></div> */}
     <div className="relative z-10 container mx-auto text-center mt-14 mb-1">
         <h1 className="text-5xl font-extrabold leading-tight relative">

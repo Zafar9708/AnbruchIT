@@ -26,7 +26,7 @@ const Navbar = () => {
             <img 
               src='newlogo.PNG'
               alt='Logo'
-              style={{ height: '40px' }}
+              style={{ height: '35px' }}
             />
           </Link>
         </div>
@@ -78,10 +78,10 @@ const Navbar = () => {
             {isDropdownOpen && (
               <div className="absolute left-0 mt-2 w-40 bg-white shadow-md rounded-lg z-20">
                 {/* <Link href="/services" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Services</Link> */}
-                <Link href="/mobile-app" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Design & Build</Link>
+                <Link href="/mobileapp" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Design & Build</Link>
                 <Link href="/cloudconsulting" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Cloud Consulting</Link>
                 <Link href="/managedservice" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Advisory & Managed Services</Link>
-                <Link href="/salesforce" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Salesforce Services</Link>
+                <Link href="/sfdc" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Salesforce Services</Link>
                 <Link href="/odooCustomApp" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Odoo Services</Link>
                 <Link href="/qualityAuth" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Quality Automation</Link>
                 <Link href="/analytics" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Web Analytics</Link>

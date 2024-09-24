@@ -12,8 +12,8 @@ const Development = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-white text-gray-950 py-4">
-        <div className="container mx-auto text-center" data-aos="zoom-in-up">
+      <section className="text-gray-950 py-4">
+        <div className="container mx-auto text-center">
           <h1 className="text-2xl md:text-3xl font-bold">
             <span className="text-royal-blue">V</span>
             isualize.

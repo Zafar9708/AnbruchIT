@@ -17,9 +17,9 @@ const OdooCustomAppPage = () => {
       <Header />
       <Navbar />
 
-      <main className="container mx-auto py-8 px-4 bg-white">
+      <main className="bg-white">
         {/* Hero Section */}
-        <section className="text-center py-24 bg-blue-50" data-aos="zoom-in-up">
+        <section className="text-center py-16 bg-blue-50" data-aos="zoom-in-up">
           <h1 className="text-4xl font-bold mb-4">Unlock Your Business Potential with Odoo Custom App Development</h1>
           <p className="text-lg md:text-xl mb-8">
             Tailor-made Odoo applications to fit your unique business needs, enhance productivity, and drive growth.
