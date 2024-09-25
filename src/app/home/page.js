@@ -13,12 +13,14 @@ import CountryCustomer from '@/components/CountryCustomer'
 import React from 'react'
 import Digital from '@/components/Digital'
 import Industries from '@/components/Industries'
+import Scroll from '@/components/Scroll'
  
  const page = () => {
    return (
      <div>
            <Header/>
             <Navbar/>
+            <Scroll />
             <Carausel/>
             <OurServices/>
             <OurFeature/>

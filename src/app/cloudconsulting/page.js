@@ -17,7 +17,7 @@ const CloudConsultingPage = () => {
       <Navbar />
 
       <main>
-        <section className="text-center bg-blue-50 mb-16 py-12">
+        <section className="text-center bg-blue-50 mb-16 py-28">
           <h1 className="text-4xl font-extrabold mb-6 text-black">Cloud Consulting Services</h1>
           <p className="text-xl text-black max-w-5xl mx-auto">
             Unlock the power of the cloud with our expert consulting services. We help businesses of all sizes leverage cloud technologies to optimize operations, reduce costs, and drive innovation.

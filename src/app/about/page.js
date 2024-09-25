@@ -30,7 +30,7 @@ const About = () => {
                     />
                     <div className="absolute inset-0 bg-black opacity-50"></div>
                 </div>
-                <div className="relative container mx-auto text-center py-20 px-4">
+                <div className="relative container mx-auto text-center py-36 px-4">
                     <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
                         Leading IT Solutions for Your Business
                     </h1>

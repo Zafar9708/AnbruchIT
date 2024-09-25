@@ -19,7 +19,7 @@ const AnalyticsPage = () => {
 
       <main>
         {/* Hero Section */}
-        <section className="text-center  py-4 bg-blue-50 mb-4" data-aos="zoom-in-up">
+        <section className="text-center  py-28 bg-blue-50 mb-4" data-aos="zoom-in-up">
           <h1 className="text-3xl font-bold mb-4 text-black">Analytics Services</h1>
           <p className="text-lg  text-black">
             Gain valuable insights into your business performance with our comprehensive analytics solutions. We help you make data-driven decisions and optimize your operations.

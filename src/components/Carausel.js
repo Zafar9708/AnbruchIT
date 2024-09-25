@@ -22,9 +22,9 @@ const CarouselComponent = () => {
     display: 'flex',
     flexDirection: isMobile ? 'column' : 'row',
     alignItems: 'center',
-    height: isMobile ? 'auto' : '500px',
+    height: isMobile ? 'auto' : '700px',
     backgroundColor: '#e3f2fd',
-    padding: '18px',
+    padding: '12px',
     borderRadius: '10px',
     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
   };
@@ -85,7 +85,7 @@ const CarouselComponent = () => {
 
   const buttonHoverStyle = {
     backgroundColor: '#0056b3',
-    transform: 'scale(1.05)',
+    transform: 'scale(1.00)',
   };
 
   return (
@@ -94,7 +94,7 @@ const CarouselComponent = () => {
       showThumbs={false}
       infiniteLoop={true}
       autoPlay={true}
-      interval={4000}
+      interval={2000}
       swipeable={false}
     >
       {/* First Section */}

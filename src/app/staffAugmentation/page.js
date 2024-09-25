@@ -18,9 +18,9 @@ const StaffAugmentationServices = () => {
             <Navbar />
 
             {/* Hero Section */}
-            <section className="bg-blue-50 text-gray-900 py-16" data-aos="zoom-in-up">
+            <section className="bg-blue-50 text-gray-900 py-28" data-aos="zoom-in-up">
                 <div className="container mx-auto px-4 text-center">
-                    <h1 className="text-5xl font-extrabold mb-6 leading-tight">
+                    <h1 className="text-4xl font-extrabold mb-6 leading-tight">
                         Enhance Your Team with Our Staff Augmentation Services
                     </h1>
                     <p className="text-xl mb-8 max-w-3xl mx-auto">

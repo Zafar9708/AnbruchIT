@@ -17,7 +17,7 @@ const QualityAutoPage = () => {
             <Navbar />
 
             {/* Hero Section */}
-            <section className="relative bg-blue-50 text-black py-16">
+            <section className="relative bg-blue-50 text-black py-32">
                 <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: 'url(/images/hero-bg.jpg)' }}></div>
                 <div className="relative container mx-auto px-4 text-center">
                     <h1 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">

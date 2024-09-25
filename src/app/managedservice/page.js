@@ -23,7 +23,7 @@ const ManagedServicesPage = () => {
         </header> */}
 
         {/* Hero Section */}
-        <section className="bg-blue-50 text-black py-12" data-aos="zoom-in-up">
+        <section className="bg-blue-50 text-black py-32" data-aos="zoom-in-up">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-4xl font-extrabold mb-6 py-18 leading-tight">
               Comprehensive Managed Services for Seamless Operations
