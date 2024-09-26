@@ -18,9 +18,9 @@ const Digital = () => {
             {/* <Navbar /> */}
 
             {/* Hero Section */}
-            <section className="py-8 text-black text-center">
+            <section className="py-8 mt-6 text-black text-center" data-aos="zoom-in-up">
                 <div className="container mx-auto px-4">
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">
                     Revolutionizing Business with Cutting-Edge Digital <br /> Solutions
                     </h1>
                 </div>

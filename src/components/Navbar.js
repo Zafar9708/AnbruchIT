@@ -1,25 +1,30 @@
-'use client'
-import React, { useState } from 'react';
+'use client';
+import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownTimeout = useRef(null);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(prev => !prev);
+    setIsDropdownOpen(false); // Close dropdown when menu opens
   };
 
   const handleDropdownMouseEnter = () => {
+    clearTimeout(dropdownTimeout.current); // Clear timeout if hovering back
     setIsDropdownOpen(true);
   };
 
   const handleDropdownMouseLeave = () => {
-    setIsDropdownOpen(false);
+    dropdownTimeout.current = setTimeout(() => {
+      setIsDropdownOpen(false);
+    }, 300); // Delay before closing
   };
 
   return (
-    <nav className="bg-white  fixed top-0 left-0 right-0 z-50 p-4">
+    <nav className="bg-white fixed top-0 left-0 right-0 z-50 p-6">
       <div className="container flex justify-between items-center">
         <div className="flex items-center space-x-2">
           <Link href="/">
@@ -30,14 +35,12 @@ const Navbar = () => {
             />
           </Link>
         </div>
-        <div className="mr-20 hidden text-lg md:flex text flex-grow justify-center space-x-12">
+        <div className="mr-20 hidden font-mono text-xl md:flex flex-grow justify-center space-x-12">
           <Link href="/" className="text-gray-800 hover:text-blue-600 transition">Home</Link>
           <Link href="/about" className="text-gray-800 hover:text-blue-600 transition">About</Link>
-          <div 
-            className="relative"
-            onMouseEnter={handleDropdownMouseEnter}
-            onMouseLeave={handleDropdownMouseLeave}
-          >
+          <div className="relative" 
+               onMouseEnter={handleDropdownMouseEnter} 
+               onMouseLeave={handleDropdownMouseLeave}>
             <button className="text-gray-800 hover:text-blue-600 transition">
               Services
             </button>
@@ -54,8 +57,11 @@ const Navbar = () => {
               </div>
             )}
           </div>
-          <Link href="/gift" className="text-gray-800 hover:text-blue-600 transition">Gift Card</Link>
+          <Link href="/gift" className="text-gray-800 hover:text-blue-600 transition">Corporate Gifting</Link>
         </div>
+        <Link href="/contact" className="text-white bg-blue-600 hover:bg-blue-700 transition duration-300 rounded-md px-3 py-2 text-sm md:block hidden">
+          Contact Us
+        </Link>
         <button
           className="md:hidden text-gray-800 focus:outline-none"
           onClick={toggleMenu}
@@ -67,11 +73,9 @@ const Navbar = () => {
         <div className="flex flex-col space-y-2 mt-2 items-center absolute right-0 z-30 bg-white shadow-md p-8 rounded-lg" style={{ width: '200px' }}>
           <Link href="/" className="text-gray-800 hover:text-blue-600 transition">Home</Link>
           <Link href="/about" className="text-gray-800 hover:text-blue-600 transition">About</Link>
-          <div 
-            className="relative"
-            onMouseEnter={handleDropdownMouseEnter}
-            onMouseLeave={handleDropdownMouseLeave}
-          >
+          <div className="relative" 
+               onMouseEnter={handleDropdownMouseEnter} 
+               onMouseLeave={handleDropdownMouseLeave}>
             <button className="text-gray-800 hover:text-blue-600 transition">
               Services
             </button>
@@ -88,7 +92,8 @@ const Navbar = () => {
               </div>
             )}
           </div>
-          <Link href="/gift" className="text-gray-800 hover:text-blue-600 transition">Gift Card</Link>
+          <Link href="/gift" className="text-gray-800 hover:text-blue-600 transition">Corporate Gifting</Link>
+          <Link href="/contact" className="text-white bg-blue-600 hover:bg-blue-700 transition duration-300 rounded-md px-1 py-1 text-sm">Contact Us</Link>
         </div>
       </div>
     </nav>

@@ -31,9 +31,8 @@ const ScrollToTop = () => {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-5 right-5 p-3 bg-orange-400 text-white rounded-full shadow-lg transition hover:bg-blue-700 z-50" // Added z-50
+          className="fixed bottom-5 right-5 p-3 bg-orange-400 text-white rounded-full shadow-lg transition hover:bg-blue-700"
           aria-label="Scroll to top"
-          style={{ boxShadow: '0 4px 10px rgba(0, 0, 0, 0.5)' }} // Optional shadow for better visibility
         >
           ↑
         </button>

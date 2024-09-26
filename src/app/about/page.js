@@ -4,11 +4,9 @@ import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
 import OurLeader from '@/components/OurLeader';
 import OurStory from '@/components/OurStory';
-// import OurTeam from '@/components/OurTeam';
 import ServiceProvide from '@/components/ServiceProvide';
-// import React from 'react';
-import React, { useEffect } from 'react';
-import { initializeAOS } from '@/utils/AosSetup'; // Adjust the path as necessary
+import React, { useEffect, useState } from 'react';
+import { initializeAOS } from '@/utils/AosSetup';
 
 const About = () => {
     useEffect(() => {
@@ -16,22 +14,30 @@ const About = () => {
         return cleanupAOS;
     }, []);
 
+    // State for form visibility
+    const [isFormVisible, setFormVisible] = useState(false);
+
+    // Styles for the container
+    const containerStyle = {
+        backgroundColor: 'rgb(229 231 235)',
+        height: '350px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        textAlign: 'center',
+    };
+
     return (
         <div>
             <Header />
             <Navbar />
-            {/* <h2 className="text-3xl font-bold mb-4">About Us</h2> */}
-            <div className="relative bg-black text-white overflow-hidden" data-aos="zoom-in-up">
+            <div className="relative bg-blue-50 text-gray-950 overflow-hidden" data-aos="zoom-in-up">
                 <div className="absolute inset-0">
-                    <img
-                        src="https://t3.ftcdn.net/jpg/03/91/46/10/360_F_391461057_5P0BOWl4lY442Zoo9rzEeJU0S2c1WDZR.jpg"
-                        alt="IT Services Background"
-                        className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black opacity-50"></div>
+                    <div className="absolute inset-0 bg-blue-50 opacity-50"></div>
                 </div>
-                <div className="relative container mx-auto text-center py-36 px-4">
-                    <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
+                <div className="relative container mx-auto text-center py-20 px-4">
+                    <h1 className="text-4xl md:text-5xl font-extrabold mt-20 mb-4">
                         Leading IT Solutions for Your Business
                     </h1>
                     <p className="text-lg md:text-xl mb-8">
@@ -41,134 +47,169 @@ const About = () => {
             </div>
             <OurStory />
 
-            {/* images section */}
-            <div className="bg-white flex gap-2" data-aos="zoom-in-up">
+            {/* Images section */}
+            <div className="bg-white flex justify-between p-4" data-aos="zoom-in-up">
                 <div className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 p-4">
-                    <img
-                        src="https://www.betterup.com/hubfs/Happy-work-team-cheering-and-celebrating-at-meeting-team-collaboration.jpg"
-                        alt="Team Collaboration"
-                        className="w-full h-auto object-cover rounded-lg shadow-lg"
-                    />
-                    <p className="text-black text-1xl mt-2 font-bold text-center">Our Team Collaborating on Solutions</p>
-                </div>
-
-                <div className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 p-4">
-                    <img
-                        src="https://www.greetly.com/hubfs/visitor-management-system-guide-client-meetings-in-your-office.jpeg"
-                        alt="Meeting with Clients"
-                        className="w-full h-auto object-cover rounded-lg shadow-lg"
-                    />
-                    <p className="text-black text-1xl mt-2 font-bold text-center">Meeting with Clients to Understand Their Needs</p>
-                </div>
-
-                <div className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 p-4">
-                    <img
-                        src="https://miro.medium.com/v2/resize:fit:1400/1*2hwDUIUjKwBCkoP-KuBWYQ.jpeg"
-                        alt="Tech Solutions"
-                        className="w-full h-auto object-cover rounded-lg shadow-lg"
-                    />
-                    <p className="text-black text-1xl mt-2 font-bold text-center">Delivering Cutting-Edge Tech Solutions</p>
-                </div>
-            </div>
-
-            {/* overView */}
-            {/* <div className="bg-gray-100 mt-5 flex items-center justify-center">
-                <div className="p-5 rounded-3xl">
-                    <div className="bg-white p-8 max-w-2xl mx-auto rounded-xl">
-                        <h2 className="text-3xl font-bold mb-4">Our IT Services</h2>
-                        <p className="text-2lg">
-                            We are a team of passionate developers who are committed to creating innovative and user-friendly web applications.
-                            We believe that technology should be accessible to everyone, and we strive to make our products as easy to use as possible.
-
-                            We are constantly learning and growing, and we are always looking for new ways to improve our products and services.
-                            We are also committed to giving back to the community, and we participate in a number of open source projects.
+                    <div className="bg-gray-100 rounded-lg p-12 shadow-lg">
+                        <h3 className="text-black text-xl font-bold text-center">Collaborating on Solutions</h3>
+                        <p className="text-gray-700 mt-2 text-center">
+                            Our team works closely to develop innovative solutions that meet the unique needs of our clients.
                         </p>
                     </div>
                 </div>
-            </div> */}
-
-            {/* our mission */}
-            <div className="relative py-8 px-6 bg-black" data-aos="zoom-in-up">
-            <h2 className="text-4xl text-center  text-blue-700 font-bold ">Our Mission</h2>
-    <div className="relative py-12 px-6 bg-black" data-aos="zoom-in-up">
-        
-      <div className="container mx-auto flex flex-col lg:flex-row items-center">
-        
-        {/* Text Section */}
-        <div className="lg:w-1/2 lg:pr-8 text-center lg:text-left mb-8 lg:mb-0">
-          
-          <p className="text-md text-white mb-8">
-            At <strong>ANBRUCH IT</strong>, our mission is to empower businesses with cutting-edge technology solutions that drive growth, efficiency, and innovation.
-            We are committed to providing exceptional service and building long-lasting partnerships by understanding your unique needs and delivering tailored IT solutions.
-          </p>
-          <div className="grid grid-cols-1 gap-6">
-            <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col items-start">
-              <h3 className="text-2xl text-blue-950 font-semibold mb-4">Innovation</h3>
-              <p className="text-md text-blue-950">
-                We stay at the forefront of technology to provide innovative solutions that meet the evolving needs of businesses.
-              </p>
+                <div className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 p-4">
+                    <div className="bg-gray-100 rounded-lg p-12 shadow-lg">
+                        <h3 className="text-black text-xl font-bold text-center">Understanding Client Needs</h3>
+                        <p className="text-gray-700 mt-2 text-center">
+                            We prioritize understanding our clients' requirements to deliver tailored services and solutions.
+                        </p>
+                    </div>
+                </div>
+                <div className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 p-4">
+                    <div className="bg-gray-100 rounded-lg p-12 shadow-lg">
+                        <h3 className="text-black text-xl font-bold text-center">Delivering Tech Solutions</h3>
+                        <p className="text-gray-700 mt-2 text-center">
+                            Our focus on cutting-edge technology ensures that we provide the best solutions for your business.
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col items-start">
-              <h3 className="text-2xl  text-blue-950 font-semibold mb-4">Customer Focus</h3>
-              <p className="text-md  text-blue-950">
-                Our clients are at the heart of everything we do. We listen to your needs and tailor our services to exceed your expectations.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col items-start">
-              <h3 className="text-2xl  text-blue-950 font-semibold mb-4">Excellence</h3>
-              <p className="text-md  text-blue-950">
-                We are dedicated to delivering the highest quality solutions and services with professionalism and expertise.
-              </p>
-            </div>
-          </div>
-        </div>
 
-        {/* Image Section */}
-        <div className="lg:w-1/2 flex-shrink-0 mb-8 lg:mb-0">
-          <img
-            src='https://media.assettype.com/analyticsinsight%2F2024-07%2F275cca5c-3ac1-4f4b-8929-22ccb1e4a44d%2FTechnological_Innovation_1024x684.jpg'
-            alt="Innovation"
-            className="w-full h-auto object-fill rounded-lg shadow-lg"
-          />
-        </div>
-      </div>
-    </div>
-    </div>
-
-
-            {/* /Service Provide */}
-            <ServiceProvide />
-            {/* <OurLeader /> */}
-            {/* <OurTeam /> */}
-
-            {/* location and employee */}
-            <div className="bg-white py-12 mt-10" data-aos="zoom-in-up">
-                <div className="container mx-auto px-4">
-                    <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
-                        Discover the ANBRUCH IT Advantage: Excellence and Innovation at Our Core
-                    </h2>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                        <div className="bg-blue-950 p-24 rounded-lg shadow-lg text-center">
-                            <h3 className="text-4xl font-bold text-white">5+</h3>
-                            <p className="text-lg font-semibold text-white">Locations</p>
+            {/* Our Mission */}
+            <div className="relative py-8 px-6 bg-blue-50" data-aos="zoom-in-up">
+                <h2 className="text-4xl text-center text-blue-700 font-bold">Our Mission</h2>
+                <div className="relative py-12 px-6 bg-blue-50">
+                    <div className="container mx-auto flex flex-col lg:flex-row items-center">
+                        <div className="lg:w-1/2 lg:pr-8 text-center lg:text-left mb-8 lg:mb-0">
+                            <p className="text-md text-gray-950 mb-8">
+                                At <strong>ANBRUCH IT</strong>, our mission is to empower businesses with cutting-edge technology solutions that drive growth, efficiency, and innovation.
+                                We are committed to providing exceptional service and building long-lasting partnerships by understanding your unique needs and delivering tailored IT solutions.
+                            </p>
+                            <div className="grid grid-cols-1 gap-6">
+                                <div className="bg-white p-6 rounded-lg flex flex-col items-start">
+                                    <h3 className="text-2xl text-blue-950 font-semibold mb-4">Innovation</h3>
+                                    <p className="text-md text-blue-950">
+                                        We stay at the forefront of technology to provide innovative solutions that meet the evolving needs of businesses.
+                                    </p>
+                                </div>
+                                <div className="bg-white p-6 rounded-lg flex flex-col items-start">
+                                    <h3 className="text-2xl text-blue-950 font-semibold mb-4">Customer Focus</h3>
+                                    <p className="text-md text-blue-950">
+                                        Our clients are at the heart of everything we do. We listen to your needs and tailor our services to exceed your expectations.
+                                    </p>
+                                </div>
+                                <div className="bg-white p-6 rounded-lg flex flex-col items-start">
+                                    <h3 className="text-2xl text-blue-950 font-semibold mb-4">Excellence</h3>
+                                    <p className="text-md text-blue-950">
+                                        We are dedicated to delivering the highest quality solutions and services with professionalism and expertise.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <div className="bg-blue-950 p-24 rounded-lg shadow-lg text-center">
-                            <h3 className="text-4xl font-bold text-white">200+</h3>
-                            <p className="text-lg font-semibold text-white">Employees</p>
-                        </div>
-                        <div className="bg-blue-950 p-24 rounded-lg shadow-lg text-center">
-                            <h3 className="text-4xl font-bold text-white">50+</h3>
-                            <p className="text-lg font-semibold text-white">Technologies</p>
-                        </div>
-                        <div className="bg-blue-950 p-24 rounded-lg shadow-lg text-center">
-                            <h3 className="text-4xl font-bold text-white">24/7</h3>
-                            <p className="text-lg font-semibold text-white">Support</p>
+                        <div className="lg:w-1/2 flex-shrink-0 mb-8 lg:mb-0">
+                            <img
+                                src='https://media.assettype.com/analyticsinsight%2F2024-07%2F275cca5c-3ac1-4f4b-8929-22ccb1e4a44d%2FTechnological_Innovation_1024x684.jpg'
+                                alt="Innovation"
+                                className="w-full h-auto object-fill rounded-lg shadow-lg"
+                            />
                         </div>
                     </div>
                 </div>
             </div>
-                       <Footer />
+
+            {/* Service Provide */}
+            <ServiceProvide />
+
+            {/* Location and Employee Statistics */}
+            <div className="bg-white py-8 mt-10" data-aos="zoom-in-up">
+    <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Our Achievements</h2>
+    <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+        <div className="bg-blue-50 p-12 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-blue-100 duration-300 ease-in-out" data-aos="fade-up">
+            <h3 className="text-4xl font-bold text-blue-950">50+</h3>
+            <p className="text-lg font-semibold text-gray-600">Projects Completed</p>
+            <p className="text-gray-500 mt-2">From innovative tech solutions to impactful community initiatives, we’ve delivered excellence across various sectors.</p>
+        </div>
+        <div className="bg-blue-50 p-12 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-blue-100 duration-300 ease-in-out" data-aos="fade-up" data-aos-delay="100">
+            <h3 className="text-4xl font-bold text-blue-950">100+</h3>
+            <p className="text-lg font-semibold text-gray-600">Happy Clients</p>
+            <p className="text-gray-500 mt-2">Our commitment to client satisfaction has earned us long-lasting relationships and numerous referrals.</p>
+        </div>
+        <div className="bg-blue-50 p-12 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-blue-100 duration-300 ease-in-out" data-aos="fade-up" data-aos-delay="200">
+            <h3 className="text-4xl font-bold text-blue-950">200+</h3>
+            <p className="text-lg font-semibold text-gray-600">Employees</p>
+            <p className="text-gray-500 mt-2">Our diverse and talented team drives our success, bringing a wealth of knowledge and experience to every project.</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+            {/* Custom Contact Section */}
+            <div style={containerStyle} data-aos="zoom-in-up">
+            <div className="relative container mx-auto text-center py-18 px-4">
+           <h1 className="text-3xl md:text-4xl font-extrabold mt-12 mb-6">
+                     Transforming Businesses Through Technology
+                     </h1>
+                 <p className="text-lg md:text-lg mb-8">
+                    Tailored IT solutions designed to streamline your processes and drive growth in a digital-first world.
+                </p>
+            </div>
+
+                <div>
+                    <button
+                        type="button"
+                        style={{
+                            padding: '0.75rem 2.5rem',
+                            fontSize: '0.875rem',
+                            fontWeight: '500',
+                            backgroundColor: 'blue',
+                            color: 'black',
+                            borderRadius: '0.5rem',
+                            border: '1px solid #E5E7EB',
+                            transition: 'background-color 0.2s, color 0.2s, transform 0.2s',
+                        }}
+                        onClick={() => setFormVisible(true)}
+                    >
+                        CONTACT
+                    </button>
+                </div>
+
+                {isFormVisible && (
+                    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                        <form className="bg-white p-6 rounded-lg shadow-md w-96" onSubmit={(e) => { e.preventDefault(); alert('Message sent!'); }}>
+                            <h2 className="text-xl mb-4">Contact Us</h2>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Company Name</label>
+                                <input type="text" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Your Name</label>
+                                <input type="text" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Message</label>
+                                <textarea required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" rows="4"></textarea>
+                            </div>
+                            <button type="submit" className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                                Send Message
+                            </button>
+                            <button
+                                type="button"
+                                className="mt-2 w-full py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                                onClick={() => setFormVisible(false)}
+                            >
+                                Close
+                            </button>
+                        </form>
+                    </div>
+                )}
+            </div>
+            <Footer />
         </div>
     );
 }

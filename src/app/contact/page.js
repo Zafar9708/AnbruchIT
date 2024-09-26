@@ -17,7 +17,7 @@ const ContactPage = () => {
           className="w-full h-80 object-cover"
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center z-10 overlay-animation" data-aos="zoom-in-up">
-          <h1 className="text-white text-3xl md:text-4xl font-bold bg-opacity-50 p-4 rounded mb-4">
+          <h1 className="text-white text-3xl md:text-4xl mt-8 font-bold bg-opacity-50 p-4 rounded mb-4">
             We're Here to Help!
           </h1>
           <button className="bg-blue-100 text-black text-lg font-bold px-6 py-3 rounded shadow-lg hover:bg-gray-200 transition duration-300">

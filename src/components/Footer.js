@@ -12,7 +12,7 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Anbruch IT</h3>
             <p className="text-gray-400 mb-2">Phone: 0120-496-3453</p>
             <p className="text-gray-400 mb-2">Noida, Uttar Pradesh, 201301</p>
-            <p className="text-gray-400 mb-2">Phone: 0120-496-3453</p> 
+            
 
 
             <p className="text-gray-400">Email: info@anbruch.com

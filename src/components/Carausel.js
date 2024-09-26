@@ -1,8 +1,9 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const CarouselComponent = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -48,7 +49,7 @@ const CarouselComponent = () => {
   };
 
   const headingStyle = {
-    fontSize: isMobile ? '1.4em' : '1.6em',
+    fontSize: isMobile ? '1.9em' : '1.9em',
     marginBottom: '10px',
     fontWeight: 'bold',
     textTransform: 'uppercase',
@@ -88,27 +89,49 @@ const CarouselComponent = () => {
     transform: 'scale(1.00)',
   };
 
+  const animationProps = (delay) => ({
+    initial: { x: -100, opacity: 0 },
+    animate: { x: 0, opacity: 1 },
+    transition: { duration: 0.5, delay },
+  });
+
   return (
     <Carousel
       showArrows={true}
       showThumbs={false}
       infiniteLoop={true}
       autoPlay={true}
-      interval={2000}
+      interval={4000}
       swipeable={false}
+      onChange={(index) => {
+        // Reset animations when changing slides
+        const elements = document.querySelectorAll('.carousel-text');
+        elements.forEach((element, i) => {
+          const delay = i * 0.2; // Stagger animations based on index
+          element.style.opacity = 0; // Reset opacity
+          element.style.transform = 'translateX(-100px)'; // Reset position
+          setTimeout(() => {
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            element.style.opacity = 1; // Fade in
+            element.style.transform = 'translateX(0)'; // Move in
+          }, delay * 1000);
+        });
+      }}
     >
       {/* First Section */}
       <div style={containerStyle}>
         <div style={textContainerStyle}>
-          <h2 style={headingStyle}>Services</h2>
-          <h1 style={middleTextStyle}>
+          <motion.h2 className="carousel-text" style={headingStyle} {...animationProps(0.9)}>
+            Services
+          </motion.h2>
+          <motion.h1 className="carousel-text" style={middleTextStyle} {...animationProps(1.0)}>
             End to End Implementation & <br /> Integration Services
-          </h1>
-          <p style={paragraphStyle}>
+          </motion.h1>
+          <motion.p className="carousel-text" style={paragraphStyle} {...animationProps(2.0)}>
             Our expert team specializes in seamless integration of Salesforce and Odoo. 
             We ensure that your business processes are optimized for success, with 
             tailored solutions that meet your unique needs.
-          </p>
+          </motion.p>
           <Link href="/sfdc">
             <button
               style={buttonStyle}
@@ -133,13 +156,17 @@ const CarouselComponent = () => {
       {/* Second Section */}
       <div style={containerStyle}>
         <div style={textContainerStyle}>
-          <h2 style={headingStyle}>Resources</h2>
-          <h1 style={middleTextStyle}>Develop Big with Our Qualified Tech Resources</h1>
-          <p style={paragraphStyle}>
+          <motion.h2 className="carousel-text" style={headingStyle} {...animationProps(0.9)}>
+            Resources
+          </motion.h2>
+          <motion.h1 className="carousel-text" style={middleTextStyle} {...animationProps(1.0)}>
+            Develop Big with Our Qualified Tech Resources
+          </motion.h1>
+          <motion.p className="carousel-text" style={paragraphStyle} {...animationProps(2.0)}>
             Explore our range of resources to enhance your development projects. 
             From ReactJs to Angular, we provide the tools and frameworks that 
             empower your development teams to create outstanding applications.
-          </p>
+          </motion.p>
           <Link href="/mobileapp">
             <button
               style={buttonStyle}
@@ -164,13 +191,17 @@ const CarouselComponent = () => {
       {/* Third Section */}
       <div style={containerStyle}>
         <div style={textContainerStyle}>
-          <h2 style={headingStyle}>Solutions</h2>
-          <h1 style={middleTextStyle}>Gifting Solutions for Every Occasion</h1>
-          <p style={paragraphStyle}>
+          <motion.h2 className="carousel-text" style={headingStyle} {...animationProps(0.7)}>
+            Solutions
+          </motion.h2>
+          <motion.h1 className="carousel-text" style={middleTextStyle} {...animationProps(1.0)}>
+            Gifting Solutions for Every Occasion
+          </motion.h1>
+          <motion.p className="carousel-text" style={paragraphStyle} {...animationProps(2.0)}>
             Discover a wide range of gifting solutions tailored to every celebration. 
             Whether it’s for birthdays, anniversaries, or corporate events, we have 
             the perfect gifts to make your occasions memorable.
-          </p>
+          </motion.p>
           <Link href="/gift">
             <button
               style={buttonStyle}

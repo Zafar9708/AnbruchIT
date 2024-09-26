@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { initializeAOS } from '@/utils/AosSetup';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
@@ -11,14 +11,29 @@ const CloudConsultingPage = () => {
     const cleanupAOS = initializeAOS();
     return cleanupAOS;
   }, []);
+
+// State for form visibility
+const [isFormVisible, setFormVisible] = useState(false);
+
+// Styles for the container
+const containerStyle = {
+    backgroundColor: 'rgb(239 246 255)',
+    height: '350px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    textAlign: 'center',
+};
+
   return (
     <div className="bg-white">
       <Header />
       <Navbar />
 
       <main>
-        <section className="text-center bg-blue-50 mb-16 py-28">
-          <h1 className="text-4xl font-extrabold mb-6 text-black">Cloud Consulting Services</h1>
+        <section className="text-center bg-blue-50 mb-8 py-28">
+          <h1 className="text-4xl mt-8 font-extrabold mb-6 text-black">Cloud Consulting Services</h1>
           <p className="text-xl text-black max-w-5xl mx-auto">
             Unlock the power of the cloud with our expert consulting services. We help businesses of all sizes leverage cloud technologies to optimize operations, reduce costs, and drive innovation.
           </p>
@@ -29,7 +44,7 @@ const CloudConsultingPage = () => {
           </div>
         </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
           {/* Cloud Migration Card */}
           <div className="bg-blue-950 border border-gray-300 rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300" data-aos="zoom-in-up">
             <img src="/Assets/cloudConsultant/cloud-migration-min.webp" alt="Cloud Migration" className="w-full h-48 object-cover rounded-t-lg mb-4" />
@@ -42,9 +57,9 @@ const CloudConsultingPage = () => {
               <li>Data migration</li>
               <li>Cloud architecture design</li>
             </ul>
-            <a href="#contact" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
+            {/* <a href="#contact" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
               Learn More
-            </a>
+            </a> */}
           </div>
 
           {/* Cloud Optimization Card */}
@@ -59,9 +74,9 @@ const CloudConsultingPage = () => {
               <li>Performance optimization</li>
               <li>Security assessments</li>
             </ul>
-            <a href="#contact" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
+            {/* <a href="#contact" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
               Learn More
-            </a>
+            </a> */}
           </div>
 
           {/* Cloud Security Card */}
@@ -76,9 +91,9 @@ const CloudConsultingPage = () => {
               <li>Security audits</li>
               <li>Incident response planning</li>
             </ul>
-            <a href="#contact" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
+            {/* <a href="#contact" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
               Learn More
-            </a>
+            </a> */}
           </div>
 
           {/* Cloud Consulting Card */}
@@ -93,9 +108,9 @@ const CloudConsultingPage = () => {
               <li>Technology selection</li>
               <li>Cloud migration planning</li>
             </ul>
-            <a href="#contact" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
+            {/* <a href="#contact" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
               Learn More
-            </a>
+            </a> */}
           </div>
 
           {/* Cloud DevOps Card */}
@@ -110,9 +125,9 @@ const CloudConsultingPage = () => {
               <li>Infrastructure as Code (IaC)</li>
               <li>Monitoring and logging</li>
             </ul>
-            <a href="#contact" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
+            {/* <a href="#contact" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
               Learn More
-            </a>
+            </a> */}
           </div>
 
           {/* Cloud Analytics Card */}
@@ -127,13 +142,13 @@ const CloudConsultingPage = () => {
               <li>Business intelligence</li>
               <li>Advanced analytics and reporting</li>
             </ul>
-            <a href="#contact" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
+            {/* <a href="#contact" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
               Learn More
-            </a>
+            </a> */}
           </div>
         </div>
 
-        <section className="bg-gray-200 p-8 mb-16 rounded-lg shadow-md" data-aos="zoom-in-up">
+        <section className="bg-gray-200 p-8 mb-8 rounded-lg " data-aos="zoom-in-up">
           <h2 className="text-3xl font-semibold mb-6 text-gray-900 text-center">What Our Clients Say</h2>
           <div className="space-y-8">
             {/* Testimonial 1 */}
@@ -160,6 +175,73 @@ const CloudConsultingPage = () => {
             </div>
           </div>
         </section>
+
+         {/* Custom Contact Section */}
+         <div style={containerStyle} data-aos="zoom-in-up">
+            <div className="relative container mx-auto text-center py-18 px-4">
+            <h1 className="text-3xl md:text-4xl font-extrabold mt-20 mb-6">
+    Elevating Your Business with Cloud Solutions
+</h1>
+<p className="text-lg md:text-lg mb-8">
+    Expert cloud consulting services designed to optimize your operations, enhance scalability.
+</p>
+
+
+            </div>
+
+                <div>
+                    <button
+                        type="button"
+                        style={{
+                            padding: '0.75rem 2.5rem',
+                            fontSize: '0.875rem',
+                            fontWeight: '500',
+                            backgroundColor: 'blue',
+                            color: 'black',
+                            borderRadius: '0.5rem',
+                            border: '1px solid #E5E7EB',
+                            transition: 'background-color 0.2s, color 0.2s, transform 0.2s',
+                        }}
+                        onClick={() => setFormVisible(true)}
+                    >
+                        CONTACT
+                    </button>
+                </div>
+
+                {isFormVisible && (
+                    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                        <form className="bg-white p-6 rounded-lg shadow-md w-96" onSubmit={(e) => { e.preventDefault(); alert('Message sent!'); }}>
+                            <h2 className="text-xl mb-4">Contact Us</h2>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Company Name</label>
+                                <input type="text" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Your Name</label>
+                                <input type="text" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Message</label>
+                                <textarea required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" rows="4"></textarea>
+                            </div>
+                            <button type="submit" className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                                Send Message
+                            </button>
+                            <button
+                                type="button"
+                                className="mt-2 w-full py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                                onClick={() => setFormVisible(false)}
+                            >
+                                Close
+                            </button>
+                        </form>
+                    </div>
+                )}
+            </div>
 
        
       </main>

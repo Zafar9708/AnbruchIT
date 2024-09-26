@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { initializeAOS } from '@/utils/AosSetup';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
@@ -11,11 +11,27 @@ const ManagedServicesPage = () => {
     const cleanupAOS = initializeAOS();
     return cleanupAOS;
   }, []);
+
+// State for form visibility
+const [isFormVisible, setFormVisible] = useState(false);
+
+// Styles for the container
+const containerStyle = {
+    backgroundColor: 'rgb(243 244 246)',
+    height: '350px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    textAlign: 'center',
+};
+
+
   return (
     <div>
       <Header />
       <Navbar />
-      <div className="min-h-screen bg-gray-100">
+      <div className="bg-gray-100">
         {/* <header className="bg-gray-800 text-white py-4">
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-3xl font-bold">Managed Services</h1>
@@ -23,9 +39,9 @@ const ManagedServicesPage = () => {
         </header> */}
 
         {/* Hero Section */}
-        <section className="bg-blue-50 text-black py-32" data-aos="zoom-in-up">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-4xl font-extrabold mb-6 py-18 leading-tight">
+        <section className="bg-blue-50 text-black py-16" data-aos="zoom-in-up">
+          <div className="container  px-4 text-center">
+            <h2 className="text-4xl font-extrabold mb-6 mt-14 leading-tight">
               Comprehensive Managed Services for Seamless Operations
             </h2>
             <p className="text-xl mb-8 max-w-3xl mx-auto">
@@ -58,7 +74,7 @@ const ManagedServicesPage = () => {
       </div>
     </div>
     <div className="mt-12 text-center">
-      <a href="#services" className="bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold text-lg hover:bg-blue-500 transition duration-300">
+      <a href="/contact" className="bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold text-lg hover:bg-blue-500 transition duration-300">
         Explore Our Services
       </a>
     </div>
@@ -121,29 +137,29 @@ const ManagedServicesPage = () => {
                 <p className="text-gray-800 mb-4">
                   A large retail chain adopted our managed services to streamline its IT operations. By implementing proactive monitoring and support, we reduced downtime by 40% and improved system performance, leading to a 25% increase in sales during peak seasons.
                 </p>
-                <a href="#" className="text-blue-600 hover:underline">Read Full Case Study</a>
+                {/* <a href="#" className="text-blue-600 hover:underline">Read Full Case Study</a> */}
               </div>
               <div className="bg-blue-50 p-6 rounded-lg shadow-lg" data-aos="zoom-in-up">
                 <h3 className="text-2xl font-semibold mb-4 text-gray-800">Success Story: Healthcare Efficiency</h3>
                 <p className="text-gray-800 mb-4">
                   A healthcare provider faced challenges with data management and security. Our managed services ensured robust data backup solutions and 24/7 support, significantly reducing data loss incidents and improving compliance with healthcare regulations.
                 </p>
-                <a href="#" className="text-blue-600 hover:underline">Read Full Success Story</a>
+                {/* <a href="#" className="text-blue-600 hover:underline">Read Full Success Story</a> */}
               </div>
               <div className="bg-blue-50 p-6 rounded-lg shadow-lg" data-aos="zoom-in-up">
                 <h3 className="text-2xl font-semibold mb-4 text-gray-800">Case Study: Financial Sector Innovation</h3>
                 <p className="text-gray-800 mb-4">
                   A financial services firm sought to upgrade its IT infrastructure. Through our managed services, we implemented a new cloud-based system, enhancing operational efficiency and reducing IT costs by 30% while ensuring top-notch security and compliance.
                 </p>
-                <a href="#" className="text-blue-600 hover:underline">Read Full Case Study</a>
+                {/* <a href="#" className="text-blue-600 hover:underline">Read Full Case Study</a> */}
               </div>
             </div>
           </div>
         </section>
 
         {/* Blog / Resources */}
-        <section className="py-12 bg-white" data-aos="zoom-in-up">
-          <div className="container mx-auto px-4">
+        <section className="py-12 bg-blue-50" data-aos="zoom-in-up">
+          <div className="container mx-auto px-4" data-aos="zoom-in-up">
             <h2 className="text-4xl font-extrabold mb-10 text-center text-gray-800">Blog & Resources</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
               <div className="bg-blue-950 p-6 rounded-lg shadow-lg">
@@ -151,49 +167,97 @@ const ManagedServicesPage = () => {
                 <p className="text-white mb-4">
                   Explore the evolving landscape of managed services and how emerging technologies are shaping the future of IT management.
                 </p>
-                <a href="#" className="text-blue-600 hover:underline">Read More</a>
+                {/* <a href="#" className="text-blue-600 hover:underline">Read More</a> */}
               </div>
-              <div className="bg-blue-950 p-6 rounded-lg shadow-lg">
+              <div className="bg-blue-950 p-6 rounded-lg shadow-lg" data-aos="zoom-in-up">
                 <h3 className="text-2xl font-semibold mb-4 text-white">How to Choose a Managed Services Provider</h3>
                 <p className="text-white mb-4">
                   Learn key factors to consider when selecting a managed services provider to ensure you get the best fit for your business needs.
                 </p>
-                <a href="#" className="text-blue-600 hover:underline">Read More</a>
+                {/* <a href="#" className="text-blue-600 hover:underline">Read More</a> */}
               </div>
-              <div className="bg-blue-950 p-6 rounded-lg shadow-lg">
+              <div className="bg-blue-950 p-6 rounded-lg shadow-lg" data-aos="zoom-in-up">
                 <h3 className="text-2xl font-semibold mb-4 text-white">Top Benefits of Cloud Management</h3>
                 <p className="text-white mb-4">
                   Discover the advantages of cloud management and how it can help streamline your IT operations and reduce costs.
                 </p>
-                <a href="#" className="text-blue-600 hover:underline">Read More</a>
+                {/* <a href="#" className="text-blue-600 hover:underline">Read More</a> */}
               </div>
             </div>
           </div>
         </section>
 
-        {/* Contact / Call to Action */}
-        <section id="contact" className="bg-gray-300 py-16" data-aos="zoom-in-up">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-4xl font-extrabold mb-6 text-gray-800">Ready to Transform Your IT Operations?</h2>
-            <p className="text-lg mb-8 text-gray-600">
-              Contact us today to learn more about our managed services and how we can help streamline your IT operations for better efficiency and performance. Our team is ready to provide you with tailored solutions to meet your unique business needs.
-            </p>
-            <a href="mailto:info@example.com" className="bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold text-lg hover:bg-blue-500 transition duration-300">
-              Get in Touch
-            </a>
-          </div>
-        </section>
-        <section id="contact" className="bg-black py-16 text-center text-white"  data-aos="zoom-in-up">
-                <div className="container mx-auto px-4">
-                    <h2 className="text-3xl md:text-4xl font-extrabold mb-6">Ready to Revolutionize Your Quality Control?</h2>
-                    <p className="text-lg mb-8">
-                        Contact us today to discover how our Quality Automation solutions can streamline your processes and boost your product quality.
-                    </p>
-                    <a href="mailto:info@example.com" className="bg-blue-400 text-blue-900 py-3 px-6 rounded-lg font-semibold text-lg hover:bg-blue-300 transition duration-300">
-                        Contact Us
-                    </a>
+
+
+       {/* Custom Contact Section */}
+       <div style={containerStyle} data-aos="zoom-in-up">
+            <div className="relative container mx-auto text-center py-18 px-4">
+            <h1 className="text-3xl md:text-4xl font-extrabold mt-12 mb-6">
+    Streamlining Your Operations with Managed Services
+</h1>
+<p className="text-lg md:text-lg mb-8">
+    Comprehensive managed services that ensure your IT infrastructure runs smoothly.
+</p>
+
+
+
+            </div>
+
+                <div>
+                    <button
+                        type="button"
+                        style={{
+                            padding: '0.75rem 2.5rem',
+                            fontSize: '0.875rem',
+                            fontWeight: '500',
+                            backgroundColor: 'blue',
+                            color: 'black',
+                            borderRadius: '0.5rem',
+                            border: '1px solid #E5E7EB',
+                            transition: 'background-color 0.2s, color 0.2s, transform 0.2s',
+                        }}
+                        onClick={() => setFormVisible(true)}
+                    >
+                        GET IN TOUCH
+                    </button>
                 </div>
-            </section>
+
+                {isFormVisible && (
+                    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                        <form className="bg-white p-6 rounded-lg shadow-md w-96" onSubmit={(e) => { e.preventDefault(); alert('Message sent!'); }}>
+                            <h2 className="text-xl mb-4">Contact Us</h2>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Company Name</label>
+                                <input type="text" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Your Name</label>
+                                <input type="text" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Message</label>
+                                <textarea required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" rows="4"></textarea>
+                            </div>
+                            <button type="submit" className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                                Send Message
+                            </button>
+                            <button
+                                type="button"
+                                className="mt-2 w-full py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                                onClick={() => setFormVisible(false)}
+                            >
+                                Close
+                            </button>
+                        </form>
+                    </div>
+                )}
+            </div>
+      
+       
       </div>
       <Footer />
     </div>

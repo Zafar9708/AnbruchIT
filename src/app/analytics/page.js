@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { initializeAOS } from '@/utils/AosSetup';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
@@ -12,6 +12,21 @@ const AnalyticsPage = () => {
     const cleanupAOS = initializeAOS();
     return cleanupAOS;
   }, []);
+
+  const [isFormVisible, setFormVisible] = useState(false);
+
+  // Styles for the container
+  const containerStyle = {
+      backgroundColor: 'rgb(243 244 246)',
+      height: '350px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'column',
+      textAlign: 'center',
+  }; 
+
+
   return (
     <div>
       <Header />
@@ -19,13 +34,14 @@ const AnalyticsPage = () => {
 
       <main>
         {/* Hero Section */}
-        <section className="text-center  py-28 bg-blue-50 mb-4" data-aos="zoom-in-up">
-          <h1 className="text-3xl font-bold mb-4 text-black">Analytics Services</h1>
-          <p className="text-lg  text-black">
-            Gain valuable insights into your business performance with our comprehensive analytics solutions. We help you make data-driven decisions and optimize your operations.
-          </p>
+        <section className="text-center  py-24 bg-blue-50 mb-4" data-aos="zoom-in-up">
+        <h1 className="text-3xl mt-16 font-bold mb-4 text-black">Transform Your Business with Expert Analytics Services</h1>
+         <p className="text-lg text-black">
+         We provide in-depth insights that empower you to make informed, data-driven decisions and enhance operational efficiency.
+            </p>
+
           <div className="flex justify-center mt-8">
-            <a href="/services" className="bg-blue-950 text-white py-3 px-6 rounded-lg text-lg font-semibold">
+            <a href="/contact" className="bg-blue-950 text-white py-3 px-6 rounded-lg text-lg font-semibold">
               Explore Our Services
             </a>
           </div>
@@ -47,9 +63,9 @@ const AnalyticsPage = () => {
             <p className="text-white mb-4">
               With our web analytics services, you’ll gain actionable insights into how users interact with your site, allowing you to make data-driven decisions to improve user engagement and increase conversions.
             </p>
-            <Link href="/web-analytics" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+            {/* <Link href="/web-analytics" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300">
               Learn More
-            </Link>
+            </Link> */}
           </div>
 
           {/* Mobile App Analytics Card */}
@@ -66,9 +82,9 @@ const AnalyticsPage = () => {
             <p className="text-white mb-4">
               Our mobile app analytics will help you monitor user interactions and performance metrics, enabling you to enhance app functionality, optimize user experience, and drive user retention.
             </p>
-            <Link href="/mobile-app-analytics" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+            {/* <Link href="/mobile-app-analytics" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300">
               Learn More
-            </Link>
+            </Link> */}
           </div>
 
           {/* Data Visualization Card */}
@@ -85,9 +101,9 @@ const AnalyticsPage = () => {
             <p className="text-white mb-4">
               Our data visualization solutions turn complex data into clear, visually engaging formats, making it easier for you to understand trends and make informed decisions quickly.
             </p>
-            <Link href="/data-visualization" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+            {/* <Link href="/data-visualization" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300">
               Learn More
-            </Link>
+            </Link> */}
           </div>
 
           {/* Predictive Analytics Card */}
@@ -111,9 +127,9 @@ const AnalyticsPage = () => {
         </div>
 
         {/* Testimonial Section */}
-        <section className="bg-black py-16 px-4" data-aos="zoom-in-up">
+        <section className="bg-gray-100 py-12 px-4" data-aos="zoom-in-up">
           <div className="container mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-8 text-white">What Our Clients Say</h2>
+            <h2 className="text-3xl font-bold mb-8 text-gray-950">What Our Clients Say</h2>
             <div className="flex flex-wrap justify-center gap-8">
               {/* Testimonial 1 */}
               <div className="bg-white border border-gray-200 rounded-lg shadow-md p-6 max-w-md">
@@ -123,6 +139,15 @@ const AnalyticsPage = () => {
                 <p className="font-semibold text-black">Alex Johnson</p>
                 <p className="text-black">CEO, Tech Innovations</p>
               </div>
+              {/* Testimonial 2 */}
+<div className="bg-white border border-gray-200 rounded-lg shadow-md p-6 max-w-md">
+    <p className="text-black mb-4">
+        “Thanks to their analytics solutions, we have gained actionable insights that have streamlined our operations and boosted our overall performance. Their expertise is unmatched!”
+    </p>
+    <p className="font-semibold text-black">Maria Lopez</p>
+    <p className="text-black">COO, Dynamic Solutions</p>
+</div>
+
 
               {/* Testimonial 2 */}
               <div className="bg-white border border-gray-200 rounded-lg shadow-md p-6 max-w-md">
@@ -137,7 +162,7 @@ const AnalyticsPage = () => {
         </section>
 
         {/* Case Study Section */}
-        <section className="py-16 px-4">
+        <section className="py-12 bg-blue-50 px-4">
           <div className="container mx-auto text-center">
             <h2 className="text-3xl font-bold mb-8 text-gray-800">Case Studies</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -147,9 +172,9 @@ const AnalyticsPage = () => {
                 <p className="text-white mb-4">
                   Our client, an e-commerce store, saw a 30% increase in sales after implementing our web analytics and conversion rate optimization strategies.
                 </p>
-                <Link href="/case-studies/e-commerce-growth" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+                {/* <Link href="/case-studies/e-commerce-growth" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300">
                   Read More
-                </Link>
+                </Link> */}
               </div>
 
               {/* Case Study 2 */}
@@ -158,9 +183,9 @@ const AnalyticsPage = () => {
                 <p className="text-white mb-4">
                   By utilizing our mobile app analytics services, a client saw a 50% improvement in user retention and engagement within six months.
                 </p>
-                <Link href="/case-studies/mobile-app-success" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+                {/* <Link href="/case-studies/mobile-app-success" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300">
                   Read More
-                </Link>
+                </Link> */}
               </div>
 
               {/* Case Study 3 */}
@@ -169,15 +194,84 @@ const AnalyticsPage = () => {
                 <p className="text-white mb-4">
                   Our data visualization tools helped a leading finance firm streamline their reporting process, resulting in faster and more accurate decision-making.
                 </p>
-                <Link href="/case-studies/data-driven-decisions" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+                {/* <Link href="/case-studies/data-driven-decisions" className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300">
                   Read More
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>
         </section>
+       
 
-        {/* Contact Section */}
+       {/* Custom Contact Section */}
+       <div style={containerStyle} data-aos="zoom-in-up">
+            <div className="relative container mx-auto text-center py-18 px-4">
+            <h1 className="text-3xl md:text-4xl font-extrabold mt-4 mb-6">
+    Ready to Transform Your Web Analytics?
+     </h1>
+        <p className="text-lg md:text-lg mb-8">
+       Contact us today to explore how our web analytics solutions can provide valuable insights, optimize your user experience, and drive impactful results for your business.
+         </p>
+ 
+
+
+
+            </div>
+
+                <div>
+                    <button
+                        type="button"
+                        style={{
+                            padding: '0.75rem 2.5rem',
+                            fontSize: '0.875rem',
+                            fontWeight: '500',
+                            backgroundColor: 'blue',
+                            color: 'black',
+                            borderRadius: '0.5rem',
+                            border: '1px solid #E5E7EB',
+                            transition: 'background-color 0.2s, color 0.2s, transform 0.2s',
+                        }}
+                        onClick={() => setFormVisible(true)}
+                    >
+                        CONTACT US
+                    </button>
+                </div>
+
+                {isFormVisible && (
+                    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                        <form className="bg-white p-6 rounded-lg shadow-md w-96" onSubmit={(e) => { e.preventDefault(); alert('Message sent!'); }}>
+                            <h2 className="text-xl mb-4">Contact Us</h2>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Company Name</label>
+                                <input type="text" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Your Name</label>
+                                <input type="text" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Message</label>
+                                <textarea required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" rows="4"></textarea>
+                            </div>
+                            <button type="submit" className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                                Send Message
+                            </button>
+                            <button
+                                type="button"
+                                className="mt-2 w-full py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                                onClick={() => setFormVisible(false)}
+                            >
+                                Close
+                            </button>
+                        </form>
+                    </div>
+                )}
+            </div>
+        
         
       </main>
       <Footer />

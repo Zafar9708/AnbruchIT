@@ -31,7 +31,7 @@ const Development = () => {
         <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
             {
-              href: '/webdevelop',
+              // href: '/webdevelop',
               title: 'Web Development',
               description: 'We provide custom software development solutions to help you build robust and scalable applications tailored to your business needs.',
               images: [
@@ -40,7 +40,7 @@ const Development = () => {
               ],
             },
             {
-              href: '/mobileapp',
+              // href: '/mobileapp',
               title: 'Mobile App Development',
               description: 'Our design services focus on creating user-friendly interfaces and experiences that align with your brand and enhance user engagement.',
               images: [
@@ -49,7 +49,7 @@ const Development = () => {
               ],
             },
             {
-              href: '/design',
+              // href: '/design',
               title: 'UI/UX Design',
               description: 'Our design services focus on creating user-friendly interfaces and experiences that align with your brand and enhance user engagement.',
               images: [
@@ -58,7 +58,7 @@ const Development = () => {
               ],
             },
             {
-              href: '/testing',
+              // href: '/testing',
               title: 'Testing',
               description: 'We offer comprehensive testing services to ensure your applications are reliable, secure, and perform optimally across various platforms.',
               images: [
@@ -67,7 +67,7 @@ const Development = () => {
               ],
             },
             {
-              href: '/cmsdevelopment',
+              // href: '/cmsdevelopment',
               title: 'CMS Development',
               description: 'Develop a content management system to easily manage website content.',
               images: [
@@ -76,7 +76,7 @@ const Development = () => {
               ],
             },
             {
-              href: '/cloudstrategy',
+              // href: '/cloudstrategy',
               title: 'Cloud Strategy',
               description: 'Our cloud strategy focuses on facilitating moving data more securely and improving business processes.',
               images: [
@@ -86,7 +86,7 @@ const Development = () => {
             },
           ].map(({ href, title, description, images }) => (
             <div key={title} className="relative block bg-white rounded-lg shadow-md overflow-hidden group h-72 sm:h-80 md:h-96 transition-all duration-300" data-aos="zoom-in-up">
-              <Link href={href} className="relative h-full">
+              {/* <Link href={href} className="relative h-full"> */}
                 <img
                   src={images[0]}
                   alt={title}
@@ -108,7 +108,7 @@ const Development = () => {
                     Learn More
                   </button>
                 </div>
-              </Link>
+              {/* </Link>/ */}
             </div>
           ))}
         </div>

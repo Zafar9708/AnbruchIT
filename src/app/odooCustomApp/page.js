@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -12,6 +12,19 @@ const OdooCustomAppPage = () => {
     return cleanupAOS;
   }, []);
 
+  const [isFormVisible, setFormVisible] = useState(false);
+
+// Styles for the container
+const containerStyle = {
+    backgroundColor: 'rgb(219 234 254)',
+    height: '350px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    textAlign: 'center',
+}; 
+
   return (
     <div>
       <Header />
@@ -19,12 +32,12 @@ const OdooCustomAppPage = () => {
 
       <main className="bg-white">
         {/* Hero Section */}
-        <section className="text-center py-32 bg-blue-50" data-aos="zoom-in-up">
-          <h1 className="text-4xl font-bold mb-4">Unlock Your Business Potential with Odoo Custom App Development</h1>
+        <section className="text-center py-28 bg-blue-50" data-aos="zoom-in-up">
+          <h1 className="text-4xl mt-14 font-bold mb-4">Unlock Your Business Potential with Odoo Custom App Development</h1>
           <p className="text-lg md:text-xl mb-8">
             Tailor-made Odoo applications to fit your unique business needs, enhance productivity, and drive growth.
           </p>
-          <a href="#features" className="bg-blue-400 text-white py-3 px-6 rounded-lg">
+          <a href="/contact" className="bg-blue-400 text-white py-3 px-6 rounded-lg">
             Discover Features
           </a>
         </section>
@@ -243,20 +256,75 @@ const OdooCustomAppPage = () => {
             </div>
           </div>
         </section>
-
-        {/* Contact / Call to Action */}
-        <section id="contact" className="bg-gray-100 py-16" data-aos="zoom-in-up">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-4xl font-extrabold mb-6 text-gray-900">Ready to Transform Your Business with Odoo?</h2>
-            <p className="text-lg mb-8 text-gray-900">
-              Contact us today to learn more about our Odoo development services and how we can help optimize your business operations with customized solutions.
-            </p>
-            <a href="mailto:info@example.com" className="bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold text-lg hover:bg-blue-500 transition duration-300">
-              Get in Touch
-            </a>
-          </div>
-        </section>
               </div>
+
+                 {/* Custom Contact Section */}
+         <div style={containerStyle} data-aos="zoom-in-up">
+            <div className="relative container mx-auto text-center py-18 px-4">
+            <h1 className="text-3xl md:text-4xl font-extrabold mt-4 mb-6">
+            Ready to Transform Your Business with Odoo?
+</h1>
+<p className="text-lg md:text-lg mb-8">
+    Comprehensive Salesforce consulting services designed to streamline your processes.
+</p>
+
+
+
+            </div>
+
+                <div>
+                    <button
+                        type="button"
+                        style={{
+                            padding: '0.75rem 2.5rem',
+                            fontSize: '0.875rem',
+                            fontWeight: '500',
+                            backgroundColor: 'blue',
+                            color: 'black',
+                            borderRadius: '0.5rem',
+                            border: '1px solid #E5E7EB',
+                            transition: 'background-color 0.2s, color 0.2s, transform 0.2s',
+                        }}
+                        onClick={() => setFormVisible(true)}
+                    >
+                        CONTACT US
+                    </button>
+                </div>
+
+                {isFormVisible && (
+                    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                        <form className="bg-white p-6 rounded-lg shadow-md w-96" onSubmit={(e) => { e.preventDefault(); alert('Message sent!'); }}>
+                            <h2 className="text-xl mb-4">Contact Us</h2>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Company Name</label>
+                                <input type="text" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Your Name</label>
+                                <input type="text" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Message</label>
+                                <textarea required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" rows="4"></textarea>
+                            </div>
+                            <button type="submit" className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                                Send Message
+                            </button>
+                            <button
+                                type="button"
+                                className="mt-2 w-full py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                                onClick={() => setFormVisible(false)}
+                            >
+                                Close
+                            </button>
+                        </form>
+                    </div>
+                )}
+            </div>
 
 
 
