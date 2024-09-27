@@ -137,4 +137,18 @@ EMAIL_HOST_PASSWORD = 'wnzn amfa arao arwa'
 
 
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "https://anbruchit.com",
+]
+
+
+CORS_ALLOW_METHODS = [
+
+    "POST",
+    
+]
+
+CORS_ALLOW_HEADERS = [
+    "content-type",
+]

@@ -1,3 +1,6 @@
+from django.shortcuts import render
+
+# Create your views here.
 # contact/views.py
 import json
 from django.http import JsonResponse

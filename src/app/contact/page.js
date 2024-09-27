@@ -92,9 +92,9 @@ const ContactPage = () => {
 
         <div className="flex-1">
           <form onSubmit={handleSubmit} className="bg-royal-blue p-6 rounded shadow-md">
-            <h2 className="text-xl font-semibold mb-4">Contact Form</h2>
+            <h2 className="text-xl text-white font-semibold mb-4">Contact Form</h2>
             <div className="mb-4">
-              <label className="block text-gray-700 mb-2" htmlFor="name">Name</label>
+              <label className="block text-white mb-2" htmlFor="name">Name</label>
               <input
                 type="text"
                 id="name"
@@ -105,7 +105,7 @@ const ContactPage = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 mb-2" htmlFor="email">Email</label>
+              <label className="block text-white mb-2" htmlFor="email">Email</label>
               <input
                 type="email"
                 id="email"
@@ -116,7 +116,7 @@ const ContactPage = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 mb-2" htmlFor="message">Message</label>
+              <label className="block text-white mb-2" htmlFor="message">Message</label>
               <textarea
                 id="message"
                 name="message"

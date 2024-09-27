@@ -68,7 +68,7 @@ const CollaborateContact = () => {
       <div>
         <button
           type="button"
-          style={{ padding: '0.75rem 2.5rem', backgroundColor: 'blue', color: 'black', borderRadius: '0.5rem', border: '1px solid #E5E7EB' }}
+          style={{ padding: '0.75rem 2.5rem', backgroundColor: 'blue', color: 'white', borderRadius: '0.5rem', border: '1px solid #E5E7EB' }}
           onClick={() => setFormVisible(true)}
         >
           CONTACT US
