@@ -3,9 +3,40 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
 import React from 'react';
-import { FaPhoneAlt, FaEnvelope, FaLinkedin, FaFacebook, FaInstagram } from 'react-icons/fa';
+import { FaPhoneAlt, FaEnvelope, FaLinkedin } from 'react-icons/fa';
 
 const ContactPage = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    const formData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      message: e.target.message.value,
+    };
+
+    try {
+      const response = await fetch('http://localhost:8000/api/contactus/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert('Message sent successfully!');
+        // Optionally, reset the form fields
+        e.target.reset();
+      } else {
+        const errorResponse = await response.json();
+        alert(`Error: ${errorResponse.message}`);
+      }
+    } catch (error) {
+      alert('An error occurred. Please try again.');
+    }
+  };
+
   return (
     <div className="relative">
       <Header />
@@ -36,14 +67,6 @@ const ContactPage = () => {
               <FaLinkedin className="mr-2 text-2xl" />
               <span>LinkedIn</span>
             </a>
-            {/* <a href="https://www.facebook.com/yourprofile" target="_blank" rel="noopener noreferrer" className="flex items-center text-blue-500 hover:text-gray-200 transition duration-300 mb-2">
-              <FaFacebook className="mr-2 text-2xl" />
-              <span>Facebook</span>
-            </a> */}
-            {/* <a href="https://www.instagram.com/yourprofile" target="_blank" rel="noopener noreferrer" className="flex items-center text-red-500 hover:text-gray-200 transition duration-300 mb-2">
-              <FaInstagram className="mr-2 text-2xl" />
-              <span>Instagram</span>
-            </a> */}
           </div>
         </div>
       </div>
@@ -66,7 +89,7 @@ const ContactPage = () => {
 
         {/* Right Side: Contact Form */}
         <div className="flex-1">
-          <form className="bg-royal-blue p-6 rounded shadow-md">
+          <form onSubmit={handleSubmit} className="bg-royal-blue p-6 rounded shadow-md">
             <h2 className="text-xl font-semibold mb-4">Contact Form</h2>
             <div className="mb-4">
               <label className="block text-gray-700 mb-2" htmlFor="name">Name</label>
@@ -125,24 +148,6 @@ const ContactPage = () => {
           </button>
         </form>
       </div>
-
-      <style jsx>{`
-        .overlay-animation {
-          opacity: 0;
-          animation: fadeIn 2s ease-in forwards;
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(-20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
 
       <Footer />
     </div>

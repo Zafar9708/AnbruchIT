@@ -36,7 +36,7 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
             <div className="flex space-x-4">
               {/* <a href="https://www.facebook.com/wrocustechnologies" className="text-gray-400 hover:text-white"><FaFacebookF /></a> */}
-              <a href="" className="text-gray-400 hover:text-white"><FaTwitter /></a>
+              {/* <a href="" className="text-gray-400 hover:text-white"><FaTwitter /></a> */}
               <a href="https://www.linkedin.com/company/anbruchit/?viewAsMember=true" className="text-gray-400 hover:text-white"><FaLinkedinIn /></a>
               {/* <a href="https://www.instagram.com/wrocustechnologies/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
                         <FaInstagram size={16} />

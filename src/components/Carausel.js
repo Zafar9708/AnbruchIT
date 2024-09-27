@@ -84,14 +84,9 @@ const CarouselComponent = () => {
     boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
   };
 
-  const buttonHoverStyle = {
-    backgroundColor: '#0056b3',
-    transform: 'scale(1.00)',
-  };
-
   const animationProps = (delay) => ({
-    initial: { x: -100, opacity: 0 },
-    animate: { x: 0, opacity: 1 },
+    initial: { y: -100, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
     transition: { duration: 0.5, delay },
   });
 
@@ -104,16 +99,15 @@ const CarouselComponent = () => {
       interval={4000}
       swipeable={false}
       onChange={(index) => {
-        // Reset animations when changing slides
         const elements = document.querySelectorAll('.carousel-text');
         elements.forEach((element, i) => {
-          const delay = i * 0.2; // Stagger animations based on index
-          element.style.opacity = 0; // Reset opacity
-          element.style.transform = 'translateX(-100px)'; // Reset position
+          const delay = i * 0.2;
+          element.style.opacity = 0;
+          element.style.transform = 'translateY(-100px)'; // Reset position to the top
           setTimeout(() => {
             element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            element.style.opacity = 1; // Fade in
-            element.style.transform = 'translateX(0)'; // Move in
+            element.style.opacity = 1;
+            element.style.transform = 'translateY(0)'; // Move in from the top
           }, delay * 1000);
         });
       }}
@@ -121,106 +115,64 @@ const CarouselComponent = () => {
       {/* First Section */}
       <div style={containerStyle}>
         <div style={textContainerStyle}>
-          <motion.h2 className="carousel-text" style={headingStyle} {...animationProps(0.9)}>
+          <motion.h2 className="carousel-text" style={headingStyle} {...animationProps(1.0)}>
             Services
           </motion.h2>
-          <motion.h1 className="carousel-text" style={middleTextStyle} {...animationProps(1.0)}>
+          <motion.h1 className="carousel-text" style={middleTextStyle} {...animationProps(2.0)}>
             End to End Implementation & <br /> Integration Services
           </motion.h1>
-          <motion.p className="carousel-text" style={paragraphStyle} {...animationProps(2.0)}>
+          <motion.p className="carousel-text" style={paragraphStyle} {...animationProps(3.0)}>
             Our expert team specializes in seamless integration of Salesforce and Odoo. 
             We ensure that your business processes are optimized for success, with 
             tailored solutions that meet your unique needs.
           </motion.p>
           <Link href="/sfdc">
-            <button
-              style={buttonStyle}
-              onMouseOver={(e) => e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor}
-              onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#007bff'}
-              onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.95)'}
-              onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
-            >
-              Learn More
-            </button>
+            <button style={buttonStyle}>Learn More</button>
           </Link>
         </div>
-        {!isMobile && (
-          <img
-            src={'od-removebg.png'}
-            alt='Service Image'
-            style={imageStyle}
-          />
-        )}
+        {!isMobile && <img src={'od-removebg.png'} alt='Service Image' style={imageStyle} />}
       </div>
 
       {/* Second Section */}
       <div style={containerStyle}>
         <div style={textContainerStyle}>
-          <motion.h2 className="carousel-text" style={headingStyle} {...animationProps(0.9)}>
+          <motion.h2 className="carousel-text" style={headingStyle} {...animationProps(1.0)}>
             Resources
           </motion.h2>
-          <motion.h1 className="carousel-text" style={middleTextStyle} {...animationProps(1.0)}>
+          <motion.h1 className="carousel-text" style={middleTextStyle} {...animationProps(2.0)}>
             Develop Big with Our Qualified Tech Resources
           </motion.h1>
-          <motion.p className="carousel-text" style={paragraphStyle} {...animationProps(2.0)}>
+          <motion.p className="carousel-text" style={paragraphStyle} {...animationProps(3.0)}>
             Explore our range of resources to enhance your development projects. 
             From ReactJs to Angular, we provide the tools and frameworks that 
             empower your development teams to create outstanding applications.
           </motion.p>
           <Link href="/mobileapp">
-            <button
-              style={buttonStyle}
-              onMouseOver={(e) => e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor}
-              onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#007bff'}
-              onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.95)'}
-              onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
-            >
-              Learn More
-            </button>
+            <button style={buttonStyle}>Learn More</button>
           </Link>
         </div>
-        {!isMobile && (
-          <img
-            src={'edit-removebg-preview.png'}
-            alt='Resources Image'
-            style={imageStyle}
-          />
-        )}
+        {!isMobile && <img src={'edit-removebg-preview.png'} alt='Resources Image' style={imageStyle} />}
       </div>
 
       {/* Third Section */}
       <div style={containerStyle}>
         <div style={textContainerStyle}>
-          <motion.h2 className="carousel-text" style={headingStyle} {...animationProps(0.7)}>
+          <motion.h2 className="carousel-text" style={headingStyle} {...animationProps(1.0)}>
             Solutions
           </motion.h2>
-          <motion.h1 className="carousel-text" style={middleTextStyle} {...animationProps(1.0)}>
+          <motion.h1 className="carousel-text" style={middleTextStyle} {...animationProps(2.0)}>
             Gifting Solutions for Every Occasion
           </motion.h1>
-          <motion.p className="carousel-text" style={paragraphStyle} {...animationProps(2.0)}>
+          <motion.p className="carousel-text" style={paragraphStyle} {...animationProps(3.0)}>
             Discover a wide range of gifting solutions tailored to every celebration. 
             Whether it’s for birthdays, anniversaries, or corporate events, we have 
             the perfect gifts to make your occasions memorable.
           </motion.p>
           <Link href="/gift">
-            <button
-              style={buttonStyle}
-              onMouseOver={(e) => e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor}
-              onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#007bff'}
-              onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.95)'}
-              onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
-            >
-              Learn More
-            </button>
+            <button style={buttonStyle}>Learn More</button>
           </Link>
         </div>
-        {!isMobile && (
-          <img
-            src={'gift-removebg-preview.png'}
-            alt='Solutions Image'
-            style={imageStyle}
-          />
-        )}
+        {!isMobile && <img src={'gift-removebg-preview.png'} alt='Solutions Image' style={imageStyle} />}
       </div>
     </Carousel>
   );

@@ -24,18 +24,18 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white fixed top-0 left-0 right-0 z-50 p-6">
+    <nav className="bg-gray-100 fixed top-0 left-0 right-0 z-50 p-6">
       <div className="container flex justify-between items-center">
-        <div className="flex items-center space-x-2">
+        <div className="flex font-medium items-center space-x-2">
           <Link href="/">
             <img 
-              src='newlogo-removebg-preview.png'
+              src='perfectlogo.PNG'
               alt='Logo'
               style={{ height: '35px' }}
             />
           </Link>
         </div>
-        <div className="mr-20 hidden font-mono text-xl md:flex flex-grow justify-center space-x-12">
+        <div className="mr-20 hidden font-medium text-xl md:flex flex-grow justify-center space-x-12">
           <Link href="/" className="text-gray-800 hover:text-blue-600 transition">Home</Link>
           <Link href="/about" className="text-gray-800 hover:text-blue-600 transition">About</Link>
           <div className="relative" 
@@ -93,7 +93,7 @@ const Navbar = () => {
             )}
           </div>
           <Link href="/gift" className="text-gray-800 hover:text-blue-600 transition">Corporate Gifting</Link>
-          <Link href="/contact" className="text-white bg-blue-600 hover:bg-blue-700 transition duration-300 rounded-md px-1 py-1 text-sm">Contact Us</Link>
+          <Link href="/contact" className="text-white font-medium bg-blue-600 hover:bg-blue-700 transition duration-300 rounded-md px-1 py-1 text-lg">Contact Us</Link>
         </div>
       </div>
     </nav>

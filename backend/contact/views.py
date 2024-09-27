@@ -2,7 +2,7 @@
 import json
 from django.http import JsonResponse
 from django.views import View
-from .models import ContactForm
+from .models import ContactForm,ContactUs
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
@@ -40,3 +40,41 @@ class ContactView(View):
 
     def get(self, request):
         return JsonResponse({'message': 'This endpoint is for POST requests only.'}, status=200)
+    
+
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class ContactViews(View):
+    def post(self, request):
+        try:
+            data = request.body.decode('utf-8')
+            json_data = json.loads(data)
+            name = json_data.get('name')
+            email = json_data.get('email')
+            message = json_data.get('message')
+
+            # Save to the database
+            contact_form = ContactUs.objects.create(
+            
+                name=name,
+                email=email,
+                message=message
+            )
+
+            # Send email
+            subject = f"New message from {name} ({name})"
+            email_message = f"Message from {name} ({email}):\n\n{message}"
+            recipient_list = ['rkumar1@kloudrac.com']  # Your email address
+            send_mail(subject, email_message, settings.EMAIL_HOST_USER, recipient_list)
+
+            return JsonResponse({'success': True}, status=201)
+
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+
+    def get(self, request):
+        return JsonResponse({'message': 'This endpoint is for POST requests only.'}, status=200)
+    
+
+

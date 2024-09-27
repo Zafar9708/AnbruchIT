@@ -1,13 +1,19 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { initializeAOS } from '@/utils/AosSetup';
 import Link from 'next/link';
 
 const Development = () => {
+  const [activeCard, setActiveCard] = useState(null);
+
   useEffect(() => {
     const cleanupAOS = initializeAOS();
     return cleanupAOS;
   }, []);
+
+  const handleCardClick = (index) => {
+    setActiveCard(activeCard === index ? null : index); // Toggle active card
+  };
 
   return (
     <div>
@@ -31,7 +37,7 @@ const Development = () => {
         <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
             {
-              // href: '/webdevelop',
+              href: '/webdevelop',
               title: 'Web Development',
               description: 'We provide custom software development solutions to help you build robust and scalable applications tailored to your business needs.',
               images: [
@@ -40,7 +46,7 @@ const Development = () => {
               ],
             },
             {
-              // href: '/mobileapp',
+              href: '/mobileapp',
               title: 'Mobile App Development',
               description: 'Our design services focus on creating user-friendly interfaces and experiences that align with your brand and enhance user engagement.',
               images: [
@@ -49,7 +55,7 @@ const Development = () => {
               ],
             },
             {
-              // href: '/design',
+              href: '/ui',
               title: 'UI/UX Design',
               description: 'Our design services focus on creating user-friendly interfaces and experiences that align with your brand and enhance user engagement.',
               images: [
@@ -58,7 +64,7 @@ const Development = () => {
               ],
             },
             {
-              // href: '/testing',
+              href: '/testing',
               title: 'Testing',
               description: 'We offer comprehensive testing services to ensure your applications are reliable, secure, and perform optimally across various platforms.',
               images: [
@@ -67,7 +73,7 @@ const Development = () => {
               ],
             },
             {
-              // href: '/cmsdevelopment',
+              href: '/cms',
               title: 'CMS Development',
               description: 'Develop a content management system to easily manage website content.',
               images: [
@@ -76,7 +82,7 @@ const Development = () => {
               ],
             },
             {
-              // href: '/cloudstrategy',
+              href: '/cloudconsulting',
               title: 'Cloud Strategy',
               description: 'Our cloud strategy focuses on facilitating moving data more securely and improving business processes.',
               images: [
@@ -84,31 +90,31 @@ const Development = () => {
                 'https://gigster.com/wp-content/uploads/2023/03/Unlocking-New-Potential-with-AI-Powered-Cloud-Computing.png',
               ],
             },
-          ].map(({ href, title, description, images }) => (
-            <div key={title} className="relative block bg-white rounded-lg shadow-md overflow-hidden group h-72 sm:h-80 md:h-96 transition-all duration-300" data-aos="zoom-in-up">
-              {/* <Link href={href} className="relative h-full"> */}
-                <img
-                  src={images[0]}
-                  alt={title}
-                  className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0"
-                  style={{ filter: 'brightness(0.70)' }}
-                />
-                <img
-                  src={images[1]}
-                  alt={`${title} Hover`}
-                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100"
-                  style={{ filter: 'brightness(0.50)' }}
-                />
-                <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 bg-gradient-to-t from-black via-transparent to-transparent transition-transform duration-300 group-hover:transform group-hover:-translate-y-2">
-                  <button className="text-black font-bold text-md w-40 sm:w-52 text-left bg-white rounded-md p-1 hover:bg-gray-200 transition mb-4">
-                    {title}
-                  </button>
-                  <p className="text-gray-300 transition-transform duration-300 group-hover:translate-y-[-10%]">{description}</p>
-                  <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors opacity-0 group-hover:opacity-100 mt-2 transition-opacity duration-300">
+          ].map(({ href, title, description, images }, index) => (
+            <div
+              key={title}
+              className="relative block bg-white rounded-lg shadow-md overflow-hidden group h-72 sm:h-80 md:h-96 transition-all duration-300"
+              onMouseEnter={() => setActiveCard(index)} // Hover effect for desktop
+              onMouseLeave={() => setActiveCard(null)} // Reset on mouse leave
+              onClick={() => handleCardClick(index)} // Click event for mobile
+            >
+              <img
+                src={activeCard === index ? images[1] : images[0]} // Image changes based on active state
+                alt={title}
+                className="w-full h-full object-cover transition-opacity duration-300"
+                style={{ filter: activeCard === index ? 'brightness(0.50)' : 'brightness(0.70)' }}
+              />
+              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 bg-gradient-to-t from-black via-transparent to-transparent transition-transform duration-300">
+                <button className="text-black font-bold text-md w-40 sm:w-52 text-left bg-white rounded-md p-1 hover:bg-gray-200 transition mb-4">
+                  {title}
+                </button>
+                <p className="text-gray-100 font-medium transition-transform duration-300">{description}</p>
+                <Link href={href}>
+                  <button className={`px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors mt-2 ${activeCard === index ? '' : 'opacity-0'}`}>
                     Learn More
                   </button>
-                </div>
-              {/* </Link>/ */}
+                </Link>
+              </div>
             </div>
           ))}
         </div>
