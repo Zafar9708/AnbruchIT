@@ -25,39 +25,41 @@ const CollaborateContact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Start loading
-    setMessageStatus('Sending...'); // Change button text to 'Sending...'
+    setLoading(true);
+    setMessageStatus('Sending...');
 
     const formData = {
-      company_name: e.target[0].value,
-      your_name: e.target[1].value,
-      email: e.target[2].value,
-      message: e.target[3].value,
+        company_name: e.target[0].value,
+        your_name: e.target[1].value,
+        email: e.target[2].value,
+        message: e.target[3].value,
     };
 
-    try {
-      const response = await fetch('http://127.0.0.1:8000/api/contact/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+    console.log('Form data:', formData); // Debugging line
 
-      if (response.ok) {
-        alert('Message sent!'); // Notify user of success
-        e.target.reset(); // Reset the form fields after submission
-        setMessageStatus('Send Message'); // Reset button text to 'Send Message'
-      } else {
-        const errorData = await response.json();
-        alert('Failed to send message: ' + JSON.stringify(errorData));
-      }
+    try {
+        const response = await fetch('https://www.anbruchit.com/api/contact/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        });
+
+        if (response.ok) {
+            alert('Message sent!');
+            e.target.reset();
+            setMessageStatus('Send Message');
+        } else {
+            const errorData = await response.json();
+            alert('Failed to send message: ' + (errorData.detail || 'Unknown error'));
+        }
     } catch (error) {
-      alert('An error occurred: ' + error.message);
+        alert('An error occurred: ' + error.message);
     } finally {
-      setLoading(false); // Stop loading
+        setLoading(false);
     }
-  };
+};
 
   return (
     <div style={containerStyle} data-aos="zoom-in-up">

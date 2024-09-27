@@ -152,3 +152,8 @@ CORS_ALLOW_METHODS = [
 CORS_ALLOW_HEADERS = [
     "content-type",
 ]
+
+ALLOWED_HOSTS = [
+    "www.anbruchit.com",
+    "anbruchit.com",
+]
