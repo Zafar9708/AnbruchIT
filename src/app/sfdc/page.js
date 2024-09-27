@@ -41,7 +41,7 @@ const containerStyle = {
                     <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
                         Leverage Salesforce's comprehensive suite of tools to optimize your customer relationship management, drive sales growth, and enhance service delivery.
                     </p>
-                    <a href="#contact" className="bg-blue-400 text-blue-900 py-3 px-6 rounded-lg font-semibold text-lg hover:bg-blue-300 transition duration-300">
+                    <a href="/contact" className="bg-blue-400 text-blue-900 py-3 px-6 rounded-lg font-semibold text-lg hover:bg-blue-300 transition duration-300">
                         Get Started
                     </a>
                 </div>

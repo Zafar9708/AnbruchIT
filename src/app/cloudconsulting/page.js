@@ -38,7 +38,7 @@ const containerStyle = {
             Unlock the power of the cloud with our expert consulting services. We help businesses of all sizes leverage cloud technologies to optimize operations, reduce costs, and drive innovation.
           </p>
           <div className="flex justify-center mt-8">
-            <a href="/services" className="bg-blue-950 text-white py-3 px-6 rounded-lg text-lg font-semibold">
+            <a href="/contact" className="bg-blue-950 text-white py-3 px-6 rounded-lg text-lg font-semibold">
               Explore Our Services
             </a>
           </div>

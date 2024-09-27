@@ -47,7 +47,7 @@ const containerStyle = {
             <p className="text-xl mb-8 max-w-3xl mx-auto">
               Optimize your IT operations and focus on your core business with our expert-managed services. We handle your IT infrastructure, support, and maintenance so you can achieve operational excellence without the hassle.
             </p>
-            <a href="#contact" className="bg-blue-950 text-white py-3 px-6 rounded-lg font-semibold text-lg transition duration-300">
+            <a href="/contact" className="bg-blue-950 text-white py-3 px-6 rounded-lg font-semibold text-lg transition duration-300">
               Learn More
             </a>
           </div>
