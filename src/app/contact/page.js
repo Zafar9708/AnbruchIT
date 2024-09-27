@@ -2,13 +2,16 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
-import React from 'react';
+import React, { useState } from 'react';
 import { FaPhoneAlt, FaEnvelope, FaLinkedin } from 'react-icons/fa';
 
 const ContactPage = () => {
+  const [isLoading, setLoading] = useState(false); // Loading state
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    setLoading(true); // Start loading
+
     const formData = {
       name: e.target.name.value,
       email: e.target.email.value,
@@ -26,14 +29,15 @@ const ContactPage = () => {
 
       if (response.ok) {
         alert('Message sent successfully!');
-        // Optionally, reset the form fields
         e.target.reset();
       } else {
         const errorResponse = await response.json();
-        alert(`Error: ${errorResponse.message}`);
+        alert(`Error: ${errorResponse.error || 'An error occurred.'}`);
       }
     } catch (error) {
       alert('An error occurred. Please try again.');
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -72,7 +76,6 @@ const ContactPage = () => {
       </div>
 
       <div className="bg-gray-100 container mx-auto px-4 py-12 flex flex-col md:flex-row gap-12">
-        {/* Left Side: Content */}
         <div className="flex-1 mb-2 md:mb-0">
           <h2 className="text-3xl md:text-4xl text-royal-blue font-bold mb-4">Get in Touch</h2>
           <p className="text-md mb-2 text-lg">
@@ -87,7 +90,6 @@ const ContactPage = () => {
           </ul>
         </div>
 
-        {/* Right Side: Contact Form */}
         <div className="flex-1">
           <form onSubmit={handleSubmit} className="bg-royal-blue p-6 rounded shadow-md">
             <h2 className="text-xl font-semibold mb-4">Contact Form</h2>
@@ -124,8 +126,15 @@ const ContactPage = () => {
                 required
               ></textarea>
             </div>
-            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">
-              Send Message
+            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300" disabled={isLoading}>
+              {isLoading ? (
+                <div className="flex items-center">
+                  <div className="spinner-border animate-spin inline-block w-4 h-4 border-4 rounded-full border-t-transparent border-white"></div>
+                  <span className="ml-2">Sending...</span>
+                </div>
+              ) : (
+                'Send Message'
+              )}
             </button>
           </form>
         </div>
@@ -150,6 +159,23 @@ const ContactPage = () => {
       </div>
 
       <Footer />
+      <style jsx>{`
+        .spinner-border {
+          border-width: 0.2em;
+          border-color: transparent;
+          border-top-color: #fff;
+          animation: spin 0.75s linear infinite;
+        }
+
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+      `}</style>
     </div>
   );
 };

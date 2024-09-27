@@ -11,10 +11,6 @@ const Development = () => {
     return cleanupAOS;
   }, []);
 
-  const handleCardClick = (index) => {
-    setActiveCard(activeCard === index ? null : index); // Toggle active card
-  };
-
   return (
     <div>
       {/* Hero Section */}
@@ -28,7 +24,7 @@ const Development = () => {
             <span className="text-royal-blue">G</span>
             uarantee - Our Services
           </h1>
-          <p className="text-md md:text-lg mt-2">Explore our tailored solutions to elevate your business.</p>
+          <p className="text-md font-medium md:text-lg mt-2">Explore our tailored solutions to elevate your business.</p>
         </div>
       </section>
 
@@ -94,12 +90,11 @@ const Development = () => {
             <div
               key={title}
               className="relative block bg-white rounded-lg shadow-md overflow-hidden group h-72 sm:h-80 md:h-96 transition-all duration-300"
-              onMouseEnter={() => setActiveCard(index)} // Hover effect for desktop
+              onMouseEnter={() => setActiveCard(index)} // Set active card on hover
               onMouseLeave={() => setActiveCard(null)} // Reset on mouse leave
-              onClick={() => handleCardClick(index)} // Click event for mobile
             >
               <img
-                src={activeCard === index ? images[1] : images[0]} // Image changes based on active state
+                src={activeCard === index ? images[1] : images[0]} // Change image based on hover state
                 alt={title}
                 className="w-full h-full object-cover transition-opacity duration-300"
                 style={{ filter: activeCard === index ? 'brightness(0.50)' : 'brightness(0.70)' }}
