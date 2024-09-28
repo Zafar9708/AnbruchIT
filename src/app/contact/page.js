@@ -19,7 +19,7 @@ const ContactPage = () => {
     };
 
     try {
-      const response = await fetch('https://www.anbruchit.com/api/contact/', {
+      const response = await fetch('https://anbruchit-backend-2.onrender.com/api/contactus/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

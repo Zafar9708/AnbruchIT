@@ -38,7 +38,7 @@ const CollaborateContact = () => {
     console.log('Form data:', formData); // Debugging line
 
     try {
-        const response = await fetch('https://www.anbruchit.com/api/contact/', {
+        const response = await fetch('https://anbruchit-backend-2.onrender.com/api/contact/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
