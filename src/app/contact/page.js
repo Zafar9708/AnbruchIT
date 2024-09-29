@@ -6,11 +6,11 @@ import React, { useState } from 'react';
 import { FaPhoneAlt, FaEnvelope, FaLinkedin } from 'react-icons/fa';
 
 const ContactPage = () => {
-  const [isLoading, setLoading] = useState(false); // Loading state
+  const [isLoading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Start loading
+    setLoading(true);
 
     const formData = {
       name: e.target.name.value,
@@ -27,17 +27,30 @@ const ContactPage = () => {
         body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
-        alert('Message sent successfully!');
-        e.target.reset();
-      } else {
+      if (!response.ok) {
         const errorResponse = await response.json();
-        alert(`Error: ${errorResponse.error || 'An error occurred.'}`);
+        throw new Error(errorResponse.error || 'An error occurred.');
       }
+
+      alert('Message sent successfully!');
+      e.target.reset();
     } catch (error) {
-      alert('An error occurred. Please try again.');
+      console.error('Fetch error:', error);
+      alert(`Error: ${error.message}`);
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
+    }
+  };
+
+  const testFetch = async () => {
+    try {
+      const response = await fetch('https://anbruchit-backend-2.onrender.com/api/contactus/');
+      const data = await response.json();
+      console.log(data);
+      alert('Fetch successful! Check console for data.');
+    } catch (error) {
+      console.error('Fetch error:', error);
+      alert('Fetch test failed. Check console for details.');
     }
   };
 
@@ -88,6 +101,9 @@ const ContactPage = () => {
             <li>Share your experiences and suggestions with us.</li>
             <li>Join our community of users and share insights.</li>
           </ul>
+          <button onClick={testFetch} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">
+            Test Fetch
+          </button>
         </div>
 
         <div className="flex-1">
