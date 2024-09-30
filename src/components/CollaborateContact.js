@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useEffect, useState } from 'react';
 import { initializeAOS } from '@/utils/AosSetup';
 
@@ -9,81 +8,64 @@ const CollaborateContact = () => {
     return cleanupAOS;
   }, []);
 
-  const containerStyle = {
-    backgroundColor: '#e3f2fd',
-    height: '350px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-    textAlign: 'center',
-  };
-
   const [isFormVisible, setFormVisible] = useState(false);
   const [isLoading, setLoading] = useState(false);
-  const [messageStatus, setMessageStatus] = useState('Send Message');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-  
+
     const formData = {
       company_name: e.target.company_name.value,
       your_name: e.target.your_name.value,
       email: e.target.email.value,
       message: e.target.message.value,
     };
-  
+
     try {
-      const response = await fetch('https://anbruchit-backend-2.onrender.com/api/contact/', {
+      const response = await fetch('/api/email-send', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-  
-      if (response.ok) {
-        alert('Message sent successfully!');
-        e.target.reset();
-      } else {
+
+      if (!response.ok) {
         const errorResponse = await response.json();
-        alert(`Error: ${errorResponse.error || 'An error occurred.'}`);
+        throw new Error(errorResponse.error || 'An error occurred.');
       }
+
+      alert('Message sent successfully!');
+      e.target.reset();
+      setFormVisible(false); // Hide the form after successful submission
     } catch (error) {
       console.error('Fetch error:', error);
-      alert('An error occurred: ' + error.message);
+      alert(`Error: ${error.message}`);
     } finally {
       setLoading(false);
     }
   };
-  
 
   return (
-    <div style={containerStyle} data-aos="zoom-in-up">
-      <div>
-        <p style={{ fontSize: '2.25rem', marginBottom: '1rem', color: 'black' }}>
-          We Carry More Than Just Good Coding Skills
-        </p>
-        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'black' }}>
-          Let's Collaborate for Some Good Work
-        </h3>
-      </div>
-      <div>
-        <button
-          type="button"
-          style={{
-            padding: '0.75rem 2.5rem',
-            backgroundColor: 'blue',
-            color: 'white',
-            borderRadius: '0.5rem',
-            border: '1px solid #E5E7EB',
-          }}
-          onClick={() => setFormVisible(true)}
-        >
-          CONTACT US
-        </button>
-      </div>
+    <div style={{ backgroundColor: '#e3f2fd', height: '350px', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', textAlign: 'center' }} data-aos="zoom-in-up">
+      <p style={{ fontSize: '2.25rem', marginBottom: '1rem', color: 'black' }}>
+        We Carry More Than Just Good Coding Skills
+      </p>
+      <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'black' }}>
+        Let's Collaborate for Some Good Work
+      </h3>
+      <button
+        type="button"
+        style={{
+          padding: '0.75rem 2.5rem',
+          backgroundColor: 'blue',
+          color: 'white',
+          borderRadius: '0.5rem',
+          border: '1px solid #E5E7EB',
+        }}
+        onClick={() => setFormVisible(true)}
+      >
+        CONTACT US
+      </button>
 
       {isFormVisible && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -130,11 +112,7 @@ const CollaborateContact = () => {
               className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
               disabled={isLoading}
             >
-              {isLoading ? (
-                <span>Sending...</span>
-              ) : (
-                messageStatus
-              )}
+              {isLoading ? 'Sending...' : 'Send Message'}
             </button>
             <button
               type="button"
