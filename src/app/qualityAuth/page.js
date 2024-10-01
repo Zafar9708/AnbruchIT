@@ -7,12 +7,57 @@ import Navbar from '@/components/Navbar';
 // import React from 'react';
 
 const QualityAutoPage = () => {
+    const [isModalOpen, setModalOpen] = useState(false);
+    const [isFormVisible, setFormVisible] = useState(false);
+    const [isLoading, setLoading] = useState(false);
+    const [formData, setFormData] = useState({
+      company_name: '',
+      your_name: '',
+      phone: '',
+      email: '',
+      message: ''
+    });
+  
     useEffect(() => {
-        const cleanupAOS = initializeAOS();
-        return cleanupAOS;
-      }, []);
+      const cleanupAOS = initializeAOS();
+      return cleanupAOS;
+    }, []);
+  
+    const handleOpenModal = () => setModalOpen(true);
+    const handleCloseModal = () => setModalOpen(false);
+  
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData({ ...formData, [name]: value });
+    };
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      setLoading(true);
+  
+      try {
+        const response = await fetch('/api/email-send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+  
+        if (!response.ok) {
+          const errorResponse = await response.json();
+          throw new Error(errorResponse.error || 'An error occurred.');
+        }
+  
+        alert('Message sent successfully!');
+        setFormData({ company_name: '', your_name: '', phone: '', email: '', message: '' });
+        setFormVisible(false);
+      } catch (error) {
+        console.error('Error sending message:', error);
+        alert(`Error: ${error.message}`);
+      } finally {
+        setLoading(false);
+      }
+    };
 
- const [isFormVisible, setFormVisible] = useState(false);
 
 // Styles for the container
 const containerStyle = {
@@ -48,7 +93,7 @@ const containerStyle = {
             </section>
 
             {/* Service Overview */}
-            <section className="py-12 bg-white">
+            <section className="py-12 bg-white" data-aos="zoom-in-up">
                 <div className="container  px-0 text-center" data-aos="zoom-in-up">
                     <h2 className="text-3xl md:text-4xl font-extrabold mb-12 text-black">Our Quality Automation Solutions</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -210,7 +255,7 @@ const containerStyle = {
                             fontSize: '0.875rem',
                             fontWeight: '500',
                             backgroundColor: 'blue',
-                            color: 'black',
+                            color: 'white',
                             borderRadius: '0.5rem',
                             border: '1px solid #E5E7EB',
                             transition: 'background-color 0.2s, color 0.2s, transform 0.2s',
@@ -222,34 +267,81 @@ const containerStyle = {
                 </div>
 
                 {isFormVisible && (
-                    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                        <form className="bg-white p-6 rounded-lg shadow-md w-96" onSubmit={(e) => { e.preventDefault(); alert('Message sent!'); }}>
-                            <h2 className="text-xl mb-4">Contact Us</h2>
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">Company Name</label>
-                                <input type="text" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">Your Name</label>
-                                <input type="text" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">Email</label>
-                                <input type="email" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">Message</label>
-                                <textarea required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" rows="4"></textarea>
-                            </div>
-                            <button type="submit" className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
-                                Send Message
-                            </button>
+                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 animate-slide-up">
+                        <form
+                            onSubmit={handleSubmit}
+                            className="bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg shadow-lg w-80 relative transition-all duration-300"
+                            data-aos="zoom-in-up"
+                        >
                             <button
                                 type="button"
-                                className="mt-2 w-full py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                                className="absolute top-2 right-2 text-gray-600 hover:text-gray-800 text-xl"
                                 onClick={() => setFormVisible(false)}
                             >
-                                Close
+                                &times;
+                            </button>
+                            <h2 className="text-xl font-semibold mb-3 text-center text-blue-700">Contact Us</h2>
+                            <div className="mb-3">
+                                <label className="block text-sm font-medium text-gray-800">Company Name</label>
+                                <input
+                                    type="text"
+                                    name="company_name"
+                                    required
+                                    value={formData.company_name}
+                                    onChange={handleChange}
+                                    className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200"
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <label className="block text-sm font-medium text-gray-800">Your Name</label>
+                                <input
+                                    type="text"
+                                    name="your_name"
+                                    required
+                                    value={formData.your_name}
+                                    onChange={handleChange}
+                                    className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200"
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <label className="block text-sm font-medium text-gray-800">Phone</label>
+                                <input
+                                    type="text"
+                                    name="phone"
+                                    required
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200"
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <label className="block text-sm font-medium text-gray-800">Email</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    required
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200"
+                                />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-800">Query</label>
+                                <textarea
+                                    name="message"
+                                    required
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200"
+                                    rows="3"
+                                ></textarea>
+                            </div>
+                            <button
+                                type="submit"
+                                className="w-full py-1.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-200"
+                                disabled={isLoading}
+                            >
+                                {isLoading ? 'Sending...' : 'Send Message'}
                             </button>
                         </form>
                     </div>

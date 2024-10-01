@@ -91,7 +91,7 @@ const ContactPage = () => {
                 </div>
 
                 <div className="flex-1">
-                    <form onSubmit={handleSubmit} className="bg-royal-blue p-6 rounded shadow-md">
+                    <form onSubmit={handleSubmit} className="bg-royal-blue p-4 rounded shadow-md py-6">
                         <h2 className="text-xl text-white font-semibold mb-4">Contact Form</h2>
                         <div className="mb-4">
                             <label className="block text-white mb-2" htmlFor="company_name">Company Name</label>
@@ -106,6 +106,17 @@ const ContactPage = () => {
                         </div>
                         <div className="mb-4">
                             <label className="block text-white mb-2" htmlFor="your_name">Your Name</label>
+                            <input
+                                type="text"
+                                id="your_name"
+                                name="your_name"
+                                className="w-full p-2 border border-gray-300 rounded"
+                                placeholder="Your Name"
+                                required
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-white mb-2" htmlFor="your_name">Phone</label>
                             <input
                                 type="text"
                                 id="your_name"

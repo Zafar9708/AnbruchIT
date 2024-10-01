@@ -7,12 +7,57 @@ import Footer from '@/components/Footer';
 import { initializeAOS } from '@/utils/AosSetup';
 
 const OdooCustomAppPage = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [isFormVisible, setFormVisible] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    company_name: '',
+    your_name: '',
+    phone: '',
+    email: '',
+    message: ''
+  });
+
   useEffect(() => {
     const cleanupAOS = initializeAOS();
     return cleanupAOS;
   }, []);
 
-  const [isFormVisible, setFormVisible] = useState(false);
+  const handleOpenModal = () => setModalOpen(true);
+  const handleCloseModal = () => setModalOpen(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const response = await fetch('/api/email-send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.error || 'An error occurred.');
+      }
+
+      alert('Message sent successfully!');
+      setFormData({ company_name: '', your_name: '', phone: '', email: '', message: '' });
+      setFormVisible(false);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      alert(`Error: ${error.message}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
 // Styles for the container
 const containerStyle = {
@@ -280,7 +325,7 @@ const containerStyle = {
                             fontSize: '0.875rem',
                             fontWeight: '500',
                             backgroundColor: 'blue',
-                            color: 'black',
+                            color: 'white',
                             borderRadius: '0.5rem',
                             border: '1px solid #E5E7EB',
                             transition: 'background-color 0.2s, color 0.2s, transform 0.2s',
@@ -292,116 +337,89 @@ const containerStyle = {
                 </div>
 
                 {isFormVisible && (
-                    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                        <form className="bg-white p-6 rounded-lg shadow-md w-96" onSubmit={(e) => { e.preventDefault(); alert('Message sent!'); }}>
-                            <h2 className="text-xl mb-4">Contact Us</h2>
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">Company Name</label>
-                                <input type="text" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">Your Name</label>
-                                <input type="text" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">Email</label>
-                                <input type="email" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">Message</label>
-                                <textarea required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" rows="4"></textarea>
-                            </div>
-                            <button type="submit" className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
-                                Send Message
-                            </button>
-                            <button
-                                type="button"
-                                className="mt-2 w-full py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-                                onClick={() => setFormVisible(false)}
-                            >
-                                Close
-                            </button>
-                        </form>
-                    </div>
-                )}
+  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 animate-slide-up">
+    <form
+      className="bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg shadow-lg w-80 relative transition-all duration-300"
+      onSubmit={handleSubmit} // Ensure the handleSubmit is called on form submission
+    >
+      <button
+        type="button"
+        className="absolute top-2 right-2 text-gray-600 hover:text-gray-800 text-xl"
+        onClick={() => setFormVisible(false)}
+      >
+        &times;
+      </button>
+      <h2 className="text-xl font-semibold mb-3 text-center text-blue-700">Contact Us</h2>
+      <div className="mb-3">
+        <label className="block text-sm font-medium text-gray-800">Company Name</label>
+        <input
+          type="text"
+          name="company_name"
+          value={formData.company_name} // Bind to state
+          onChange={handleChange} // Handle state change
+          required
+          className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200"
+        />
+      </div>
+      <div className="mb-3">
+        <label className="block text-sm font-medium text-gray-800">Your Name</label>
+        <input
+          type="text"
+          name="your_name"
+          value={formData.your_name} // Bind to state
+          onChange={handleChange} // Handle state change
+          required
+          className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200"
+        />
+      </div>
+      <div className="mb-3">
+        <label className="block text-sm font-medium text-gray-800">Phone</label>
+        <input
+          type="text"
+          name="phone"
+          value={formData.phone} // Bind to state
+          onChange={handleChange} // Handle state change
+          required
+          className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200"
+        />
+      </div>
+      <div className="mb-3">
+        <label className="block text-sm font-medium text-gray-800">Email</label>
+        <input
+          type="email"
+          name="email"
+          value={formData.email} // Bind to state
+          onChange={handleChange} // Handle state change
+          required
+          className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-800">Query</label>
+        <textarea
+          name="message"
+          value={formData.message} // Bind to state
+          onChange={handleChange} // Handle state change
+          required
+          className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200"
+          rows="3" 
+        ></textarea>
+      </div>
+      <button
+        type="submit" // Make sure this is set to submit
+        className="w-full py-1.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-200"
+        disabled={isLoading}
+      >
+        {isLoading ? 'Sending...' : 'Send Message'}
+      </button>
+    </form>
+  </div>
+)}
+
             </div>
 
-
-
-
-
-
-
-
-
-
-
         
-        {/* <section className="bg-gray-50 text-white py-16 text-center" data-aos="zoom-in-up">
-          <h2 className="text-3xl text-gray-950 font-semibold mb-4">Ready to Develop Your Custom Odoo App?</h2>
-          <p className="mb-8 text-gray-950 ">Contact us today to discuss how we can help you create tailored Odoo solutions that drive your business forward.</p>
-          <a href="mailto:info@yourcompany.com" className="bg-blue-500 text-gray-800 py-3 px-6 rounded-lg">
-            Email Us
-          </a>
-        </section> */}
-         {/* Contact Section */}
-
-
-
-       {/* <section id="contact" className="py-16 px-4 bg-blue-50">
-        <div className="container mx-auto flex flex-col md:flex-row items-start">
-          <div className="md:w-1/2 mb-12 md:mb-0">
-            <h2 className="text-3xl font-bold mb-6 text-gray-800">Contact Us</h2>
-            <p className="text-lg text-gray-700 mb-6">
-              We are here to answer your questions and help you get started on your path to success.
-            </p>
-            <ul className="text-gray-700">
-              <li className="flex items-center mb-4"><svg className="w-6 h-6 mr-3 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7l4.293-4.293a1 1 0 011.414 0L12 5l3.293-3.293a1 1 0 011.414 0L21 7m-6 7l4.293-4.293a1 1 0 011.414 0L21 12m-6 7l4.293-4.293a1 1 0 011.414 0L21 19m-6 7l4.293-4.293a1 1 0 011.414 0L21 26" /></svg><strong>Phone:</strong> +1 (123) 456-7890</li>
-              <li className="flex items-center mb-4"><svg className="w-6 h-6 mr-3 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7l4.293-4.293a1 1 0 011.414 0L12 5l3.293-3.293a1 1 0 011.414 0L21 7m-6 7l4.293-4.293a1 1 0 011.414 0L21 12m-6 7l4.293-4.293a1 1 0 011.414 0L21 19m-6 7l4.293-4.293a1 1 0 011.414 0L21 26" /></svg><strong>Email:</strong> info@anbruchIT.com</li>
-              <li className="flex items-center"><svg className="w-6 h-6 mr-3 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7l4.293-4.293a1 1 0 011.414 0L12 5l3.293-3.293a1 1 0 011.414 0L21 7m-6 7l4.293-4.293a1 1 0 011.414 0L21 12m-6 7l4.293-4.293a1 1 0 011.414 0L21 19m-6 7l4.293-4.293a1 1 0 011.414 0L21 26" /></svg><strong>Address:</strong>D-76,Noida Sector 62,Uttar Pradesh,201301</li>
-            </ul>
-          </div>
-
-          
-          <div className="md:w-1/2" data-aos="zoom-in-up">
-            <form className="bg-royal-blue p-8 rounded-lg shadow-lg">
-              <div className="flex flex-col mb-6">
-                <label htmlFor="name" className="text-lg font-medium mb-2 text-white">Full Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-                  placeholder="Your Name"
-                />
-              </div>
-              <div className="flex flex-col mb-6">
-                <label htmlFor="email" className="text-lg font-medium mb-2 text-white">Email Address</label>
-                <input
-                  type="email"
-                  id="email"
-                  className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-                  placeholder="Your Email"
-                />
-              </div>
-              <div className="flex flex-col mb-6">
-                <label htmlFor="message" className="text-lg font-medium mb-2 text-white">Message</label>
-                <textarea
-                  id="message"
-                  rows="4"
-                  className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-                  placeholder="Your Message"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300"
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
-        </div>
-      </section> */}
+        
       </main>
 
       <Footer />
