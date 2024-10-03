@@ -3,36 +3,32 @@ import Footer from '@/components/Footer';
 import { initializeAOS } from '@/utils/AosSetup';
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { HiOutlineOfficeBuilding, HiOutlineUser, HiOutlinePhone, HiOutlineMail } from 'react-icons/hi';
 
 const MobileAppDevelopmentPage = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [isFormVisible, setFormVisible] = useState(false);
-  const [isLoading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    company_name: '',
-    your_name: '',
-    phone: '',
-    email: '',
-    message: ''
-  });
-
   useEffect(() => {
     const cleanupAOS = initializeAOS();
     return cleanupAOS;
   }, []);
 
-  const handleOpenModal = () => setModalOpen(true);
-  const handleCloseModal = () => setModalOpen(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  const [isFormVisible, setFormVisible] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const formRef = useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setError('');
+
+    const formData = {
+      company_name: e.target.company_name.value,
+      your_name: e.target.your_name.value,
+      phone: e.target.phone.value,
+      email: e.target.email.value,
+      message: e.target.message.value,
+    };
 
     try {
       const response = await fetch('/api/email-send', {
@@ -47,26 +43,32 @@ const MobileAppDevelopmentPage = () => {
       }
 
       alert('Message sent successfully!');
-      setFormData({ company_name: '', your_name: '', phone: '', email: '', message: '' });
+      e.target.reset();
       setFormVisible(false);
     } catch (error) {
-      console.error('Error sending message:', error);
-      alert(`Error: ${error.message}`);
+      console.error('Fetch error:', error);
+      setError(`Error: ${error.message}`);
     } finally {
       setLoading(false);
     }
   };
 
-  // Styles for the container
-  const containerStyle = {
-    backgroundColor: 'rgb(239 246 255)',
-    height: '350px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-    textAlign: 'center',
+  const handleClickOutside = (event) => {
+    if (formRef.current && !formRef.current.contains(event.target)) {
+      setFormVisible(false);
+    }
   };
+
+  useEffect(() => {
+    if (isFormVisible) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isFormVisible]);
 
   return (
     <div className='bg-white'>
@@ -102,7 +104,7 @@ const MobileAppDevelopmentPage = () => {
       <section id="services" className="mb-16">
         <h2 className="text-4xl font-bold mb-8 text-center">Our Services</h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {[ 
+          {[
             { title: 'Custom App Development', description: 'We build custom mobile applications from scratch, tailored to your specific needs.', imageUrl: 'https://www.tangenttek.com/storage/app/public/UploadedBlogs/3St8SGSqca9nI4is2lYDHdeX3Rwb5LVOaURLUZMs.jpg' },
             { title: 'Cross-Platform Development', description: 'Develop apps that work seamlessly on both iOS and Android platforms.', imageUrl: 'https://static.tildacdn.com/tild6561-6538-4663-b266-623435653439/cross-platform-app-d.png' },
             { title: 'UI/UX Design', description: 'Create intuitive and engaging designs that enhance user experience.', imageUrl: 'https://img.freepik.com/free-vector/gradient-ui-ux-background_23-2149051556.jpg' },
@@ -152,63 +154,128 @@ const MobileAppDevelopmentPage = () => {
                 <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span>Expert support and maintenance</span>
+                <span>Dedicated support and maintenance</span>
+              </li>
+              <li className="flex items-start space-x-3">
+                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Agile development methodologies</span>
               </li>
             </ul>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <div style={containerStyle} data-aos="zoom-in-up">
-        <h1 className="text-3xl md:text-4xl font-extrabold mt-12 mb-6">
-          Designing Solutions That Inspire and Innovate
-        </h1>
-        <p className="text-lg md:text-lg mb-8">
-          Custom design and development services that empower your brand and engage your audience.
+      <section className="py-20 bg-blue-50 text-center mb-2 mt-4" data-aos="zoom-in-up">
+        <h2 className="text-4xl font-semibold mb-4">Ready to Start Your Project?</h2>
+        <p className="text-lg md:text-xl max-w-2xl mx-auto font-medium leading-relaxed">
+          Contact us today to discuss your mobile app development needs!
         </p>
         <button
-          type="button"
-          style={{ padding: '0.75rem 2.5rem', fontSize: '0.875rem', fontWeight: '500', backgroundColor: 'blue', color: 'white', borderRadius: '0.5rem', border: '1px solid #E5E7EB', transition: 'background-color 0.2s, color 0.2s, transform 0.2s' }}
           onClick={() => setFormVisible(true)}
+          className="bg-blue-950 text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors duration-300 mt-4"
         >
-          CONTACT
+          Contact Us
         </button>
+      </section>
 
-        {isFormVisible && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 animate-slide-up">
-            <form onSubmit={handleSubmit} className="bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg shadow-lg w-80 relative transition-all duration-300">
-              <button type="button" className="absolute top-2 right-2 text-gray-600 hover:text-gray-800 text-xl" onClick={() => setFormVisible(false)}>
+      {isFormVisible && (
+        <>
+          <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-10" />
+          <div className="fixed inset-0 flex items-center justify-center z-20">
+            <form
+              ref={formRef}
+              onSubmit={handleSubmit}
+              className="bg-white p-4 rounded-lg w-full max-w-sm mx-4" style={{paddingLeft:"40px",paddingRight:"40px"}}
+              data-aos="zoom-in-up"
+            >
+              <button
+                type="button"
+                className="absolute top- right-2 text-gray-600 hover:text-gray-800 text-lg"
+                onClick={() => setFormVisible(false)}
+                aria-label="Close form"
+              >
                 &times;
               </button>
-              <h2 className="text-xl font-semibold mb-3 text-center text-blue-700">Contact Us</h2>
-              <div className="mb-3">
-                <label className="block text-sm font-medium text-gray-800">Company Name</label>
-                <input type="text" name="company_name" value={formData.company_name} onChange={handleChange} required className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200" />
-              </div>
-              <div className="mb-3">
-                <label className="block text-sm font-medium text-gray-800">Your Name</label>
-                <input type="text" name="your_name" value={formData.your_name} onChange={handleChange} required className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200" />
-              </div>
-              <div className="mb-3">
-                <label className="block text-sm font-medium text-gray-800">Phone</label>
-                <input type="text" name="phone" value={formData.phone} onChange={handleChange} required className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200" />
-              </div>
-              <div className="mb-3">
-                <label className="block text-sm font-medium text-gray-800">Email</label>
-                <input type="email" name="email" value={formData.email} onChange={handleChange} required className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200" />
-              </div>
+              <h2 className="text-lg font-semibold mb-2 text-center text-blue-700">Contact Us</h2>
+
+              {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-800">Query</label>
-                <textarea name="message" value={formData.message} onChange={handleChange} required className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200" rows="3"></textarea>
+                <label className="flex items-center mb-1">
+                  <HiOutlineOfficeBuilding className="mr-2 text-gray-500" />
+                  <span className="text-sm font-medium text-gray-800">Company Name</span>
+                </label>
+                <input
+                  type="text"
+                  name="company_name"
+                  required
+                  className="block w-full border border-blue-400 focus:ring-blue-500 focus:border-blue-500 p-2 rounded-md"
+                />
               </div>
-              <button type="submit" className="w-full py-1.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-200" disabled={isLoading}>
+
+              <div className="mb-4">
+                <label className="flex items-center mb-1">
+                  <HiOutlineUser className="mr-2 text-gray-500" />
+                  <span className="text-sm font-medium text-gray-800">Your Name</span>
+                </label>
+                <input
+                  type="text"
+                  name="your_name"
+                  required
+                  className="block w-full border border-blue-400 focus:ring-blue-500 focus:border-blue-500 p-2 rounded-md"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="flex items-center mb-1">
+                  <HiOutlinePhone className="mr-2 text-gray-500" />
+                  <span className="text-sm font-medium text-gray-800">Phone</span>
+                </label>
+                <input
+                  type="text"
+                  name="phone"
+                  required
+                  className="block w-full border border-blue-400 focus:ring-blue-500 focus:border-blue-500 p-2 rounded-md"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="flex items-center mb-1">
+                  <HiOutlineMail className="mr-2 text-gray-500" />
+                  <span className="text-sm font-medium text-gray-800">Email</span>
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  className="block w-full border border-blue-400 focus:ring-blue-500 focus:border-blue-500 p-2 rounded-md"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block mb-1 text-sm font-medium text-gray-800">Query</label>
+                <textarea
+                  name="message"
+                  required
+                  className="block w-full border border-blue-400 focus:ring-blue-500 focus:border-blue-500 p-2 rounded-md"
+                  rows="3"
+                  style={{ resize: 'none' }} // Prevent resizing
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-all duration-200"
+                disabled={isLoading}
+              >
                 {isLoading ? 'Sending...' : 'Send Message'}
               </button>
             </form>
           </div>
-        )}
-      </div>
+        </>
+      )}
 
       <Footer />
     </div>

@@ -1,35 +1,32 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { initializeAOS } from '@/utils/AosSetup';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
+import { HiOutlineOfficeBuilding, HiOutlineUser, HiOutlinePhone, HiOutlineMail } from 'react-icons/hi';
 
 const CloudConsultingPage = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [isFormVisible, setFormVisible] = useState(false);
-  const [isLoading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    company_name: '',
-    your_name: '',
-    phone: '',
-    email: '',
-    message: ''
-  });
-
   useEffect(() => {
     const cleanupAOS = initializeAOS();
     return cleanupAOS;
   }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  const [isFormVisible, setFormVisible] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const formRef = useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    const formData = {
+      company_name: e.target.company_name.value,
+      your_name: e.target.your_name.value,
+      phone: e.target.phone.value,
+      email: e.target.email.value,
+      message: e.target.message.value,
+    };
 
     try {
       const response = await fetch('/api/email-send', {
@@ -43,16 +40,60 @@ const CloudConsultingPage = () => {
         throw new Error(errorResponse.error || 'An error occurred.');
       }
 
+      // Use toast or inline message instead of alert
       alert('Message sent successfully!');
-      setFormData({ company_name: '', your_name: '', phone: '', email: '', message: '' });
+      e.target.reset();
       setFormVisible(false);
     } catch (error) {
-      console.error('Error sending message:', error);
+      console.error('Fetch error:', error);
       alert(`Error: ${error.message}`);
     } finally {
       setLoading(false);
     }
   };
+
+  const handleClickOutside = (event) => {
+    if (formRef.current && !formRef.current.contains(event.target)) {
+      setFormVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isFormVisible) {
+      document.addEventListener('mousedown', handleClickOutside);
+      formRef.current.querySelector('input').focus(); // Focus the first input
+
+      // Trap focus within modal
+      const focusableElements = formRef.current.querySelectorAll('input, textarea, button');
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      const trapFocus = (e) => {
+        if (e.key === 'Tab') {
+          if (e.shiftKey) { // Shift + Tab
+            if (document.activeElement === firstElement) {
+              e.preventDefault();
+              lastElement.focus();
+            }
+          } else { // Tab
+            if (document.activeElement === lastElement) {
+              e.preventDefault();
+              firstElement.focus();
+            }
+          }
+        }
+      };
+
+      document.addEventListener('keydown', trapFocus);
+      
+      return () => {
+        document.removeEventListener('keydown', trapFocus);
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [isFormVisible]);
 
   // Styles for the container
   const containerStyle = {
@@ -159,156 +200,122 @@ const CloudConsultingPage = () => {
             <img src="/Assets/cloudConsultant/cloud_Analaytics.jpg" alt="Cloud Analytics" className="w-full h-48 object-cover rounded-t-lg mb-4" />
             <h3 className="text-2xl font-semibold mb-3 text-white">Cloud Analytics</h3>
             <p className="text-white mb-4">
-              Leverage cloud-based analytics to gain actionable insights and make data-driven decisions.
+              Leverage data analytics to gain insights and drive business decisions in the cloud.
             </p>
             <ul className="list-disc list-inside text-white text-left mb-4">
               <li>Data warehousing</li>
               <li>Business intelligence</li>
-              <li>Advanced analytics and reporting</li>
+              <li>Predictive analytics</li>
             </ul>
           </div>
         </div>
+      </main>
 
-        <section className="bg-gray-200 p-8 mb-8 rounded-lg " data-aos="zoom-in-up">
-          <h2 className="text-3xl font-semibold mb-6 text-gray-900 text-center">What Our Clients Say</h2>
-          <div className="space-y-8">
-            {/* Testimonial 1 */}
-            <div className="flex items-center space-x-4">
-              <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Client 1" className="w-16 h-16 rounded-full object-cover" />
-              <div>
-                <p className="text-gray-900 mb-2">
-                  "The cloud migration service we received was outstanding. The team was professional, and the transition was seamless. We’ve already seen significant improvements in performance and cost savings."
-                </p>
-                <p className="font-semibold text-gray-900 ">John Doe</p>
-                <p className="text-gray-900">CTO, Corp</p>
-              </div>
-            </div>
-            {/* Testimonial 2 */}
-            <div className="flex items-center space-x-4">
-              <img src="https://randomuser.me/api/portraits/women/80.jpg" alt="Client 2" className="w-16 h-16 rounded-full object-cover" />
-              <div>
-                <p className="text-gray-900 mb-2">
-                  "Their cloud security solutions have been invaluable for our business. We now have peace of mind knowing our data is secure and compliant with industry standards."
-                </p>
-                <p className="font-semibold text-gray-900">Jane Smith</p>
-                <p className="text-gray-900">CEO, Tech Innovations</p>
-              </div>
-            </div>
-          </div>
-        </section>
+      <div style={containerStyle}>
+        <h2 className="text-4xl font-bold text-gray-800">Elevating Your Business with Cloud Solutions</h2>
+        <p className="text-xl mt-6 text-gray-600 mb-6">
+        Expert cloud consulting services designed to optimize your operations, enhance scalability.
+        </p>
+        <button
+          onClick={() => setFormVisible(true)}
+          className="bg-blue-950 text-white py-2 px-4 rounded-lg transition duration-300 hover:bg-blue-700"
+        >
+          Get In Touch
+        </button>
+      </div>
 
-        {/* Custom Contact Section */}
-        <div style={containerStyle} data-aos="zoom-in-up">
-          <div className="relative container mx-auto text-center py-18 px-4">
-            <h1 className="text-3xl md:text-4xl font-extrabold mt-20 mb-6">
-              Elevating Your Business with Cloud Solutions
-            </h1>
-            <p className="text-lg md:text-lg mb-8">
-              Expert cloud consulting services designed to optimize your operations, enhance scalability.
-            </p>
-          </div>
-
-          <div>
+      {/* Modal */}
+      {isFormVisible && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <form
+            ref={formRef}
+            onSubmit={handleSubmit}
+            className="bg-white p-4 rounded-lg w-full max-w-sm mx-4" style={{paddingLeft:"40px",paddingRight:"40px"}}
+            data-aos="zoom-in-up"
+          >
             <button
               type="button"
-              style={{
-                padding: '0.75rem 2.5rem',
-                fontSize: '0.875rem',
-                fontWeight: '500',
-                backgroundColor: 'blue',
-                color: 'white',
-                borderRadius: '0.5rem',
-                border: '1px solid #E5E7EB',
-                transition: 'background-color 0.2s, color 0.2s, transform 0.2s',
-              }}
-              onClick={() => setFormVisible(true)}
+              className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+              onClick={() => setFormVisible(false)}
             >
-              CONTACT
+              &times;
             </button>
-          </div>
+            <h2 className="text-lg font-semibold mb-2 text-center text-blue-700">Contact Us</h2>
 
-          {isFormVisible && (
-            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 animate-slide-up">
-              <form
-                className="bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg shadow-lg w-80 relative transition-all duration-300"
-                data-aos="zoom-in-up"
-                onSubmit={handleSubmit} // Set the onSubmit handler
-              >
-                <button
-                  type="button"
-                  className="absolute top-2 right-2 text-gray-600 hover:text-gray-800 text-xl"
-                  onClick={() => setFormVisible(false)}
-                >
-                  &times;
-                </button>
-                <h2 className="text-xl font-semibold mb-3 text-center text-blue-700">Contact Us</h2>
-                <div className="mb-3">
-                  <label className="block text-sm font-medium text-gray-800">Company Name</label>
-                  <input
-                    type="text"
-                    name="company_name"
-                    required
-                    value={formData.company_name}
-                    onChange={handleChange} // Bind the input value to formData
-                    className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200"
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="block text-sm font-medium text-gray-800">Your Name</label>
-                  <input
-                    type="text"
-                    name="your_name"
-                    required
-                    value={formData.your_name}
-                    onChange={handleChange} // Bind the input value to formData
-                    className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200"
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="block text-sm font-medium text-gray-800">Phone</label>
-                  <input
-                    type="text"
-                    name="phone"
-                    required
-                    value={formData.phone}
-                    onChange={handleChange} // Bind the input value to formData
-                    className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200"
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="block text-sm font-medium text-gray-800">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange} // Bind the input value to formData
-                    className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200"
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-800">Query</label>
-                  <textarea
-                    name="message"
-                    required
-                    value={formData.message}
-                    onChange={handleChange} // Bind the input value to formData
-                    className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200"
-                    rows="3" // Reduced the height by decreasing row count
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full py-1.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-200"
-                  disabled={isLoading}
-                >
-                  {isLoading ? 'Sending...' : 'Send Message'}
-                </button>
-              </form>
+            <div className="mb-4">
+              <label className="flex items-center mb-1">
+                <HiOutlineOfficeBuilding className="mr-2 text-gray-500" />
+                <span className="text-sm font-medium text-gray-800">Company Name</span>
+              </label>
+              <input
+                type="text"
+                name="company_name"
+                required
+                className="block w-full border border-blue-400 focus:ring-blue-500 focus:border-blue-500 p-2 rounded-md"
+              />
             </div>
-          )}
+
+            <div className="mb-4">
+              <label className="flex items-center mb-1">
+                <HiOutlineUser className="mr-2 text-gray-500" />
+                <span className="text-sm font-medium text-gray-800">Your Name</span>
+              </label>
+              <input
+                type="text"
+                name="your_name"
+                required
+                className="block w-full border border-blue-400 focus:ring-blue-500 focus:border-blue-500 p-2 rounded-md"
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className="flex items-center mb-1">
+                <HiOutlinePhone className="mr-2 text-gray-500" />
+                <span className="text-sm font-medium text-gray-800">Phone</span>
+              </label>
+              <input
+                type="text"
+                name="phone"
+                required
+                className="block w-full border border-blue-400 focus:ring-blue-500 focus:border-blue-500 p-2 rounded-md"
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className="flex items-center mb-1">
+                <HiOutlineMail className="mr-2 text-gray-500" />
+                <span className="text-sm font-medium text-gray-800">Email</span>
+              </label>
+              <input
+                type="email"
+                name="email"
+                required
+                className="block w-full border border-blue-400 focus:ring-blue-500 focus:border-blue-500 p-2 rounded-md"
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className="block mb-1 text-sm font-medium text-gray-800">Query</label>
+              <textarea
+                name="message"
+                required
+                className="block w-full border border-blue-400 focus:ring-blue-500 focus:border-blue-500 p-2 rounded-md"
+                rows="3"
+                style={{ resize: 'none' }}
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-all duration-200"
+              disabled={isLoading}
+            >
+              {isLoading ? 'Sending...' : 'Send Message'}
+            </button>
+          </form>
         </div>
-      </main>
+      )}
+
       <Footer />
     </div>
   );

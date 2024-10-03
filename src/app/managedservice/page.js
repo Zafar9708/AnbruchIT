@@ -1,35 +1,32 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { initializeAOS } from '@/utils/AosSetup';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
+import { HiOutlineOfficeBuilding, HiOutlineUser, HiOutlinePhone, HiOutlineMail } from 'react-icons/hi';
 
 const ManagedServicesPage = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [isFormVisible, setFormVisible] = useState(false);
-  const [isLoading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    company_name: '',
-    your_name: '',
-    phone: '',
-    email: '',
-    message: ''
-  });
-
   useEffect(() => {
     const cleanupAOS = initializeAOS();
     return cleanupAOS;
   }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  const [isFormVisible, setFormVisible] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const formRef = useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    const formData = {
+      company_name: e.target.company_name.value,
+      your_name: e.target.your_name.value,
+      phone: e.target.phone.value,
+      email: e.target.email.value,
+      message: e.target.message.value,
+    };
 
     try {
       const response = await fetch('/api/email-send', {
@@ -44,15 +41,58 @@ const ManagedServicesPage = () => {
       }
 
       alert('Message sent successfully!');
-      setFormData({ company_name: '', your_name: '', phone: '', email: '', message: '' });
+      e.target.reset();
       setFormVisible(false);
     } catch (error) {
-      console.error('Error sending message:', error);
+      console.error('Fetch error:', error);
       alert(`Error: ${error.message}`);
     } finally {
       setLoading(false);
     }
   };
+
+  const handleClickOutside = (event) => {
+    if (formRef.current && !formRef.current.contains(event.target)) {
+      setFormVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isFormVisible) {
+      document.addEventListener('mousedown', handleClickOutside);
+      formRef.current.querySelector('input').focus(); // Focus the first input
+
+      // Trap focus within modal
+      const focusableElements = formRef.current.querySelectorAll('input, textarea, button');
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      const trapFocus = (e) => {
+        if (e.key === 'Tab') {
+          if (e.shiftKey) { // Shift + Tab
+            if (document.activeElement === firstElement) {
+              e.preventDefault();
+              lastElement.focus();
+            }
+          } else { // Tab
+            if (document.activeElement === lastElement) {
+              e.preventDefault();
+              firstElement.focus();
+            }
+          }
+        }
+      };
+
+      document.addEventListener('keydown', trapFocus);
+      
+      return () => {
+        document.removeEventListener('keydown', trapFocus);
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [isFormVisible]);
 
   // Styles for the container
   const containerStyle = {
@@ -73,7 +113,7 @@ const ManagedServicesPage = () => {
 
         {/* Hero Section */}
         <section className="bg-blue-50 text-black py-16" data-aos="zoom-in-up">
-          <div className="container  px-4 text-center">
+          <div className="container px-4 text-center">
             <h2 className="text-4xl font-extrabold mb-6 mt-14 leading-tight">
               Comprehensive Managed Services for Seamless Operations
             </h2>
@@ -159,170 +199,122 @@ const ManagedServicesPage = () => {
           </div>
         </section>
 
-        {/* Case Studies & Success Stories */}
-        <section className="py-12 bg-gray-100">
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-extrabold mb-10 text-center text-gray-800">Case Studies & Success Stories</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-              <div className="bg-blue-50 p-6 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-semibold mb-4 text-gray-800">Case Study: Retail Success</h3>
-                <p className="text-gray-800 mb-4">
-                  A large retail chain adopted our managed services to streamline its IT operations. By implementing proactive monitoring and support, we reduced downtime by 40% and improved system performance, leading to a 25% increase in sales during peak seasons.
-                </p>
-              </div>
-              <div className="bg-blue-50 p-6 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-semibold mb-4 text-gray-800">Success Story: Healthcare Efficiency</h3>
-                <p className="text-gray-800 mb-4">
-                  A healthcare provider faced challenges with data management and security. Our managed services ensured robust data backup solutions and 24/7 support, significantly reducing data loss incidents and improving compliance with healthcare regulations.
-                </p>
-              </div>
-              <div className="bg-blue-50 p-6 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-semibold mb-4 text-gray-800">Case Study: Financial Sector Innovation</h3>
-                <p className="text-gray-800 mb-4">
-                  A financial services firm sought to upgrade its IT infrastructure. Through our managed services, we implemented a new cloud-based system, enhancing operational efficiency and reducing IT costs by 30% while ensuring top-notch security and compliance.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Blog / Resources */}
-        <section className="py-12 bg-blue-50" data-aos="zoom-in-up">
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-extrabold mb-10 text-center text-gray-800">Blog & Resources</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-              <div className="bg-blue-950 p-6 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-semibold mb-4 text-white">The Future of Managed Services</h3>
-                <p className="text-white mb-4">
-                  Explore the evolving landscape of managed services and how emerging technologies are shaping the future of IT management.
-                </p>
-              </div>
-              <div className="bg-blue-950 p-6 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-semibold mb-4 text-white">How to Choose a Managed Services Provider</h3>
-                <p className="text-white mb-4">
-                  Learn key factors to consider when selecting a managed services provider to ensure you get the best fit for your business needs.
-                </p>
-              </div>
-              <div className="bg-blue-950 p-6 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-semibold mb-4 text-white">Top Benefits of Cloud Management</h3>
-                <p className="text-white mb-4">
-                  Discover the advantages of cloud management and how it can help streamline your IT operations and reduce costs.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        
+       
 
         {/* Custom Contact Section */}
-        <div style={containerStyle} data-aos="zoom-in-up">
-          <div className="relative container mx-auto text-center py-18 px-4">
-            <h1 className="text-3xl md:text-4xl font-extrabold mt-12 mb-6">
-              Streamlining Your Operations with Managed Services
-            </h1>
-            <p className="text-lg md:text-lg mb-8">
-              Comprehensive managed services that ensure your IT infrastructure runs smoothly.
-            </p>
-          </div>
+        <div className="flex flex-col items-center justify-center p-20" style={{ backgroundColor: 'rgb(243 244 246)' }}>
+          <h1 className="text-3xl md:text-4xl font-extrabold mb-4">
+            Streamlining Your Operations with Managed Services
+          </h1>
+          <p className="text-lg mb-8">
+            Comprehensive managed services that ensure your IT infrastructure runs smoothly.
+          </p>
 
-          <div>
-            <button
-              type="button"
-              style={{
-                padding: '0.75rem 2.5rem',
-                fontSize: '0.875rem',
-                fontWeight: '500',
-                backgroundColor: 'blue',
-                color: 'white',
-                borderRadius: '0.5rem',
-                border: '1px solid #E5E7EB',
-                transition: 'background-color 0.2s, color 0.2s, transform 0.2s',
-              }}
-              onClick={() => setFormVisible(true)}
-            >
-              GET IN TOUCH
-            </button>
-          </div>
+          <button
+            type="button"
+            className="px-6 py-2 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition"
+            onClick={() => setFormVisible(true)}
+          >
+            GET IN TOUCH
+          </button>
 
           {isFormVisible && (
-            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 animate-slide-up">
-              <form
-                onSubmit={handleSubmit}
-                className="bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg shadow-lg w-80 relative transition-all duration-300"
-                data-aos="zoom-in-up"
+        <>
+          <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-10" />
+          <div className="fixed inset-0 flex items-center justify-center z-20">
+            <form
+              ref={formRef}
+              onSubmit={handleSubmit}
+              className="bg-white p-4 rounded-lg w-full max-w-sm mx-4" style={{paddingLeft:"40px",paddingRight:"40px"}}
+              data-aos="zoom-in-up"
+            >
+              <button
+                type="button"
+                className="absolute top- right-2 text-gray-600 hover:text-gray-800 text-lg"
+                onClick={() => setFormVisible(false)}
+                aria-label="Close form"
               >
-                <button
-                  type="button"
-                  className="absolute top-2 right-2 text-gray-600 hover:text-gray-800 text-xl"
-                  onClick={() => setFormVisible(false)}
-                >
-                  &times;
-                </button>
-                <h2 className="text-xl font-semibold mb-3 text-center text-blue-700">Contact Us</h2>
-                <div className="mb-3">
-                  <label className="block text-sm font-medium text-gray-800">Company Name</label>
-                  <input
-                    type="text"
-                    name="company_name"
-                    required
-                    value={formData.company_name}
-                    onChange={handleChange}
-                    className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200"
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="block text-sm font-medium text-gray-800">Your Name</label>
-                  <input
-                    type="text"
-                    name="your_name"
-                    required
-                    value={formData.your_name}
-                    onChange={handleChange}
-                    className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200"
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="block text-sm font-medium text-gray-800">Phone</label>
-                  <input
-                    type="text"
-                    name="phone"
-                    required
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200"
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="block text-sm font-medium text-gray-800">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200"
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-800">Query</label>
-                  <textarea
-                    name="message"
-                    required
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="mt-1 block w-full border border-blue-400 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 transition-all duration-200"
-                    rows="3"
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full py-1.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-200"
-                  disabled={isLoading}
-                >
-                  {isLoading ? 'Sending...' : 'Send Message'}
-                </button>
-              </form>
-            </div>
-          )}
+                &times;
+              </button>
+              <h2 className="text-lg font-semibold mb-2 text-center text-blue-700">Contact Us</h2>
+
+              {/* {error && <p className="text-red-500 text-center mb-4">{error}</p>} */}
+
+              <div className="mb-4">
+                <label className="flex items-center mb-1">
+                  <HiOutlineOfficeBuilding className="mr-2 text-gray-500" />
+                  <span className="text-sm font-medium text-gray-800">Company Name</span>
+                </label>
+                <input
+                  type="text"
+                  name="company_name"
+                  required
+                  className="block w-full border border-blue-400 focus:ring-blue-500 focus:border-blue-500 p-2 rounded-md"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="flex items-center mb-1">
+                  <HiOutlineUser className="mr-2 text-gray-500" />
+                  <span className="text-sm font-medium text-gray-800">Your Name</span>
+                </label>
+                <input
+                  type="text"
+                  name="your_name"
+                  required
+                  className="block w-full border border-blue-400 focus:ring-blue-500 focus:border-blue-500 p-2 rounded-md"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="flex items-center mb-1">
+                  <HiOutlinePhone className="mr-2 text-gray-500" />
+                  <span className="text-sm font-medium text-gray-800">Phone</span>
+                </label>
+                <input
+                  type="text"
+                  name="phone"
+                  required
+                  className="block w-full border border-blue-400 focus:ring-blue-500 focus:border-blue-500 p-2 rounded-md"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="flex items-center mb-1">
+                  <HiOutlineMail className="mr-2 text-gray-500" />
+                  <span className="text-sm font-medium text-gray-800">Email</span>
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  className="block w-full border border-blue-400 focus:ring-blue-500 focus:border-blue-500 p-2 rounded-md"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block mb-1 text-sm font-medium text-gray-800">Query</label>
+                <textarea
+                  name="message"
+                  required
+                  className="block w-full border border-blue-400 focus:ring-blue-500 focus:border-blue-500 p-2 rounded-md"
+                  rows="3"
+                  style={{ resize: 'none' }} // Prevent resizing
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-all duration-200"
+                disabled={isLoading}
+              >
+                {isLoading ? 'Sending...' : 'Send Message'}
+              </button>
+            </form>
+          </div>
+        </>
+      )}
         </div>
       </div>
       <Footer />

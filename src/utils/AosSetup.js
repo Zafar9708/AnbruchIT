@@ -3,7 +3,7 @@ import 'aos/dist/aos.css';
 
 export const initializeAOS = () => {
   AOS.init({
-    duration: 1500, // Animation duration in milliseconds
+    duration: 1000, // Animation duration in milliseconds
     easing: 'ease-out', // Animation easing
     once: false, // Animation should re-trigger on scroll
   });

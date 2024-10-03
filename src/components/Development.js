@@ -60,7 +60,7 @@ const Development = () => {
               ],
             },
             {
-              href: '/testing',
+              href: '/qualityAuth',
               title: 'Testing',
               description: 'We offer comprehensive testing services to ensure your applications are reliable, secure, and perform optimally across various platforms.',
               images: [

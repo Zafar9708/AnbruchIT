@@ -30,7 +30,7 @@ import Scroll from '@/components/Scroll'
 
             <CountryCustomer/>
             {/* <ClientTestimonial/> */}
-            <CollaborateContact/>
+            {/* <CollaborateContact/> */}
             {/* <Partner/> */}
             {/* <Services3/> */}
             <CompanyAddress/>
