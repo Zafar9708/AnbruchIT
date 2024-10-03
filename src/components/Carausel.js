@@ -87,7 +87,7 @@ const CarouselComponent = () => {
   const animationProps = (delay) => ({
     initial: { y: -100, opacity: 0 },
     animate: { y: 0, opacity: 1 },
-    transition: { duration: 0.5, delay },
+    transition: { duration: 0.7, delay },
   });
 
   return (
@@ -101,7 +101,7 @@ const CarouselComponent = () => {
       onChange={(index) => {
         const elements = document.querySelectorAll('.carousel-text');
         elements.forEach((element, i) => {
-          const delay = i * 0.2;
+          const delay = (index === 0 ? i * 0.2 : (index === 1 ? i * 0.5 : i * 0.5)); // Adjust delays for sections
           element.style.opacity = 0;
           element.style.transform = 'translateY(-100px)'; // Reset position to the top
           setTimeout(() => {
@@ -115,13 +115,13 @@ const CarouselComponent = () => {
       {/* First Section */}
       <div style={containerStyle}>
         <div style={textContainerStyle}>
-          <motion.h2 className="carousel-text" style={headingStyle} {...animationProps(1.0)}>
+          <motion.h2 className="carousel-text" style={headingStyle}>
             Services
           </motion.h2>
-          <motion.h1 className="carousel-text" style={middleTextStyle} {...animationProps(2.0)}>
+          <motion.h1 className="carousel-text" style={middleTextStyle} {...animationProps(3.5)}>
             End to End Implementation & <br /> Integration Services
           </motion.h1>
-          <motion.p className="carousel-text" style={paragraphStyle} {...animationProps(3.0)}>
+          <motion.p className="carousel-text" style={paragraphStyle} {...animationProps(4.0)}>
             Our expert team specializes in seamless integration of Salesforce and Odoo. 
             We ensure that your business processes are optimized for success, with 
             tailored solutions that meet your unique needs.
@@ -136,13 +136,13 @@ const CarouselComponent = () => {
       {/* Second Section */}
       <div style={containerStyle}>
         <div style={textContainerStyle}>
-          <motion.h2 className="carousel-text" style={headingStyle} {...animationProps(1.0)}>
+          <div style={headingStyle}>
             Resources
-          </motion.h2>
-          <motion.h1 className="carousel-text" style={middleTextStyle} {...animationProps(2.0)}>
+          </div>
+          <motion.h1 className="carousel-text" style={middleTextStyle} {...animationProps(4.0)}>
             Develop Big with Our Qualified Tech Resources
           </motion.h1>
-          <motion.p className="carousel-text" style={paragraphStyle} {...animationProps(3.0)}>
+          <motion.p className="carousel-text" style={paragraphStyle} {...animationProps(4.0)}>
             Explore our range of resources to enhance your development projects. 
             From ReactJs to Angular, we provide the tools and frameworks that 
             empower your development teams to create outstanding applications.
@@ -157,13 +157,13 @@ const CarouselComponent = () => {
       {/* Third Section */}
       <div style={containerStyle}>
         <div style={textContainerStyle}>
-          <motion.h2 className="carousel-text" style={headingStyle} {...animationProps(1.0)}>
+          <div style={headingStyle}>
             Solutions
-          </motion.h2>
-          <motion.h1 className="carousel-text" style={middleTextStyle} {...animationProps(2.0)}>
+          </div>
+          <motion.h1 className="carousel-text" style={middleTextStyle} {...animationProps(4.0)}>
             Gifting Solutions for Every Occasion
           </motion.h1>
-          <motion.p className="carousel-text" style={paragraphStyle} {...animationProps(3.0)}>
+          <motion.p className="carousel-text" style={paragraphStyle} {...animationProps(4.0)}>
             Discover a wide range of gifting solutions tailored to every celebration. 
             Whether it’s for birthdays, anniversaries, or corporate events, we have 
             the perfect gifts to make your occasions memorable.
