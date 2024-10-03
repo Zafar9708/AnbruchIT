@@ -118,10 +118,10 @@ const CarouselComponent = () => {
           <motion.h2 className="carousel-text" style={headingStyle}>
             Services
           </motion.h2>
-          <motion.h1 className="carousel-text" style={middleTextStyle} {...animationProps(2.0)}>
+          <motion.h1 className="carousel-text" style={middleTextStyle} {...animationProps(3.0)}>
             End to End Implementation & <br /> Integration Services
           </motion.h1>
-          <motion.p className="carousel-text" style={paragraphStyle} {...animationProps(2.5)}>
+          <motion.p className="carousel-text" style={paragraphStyle} {...animationProps(3.5)}>
             Our expert team specializes in seamless integration of Salesforce and Odoo. 
             We ensure that your business processes are optimized for success, with 
             tailored solutions that meet your unique needs.
@@ -139,10 +139,10 @@ const CarouselComponent = () => {
           <div style={headingStyle}>
             Resources
           </div>
-          <motion.h1 className="carousel-text" style={middleTextStyle} {...animationProps(2.0)}>
+          <motion.h1 className="carousel-text" style={middleTextStyle} {...animationProps(3.0)}>
             Develop Big with Our Qualified Tech Resources
           </motion.h1>
-          <motion.p className="carousel-text" style={paragraphStyle} {...animationProps(2.5)}>
+          <motion.p className="carousel-text" style={paragraphStyle} {...animationProps(3.5)}>
             Explore our range of resources to enhance your development projects. 
             From ReactJs to Angular, we provide the tools and frameworks that 
             empower your development teams to create outstanding applications.
@@ -160,10 +160,10 @@ const CarouselComponent = () => {
           <div style={headingStyle}>
             Solutions
           </div>
-          <motion.h1 className="carousel-text" style={middleTextStyle} {...animationProps(2.0)}>
+          <motion.h1 className="carousel-text" style={middleTextStyle} {...animationProps(3.0)}>
             Gifting Solutions for Every Occasion
           </motion.h1>
-          <motion.p className="carousel-text" style={paragraphStyle} {...animationProps(2.5)}>
+          <motion.p className="carousel-text" style={paragraphStyle} {...animationProps(3.5)}>
             Discover a wide range of gifting solutions tailored to every celebration. 
             Whether it’s for birthdays, anniversaries, or corporate events, we have 
             the perfect gifts to make your occasions memorable.
