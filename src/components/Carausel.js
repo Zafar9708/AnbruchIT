@@ -108,9 +108,9 @@ const CarouselComponent = () => {
       onChange={(index) => {
         const elements = document.querySelectorAll('.carousel-text');
         elements.forEach((element, i) => {
-          const delay = i * 0.1; // Reduced delay
+          const delay = i * 0.1; 
           element.style.opacity = 0;
-          element.style.transform = 'translateY(-20px)'; // Adjusted position
+          element.style.transform = 'translateY(-20px)'; 
           setTimeout(() => {
             element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             element.style.opacity = 1;

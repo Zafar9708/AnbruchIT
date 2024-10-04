@@ -148,13 +148,7 @@ const TestingPage = () => {
 <p className="text-lg md:text-lg mb-8">
   Connect with us today to explore our comprehensive testing services and discover how we can help you deliver a reliable, high-performing application that meets the highest standards and delights your users.
 </p>
-
-
- 
-
-
-
-            </div>
+   </div>
 
                 <div>
                     <button
@@ -209,8 +203,6 @@ const TestingPage = () => {
                     </div>
                 )}
             </div>
-
-          
       </main>
 
       <Footer />

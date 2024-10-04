@@ -1,5 +1,5 @@
-'use client'
-import React, { useEffect, useState,useRef } from 'react';
+'use client';
+import React, { useEffect, useState, useRef } from 'react';
 import { initializeAOS } from '@/utils/AosSetup';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
@@ -11,79 +11,68 @@ const CMSDevelopmentServices = () => {
     useEffect(() => {
         const cleanupAOS = initializeAOS();
         return cleanupAOS;
-      }, []);
+    }, []);
     
-      const [isFormVisible, setFormVisible] = useState(false);
-      const [isLoading, setLoading] = useState(false);
-      const [error, setError] = useState('');
-      const formRef = useRef();
+    const [isFormVisible, setFormVisible] = useState(false);
+    const [isLoading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+    const formRef = useRef();
     
-      const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError('');
     
         const formData = {
-          company_name: e.target.company_name.value,
-          your_name: e.target.your_name.value,
-          phone: e.target.phone.value,
-          email: e.target.email.value,
-          message: e.target.message.value,
+            company_name: e.target.company_name.value,
+            your_name: e.target.your_name.value,
+            phone: e.target.phone.value,
+            email: e.target.email.value,
+            message: e.target.message.value,
         };
     
         try {
-          const response = await fetch('/api/email-send', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData),
-          });
+            const response = await fetch('/api/email-send', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
     
-          if (!response.ok) {
-            const errorResponse = await response.json();
-            throw new Error(errorResponse.error || 'An error occurred.');
-          }
+            if (!response.ok) {
+                const errorResponse = await response.json();
+                throw new Error(errorResponse.error || 'An error occurred.');
+            }
     
-          alert('Message sent successfully!');
-          e.target.reset();
-          setFormVisible(false);
+            alert('Message sent successfully!');
+            e.target.reset();
+            setFormVisible(false);
         } catch (error) {
-          console.error('Fetch error:', error);
-          setError(`Error: ${error.message}`);
+            console.error('Fetch error:', error);
+            setError(`Error: ${error.message}`);
         } finally {
-          setLoading(false);
+            setLoading(false);
         }
-      };
+    };
     
-      const handleClickOutside = (event) => {
+    const handleClickOutside = (event) => {
         if (formRef.current && !formRef.current.contains(event.target)) {
-          setFormVisible(false);
+            setFormVisible(false);
         }
-      };
+    };
     
-      useEffect(() => {
+    useEffect(() => {
         if (isFormVisible) {
-          document.addEventListener('mousedown', handleClickOutside);
+            document.addEventListener('mousedown', handleClickOutside);
         } else {
-          document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('mousedown', handleClickOutside);
         }
         return () => {
-          document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('mousedown', handleClickOutside);
         };
-      }, [isFormVisible]);
-
-    // Styles for the container
-    const containerStyle = {
-        backgroundColor: 'rgb(243 244 246)',
-        height: '350px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        textAlign: 'center',
-    };
+    }, [isFormVisible]);
 
     return (
-        <div className="bg-gray-100">
+        <div className={`bg-gray-100 ${isFormVisible ? 'overflow-hidden' : ''}`}>
             <Header />
             <Navbar />
 
@@ -102,8 +91,9 @@ const CMSDevelopmentServices = () => {
                 </div>
             </section>
 
-           {/* Our Process */}
-           <section className="py-12 bg-white" data-aos="zoom-in-up">
+            {/* Our Process */}
+                      {/* Our Process */}
+                      <section className="py-12 bg-white" data-aos="zoom-in-up">
     <div className="container px-4">
         <h2 className="text-4xl font-extrabold mb-8 text-center text-gray-950">Our CMS Development Journey</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -178,9 +168,6 @@ const CMSDevelopmentServices = () => {
         </div>
     </div>
 </section>
-
-
-
 
             {/* Key Benefits */}
             <section className="py-12 bg-gray-50" data-aos="zoom-in-up">
@@ -257,37 +244,26 @@ const CMSDevelopmentServices = () => {
                 </div>
             </section>
 
+
+
             {/* Custom Contact Section */}
-            <div style={containerStyle} data-aos="zoom-in-up">
-                <div className="relative container mx-auto text-center py-18 px-4">
-                    <h1 className="text-3xl md:text-4xl font-extrabold mt-4 mb-6">
-                        Ready to Build Your Custom CMS?
-                    </h1>
-                    <p className="text-lg md:text-lg mb-8">
-                        Get in touch with us today to learn more about our CMS development services and how we can help you achieve your goals.
-                    </p>
-                </div>
+            <div className="bg-gray-300 py-24 text-center" data-aos="zoom-in-up">
+                <h1 className="text-3xl md:text-4xl font-extrabold mt-4 mb-6">
+                    Ready to Build Your Custom CMS?
+                </h1>
+                <p className="text-lg md:text-lg mb-8">
+                    Get in touch with us today to learn more about our CMS development services and how we can help you achieve your goals.
+                </p>
+                <button
+                    type="button"
+                    className="py-2 px-6 text-lg font-semibold text-white bg-blue-950 rounded-lg hover:bg-blue-800 transition duration-300"
+                    onClick={() => setFormVisible(true)}
+                >
+                    CONTACT US
+                </button>
+            </div>
 
-                <div>
-                    <button
-                        type="button"
-                        style={{
-                            padding: '0.75rem 2.5rem',
-                            fontSize: '0.875rem',
-                            fontWeight: '500',
-                            backgroundColor: 'rgb(29 78 216)',
-                            color: 'white',
-                            borderRadius: '0.5rem',
-                            border: '1px solid #E5E7EB',
-                            transition: 'background-color 0.2s, color 0.2s, transform 0.2s',
-                        }}
-                        onClick={() => setFormVisible(true)}
-                    >
-                        CONTACT US
-                    </button>
-                </div>
-
-                {isFormVisible && (
+            {isFormVisible && (
         <>
           <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-10" />
           <div className="fixed inset-0 flex items-center justify-center z-20">
@@ -307,7 +283,7 @@ const CMSDevelopmentServices = () => {
               </button>
               <h2 className="text-lg font-semibold mb-2 text-center text-blue-700">Contact Us</h2>
 
-              {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+              {/* {error && <p className="text-red-500 text-center mb-4">{error}</p>} */}
 
               <div className="mb-4">
                 <label className="flex items-center mb-1">
@@ -383,7 +359,6 @@ const CMSDevelopmentServices = () => {
           </div>
         </>
       )}
-            </div>
 
             <Footer />
         </div>
