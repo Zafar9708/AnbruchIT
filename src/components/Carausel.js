@@ -1,11 +1,8 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-responsive-carousel';
-// 
 import { initializeAOS } from '@/utils/AosSetup';
-
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const CarouselComponent = () => {
@@ -13,6 +10,7 @@ const CarouselComponent = () => {
     const cleanupAOS = initializeAOS();
     return cleanupAOS;
   }, []);
+  
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -91,12 +89,6 @@ const CarouselComponent = () => {
     boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
   };
 
-  const animationProps = (delay) => ({
-    initial: { opacity: 0, scale: 0.8 },
-    animate: { opacity: 1, scale: 1 },
-    transition: { duration: 0.5, delay }, // Adjusted duration for smoother animations
-  });
-
   return (
     <Carousel
       showArrows={true}
@@ -105,34 +97,37 @@ const CarouselComponent = () => {
       autoPlay={true}
       interval={4000}
       swipeable={false}
-      onChange={(index) => {
-        const elements = document.querySelectorAll('.carousel-text');
-        elements.forEach((element, i) => {
-          const delay = i * 0.1; 
-          element.style.opacity = 0;
-          element.style.transform = 'translateY(-20px)'; 
-          setTimeout(() => {
-            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            element.style.opacity = 1;
-            element.style.transform = 'translateY(0)';
-          }, delay * 1000);
-        });
-      }}
     >
       {/* First Section */}
       <div style={containerStyle}>
         <div style={textContainerStyle}>
-          <h1 className="carousel-text" style={headingStyle}>
-            Services
+          <h1 className="carousel-text mt-24 mb-4" style={headingStyle}>
+          Our Expertise
           </h1>
-          <h1 className="carousel-text" style={middleTextStyle} data-aos="zoom-in">
+          <h1 className="carousel-text mt-12 mb-4" style={middleTextStyle} data-aos="zoom-in">
             End to End Implementation & <br /> Integration Services
           </h1>
-          <p className="carousel-text" style={paragraphStyle} data-aos="zoom-in">
+          <p className="carousel-text mt-3 mb-2" style={paragraphStyle} data-aos="zoom-in">
             Our expert team specializes in seamless integration of Salesforce and Odoo. 
             We ensure that your business processes are optimized for success, with 
             tailored solutions that meet your unique needs.
           </p>
+          {/* Additional Content */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
+            <div className='mt-4' style={{ flex: 1, paddingRight: '10px' }}>
+              <h2 className='text-blue-600 text-3xl font-bold mb-3' data-aos="zoom-in">Our Commitment</h2>
+              <p  style={paragraphStyle} data-aos="zoom-in">
+              We continuously explore cutting-edge solutions to meet the evolving needs of our clients.
+              </p>
+            </div>
+            <div className='mt-4' style={{ flex: 1, paddingLeft: '10px' }}>
+              <h2 className='text-blue-600 text-3xl font-bold mb-3' data-aos="zoom-in">Our Promise</h2>
+              <p className='text-lg' data-aos="zoom-in">
+              We guarantee personalized attention and expert guidance throughout your journey.
+              </p>
+            </div>
+          </div>
+          <br></br>
           <Link href="/sfdc">
             <button style={buttonStyle}>Learn More</button>
           </Link>
@@ -143,17 +138,33 @@ const CarouselComponent = () => {
       {/* Second Section */}
       <div style={containerStyle}>
         <div style={textContainerStyle}>
-          <h1 style={headingStyle}>
-            Resources
+          <h1 className="carousel-text mt-28 mb-4" style={headingStyle}>
+          Resource Hub
           </h1>
-          <h1 className="carousel-text" style={middleTextStyle} data-aos="zoom-in">
+          <h1 className="carousel-text mt-12 " style={middleTextStyle} data-aos="zoom-in">
             Develop Big with Our Qualified Tech Resources
           </h1>
-          <p className="carousel-text" style={paragraphStyle} data-aos="zoom-in">
+          <p className="carousel-text mt-3 mb-2" style={paragraphStyle} data-aos="zoom-in">
             Explore our range of resources to enhance your development projects. 
             From ReactJs to Angular, we provide the tools and frameworks that 
             empower your development teams to create outstanding applications.
           </p>
+          {/* Additional Content */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
+            <div className='mt-4' style={{ flex: 1, paddingRight: '10px' }}>
+              <h2 className='text-blue-600 text-3xl font-bold mb-1' data-aos="zoom-in">Our Technologies</h2>
+              <p style={paragraphStyle}>
+              Leverage the latest frameworks and tools for optimal development efficiency.
+              </p>
+            </div>
+            <div className='mt-4' style={{ flex: 1, paddingLeft: '10px' }}>
+              <h2 className='text-blue-600 text-3xl font-bold mb-1' data-aos="zoom-in">Begin Your Project</h2>
+              <p style={paragraphStyle} data-aos="zoom-in">
+              Collaborate with us to turn your vision into successful outcomes.
+              </p>
+            </div>
+          </div>
+          <br></br>
           <Link href="/mobileapp">
             <button style={buttonStyle}>Learn More</button>
           </Link>
@@ -164,17 +175,35 @@ const CarouselComponent = () => {
       {/* Third Section */}
       <div style={containerStyle}>
         <div style={textContainerStyle}>
-          <h1 style={headingStyle}>
-            Solutions
+          <h1 className="carousel-text mt-28 mb-4" style={headingStyle}>
+          Gift Solutions
           </h1>
-          <h1 className="carousel-text" style={middleTextStyle} data-aos="zoom-in">
+          <h1 className="carousel-text mt-12" style={middleTextStyle} data-aos="zoom-in">
             Gifting Solutions for Every Occasion
           </h1>
-          <p className="carousel-text" style={paragraphStyle} data-aos="zoom-in">
+          <p className="carousel-text mt-1" style={paragraphStyle} data-aos="zoom-in">
             Discover a wide range of gifting solutions tailored to every celebration. 
             Whether it’s for birthdays, anniversaries, or corporate events, we have 
             the perfect gifts to make your occasions memorable.
           </p>
+          {/* Additional Content */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
+            <div className='mt-4' style={{ flex: 1, paddingRight: '10px' }}>
+          
+              <h2 className='text-blue-600 text-3xl font-bold mb-1' data-aos="zoom-in">Personalized Gift</h2>
+              <p style={paragraphStyle} data-aos="zoom-in">
+              Explore creative and memorable gift options designed to surprise and delight.
+              </p>
+              
+            </div>
+            <div className='mt-4' style={{ flex: 1, paddingLeft: '10px' }}>
+              <h2 className='text-blue-600 text-3xl font-bold mb-1' data-aos="zoom-in">Elevate Your Gifting</h2>
+              <p style={paragraphStyle} data-aos="zoom-in">
+              Custom themes and thoughtful details that enhance the gifting experience.
+              </p>
+            </div>
+          </div>
+          
           <Link href="/gift">
             <button style={buttonStyle}>Learn More</button>
           </Link>
