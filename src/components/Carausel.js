@@ -3,19 +3,23 @@ import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import { initializeAOS } from '@/utils/AosSetup';
 import Link from 'next/link';
+import AOS from 'aos'; // Ensure AOS is imported
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import "aos/dist/aos.css"; // AOS CSS
 
 const CarouselComponent = () => {
   useEffect(() => {
+    AOS.init(); // Initialize AOS
     const cleanupAOS = initializeAOS();
     return cleanupAOS;
   }, []);
-  
+
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
+      AOS.refresh(); // Refresh AOS on resize
     };
 
     window.addEventListener('resize', handleResize);
@@ -23,6 +27,10 @@ const CarouselComponent = () => {
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  const handleCarouselChange = () => {
+    AOS.refresh(); // Refresh AOS on slide change
+  };
 
   const containerStyle = {
     display: 'flex',
@@ -54,7 +62,7 @@ const CarouselComponent = () => {
   };
 
   const headingStyle = {
-    fontSize: isMobile ? '1.9em' : '1.9em',
+    fontSize: '1.9em',
     marginBottom: '10px',
     fontWeight: 'bold',
     textTransform: 'uppercase',
@@ -97,12 +105,13 @@ const CarouselComponent = () => {
       autoPlay={true}
       interval={4000}
       swipeable={false}
+      onChange={handleCarouselChange} // Refresh AOS on slide change
     >
       {/* First Section */}
       <div style={containerStyle}>
         <div style={textContainerStyle}>
           <h1 className="carousel-text mt-24 mb-4" style={headingStyle}>
-          Our Expertise
+            Our Expertise
           </h1>
           <h1 className="carousel-text mt-12 mb-4" style={middleTextStyle} data-aos="zoom-in">
             End to End Implementation & <br /> Integration Services
@@ -112,22 +121,24 @@ const CarouselComponent = () => {
             We ensure that your business processes are optimized for success, with 
             tailored solutions that meet your unique needs.
           </p>
-          {/* Additional Content */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
-            <div className='mt-4' style={{ flex: 1, paddingRight: '10px' }}>
-              <h2 className='text-blue-600 text-3xl font-bold mb-3' data-aos="zoom-in">Our Commitment</h2>
-              <p  style={paragraphStyle} data-aos="zoom-in">
-              We continuously explore cutting-edge solutions to meet the evolving needs of our clients.
-              </p>
+          {/* Additional Content (Desktop Only) */}
+          {!isMobile && (
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
+              <div className='mt-4' style={{ flex: 1, paddingRight: '10px' }}>
+                <h2 className='text-blue-600 text-3xl font-bold mb-3' data-aos="zoom-in">Our Commitment</h2>
+                <p style={paragraphStyle} data-aos="zoom-in">
+                  We continuously explore cutting-edge solutions to meet the evolving needs of our clients.
+                </p>
+              </div>
+              <div className='mt-4' style={{ flex: 1, paddingLeft: '10px' }}>
+                <h2 className='text-blue-600 text-3xl font-bold mb-3' data-aos="zoom-in">Our Promise</h2>
+                <p className='text-lg' data-aos="zoom-in">
+                  We guarantee personalized attention and expert guidance throughout your journey.
+                </p>
+              </div>
             </div>
-            <div className='mt-4' style={{ flex: 1, paddingLeft: '10px' }}>
-              <h2 className='text-blue-600 text-3xl font-bold mb-3' data-aos="zoom-in">Our Promise</h2>
-              <p className='text-lg' data-aos="zoom-in">
-              We guarantee personalized attention and expert guidance throughout your journey.
-              </p>
-            </div>
-          </div>
-          <br></br>
+          )}
+          <br />
           <Link href="/sfdc">
             <button style={buttonStyle}>Learn More</button>
           </Link>
@@ -139,32 +150,34 @@ const CarouselComponent = () => {
       <div style={containerStyle}>
         <div style={textContainerStyle}>
           <h1 className="carousel-text mt-28 mb-4" style={headingStyle}>
-          Resource Hub
+            Resource Hub
           </h1>
-          <h1 className="carousel-text mt-12 " style={middleTextStyle} data-aos="zoom-in">
+          <h1 className="carousel-text mt-12" style={middleTextStyle} data-aos="fade-up">
             Develop Big with Our Qualified Tech Resources
           </h1>
-          <p className="carousel-text mt-3 mb-2" style={paragraphStyle} data-aos="zoom-in">
+          <p className="carousel-text mt-3 mb-2" style={paragraphStyle} data-aos="fade-up">
             Explore our range of resources to enhance your development projects. 
             From ReactJs to Angular, we provide the tools and frameworks that 
             empower your development teams to create outstanding applications.
           </p>
-          {/* Additional Content */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
-            <div className='mt-4' style={{ flex: 1, paddingRight: '10px' }}>
-              <h2 className='text-blue-600 text-3xl font-bold mb-1' data-aos="zoom-in">Our Technologies</h2>
-              <p style={paragraphStyle}>
-              Leverage the latest frameworks and tools for optimal development efficiency.
-              </p>
+          {/* Additional Content (Desktop Only) */}
+          {!isMobile && (
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
+              <div className='mt-4' style={{ flex: 1, paddingRight: '10px' }}>
+                <h2 className='text-blue-600 text-3xl font-bold mb-1' data-aos="fade-up">Our Technologies</h2>
+                <p style={paragraphStyle} data-aos="fade-up">
+                  Leverage the latest frameworks and tools for optimal development efficiency.
+                </p>
+              </div>
+              <div className='mt-4' style={{ flex: 1, paddingLeft: '10px' }}>
+                <h2 className='text-blue-600 text-3xl font-bold mb-1' data-aos="fade-up">Begin Your Project</h2>
+                <p style={paragraphStyle} data-aos="fade-up">
+                  Collaborate with us to turn your vision into successful outcomes.
+                </p>
+              </div>
             </div>
-            <div className='mt-4' style={{ flex: 1, paddingLeft: '10px' }}>
-              <h2 className='text-blue-600 text-3xl font-bold mb-1' data-aos="zoom-in">Begin Your Project</h2>
-              <p style={paragraphStyle} data-aos="zoom-in">
-              Collaborate with us to turn your vision into successful outcomes.
-              </p>
-            </div>
-          </div>
-          <br></br>
+          )}
+          <br />
           <Link href="/mobileapp">
             <button style={buttonStyle}>Learn More</button>
           </Link>
@@ -176,34 +189,33 @@ const CarouselComponent = () => {
       <div style={containerStyle}>
         <div style={textContainerStyle}>
           <h1 className="carousel-text mt-28 mb-4" style={headingStyle}>
-          Gift Solutions
+            Gift Solutions
           </h1>
-          <h1 className="carousel-text mt-12" style={middleTextStyle} data-aos="zoom-in">
+          <h1 className="carousel-text mt-12" style={middleTextStyle} data-aos="fade-up">
             Gifting Solutions for Every Occasion
           </h1>
-          <p className="carousel-text mt-1" style={paragraphStyle} data-aos="zoom-in">
+          <p className="carousel-text mt-1" style={paragraphStyle} data-aos="fade-up">
             Discover a wide range of gifting solutions tailored to every celebration. 
             Whether it’s for birthdays, anniversaries, or corporate events, we have 
             the perfect gifts to make your occasions memorable.
           </p>
-          {/* Additional Content */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
-            <div className='mt-4' style={{ flex: 1, paddingRight: '10px' }}>
-          
-              <h2 className='text-blue-600 text-3xl font-bold mb-1' data-aos="zoom-in">Personalized Gift</h2>
-              <p style={paragraphStyle} data-aos="zoom-in">
-              Explore creative and memorable gift options designed to surprise and delight.
-              </p>
-              
+          {/* Additional Content (Desktop Only) */}
+          {!isMobile && (
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
+              <div className='mt-4' style={{ flex: 1, paddingRight: '10px' }}>
+                <h2 className='text-blue-600 text-3xl font-bold mb-1' data-aos="fade-up">Personalized Gift</h2>
+                <p style={paragraphStyle} data-aos="fade-up">
+                  Explore creative and memorable gift options designed to surprise and delight.
+                </p>
+              </div>
+              <div className='mt-4' style={{ flex: 1, paddingLeft: '10px' }}>
+                <h2 className='text-blue-600 text-3xl font-bold mb-1' data-aos="fade-up">Elevate Your Gifting</h2>
+                <p style={paragraphStyle} data-aos="fade-up">
+                  Custom themes and thoughtful details that enhance the gifting experience.
+                </p>
+              </div>
             </div>
-            <div className='mt-4' style={{ flex: 1, paddingLeft: '10px' }}>
-              <h2 className='text-blue-600 text-3xl font-bold mb-1' data-aos="zoom-in">Elevate Your Gifting</h2>
-              <p style={paragraphStyle} data-aos="zoom-in">
-              Custom themes and thoughtful details that enhance the gifting experience.
-              </p>
-            </div>
-          </div>
-          
+          )}
           <Link href="/gift">
             <button style={buttonStyle}>Learn More</button>
           </Link>
