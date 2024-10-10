@@ -46,7 +46,7 @@ const Navbar = () => {
             </button>
             {isDropdownOpen && (
               <div className="absolute text-sm left-0 mt-2 w-96 bg-white shadow-md rounded-lg z-20">
-                <Link href="/mobileapp" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Design & Build</Link>
+                <Link href="/design&build" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Design & Build</Link>
                 <Link href="/cloudconsulting" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Cloud Consulting</Link>
                 <Link href="/managedservice" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Advisory & Managed Services</Link>
                 <Link href="/sfdc" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Salesforce Services</Link>
@@ -81,7 +81,7 @@ const Navbar = () => {
             </button>
             {isDropdownOpen && (
               <div className="absolute left-0 mt-2 w-40 bg-white shadow-md rounded-lg z-20">
-                <Link href="/mobileapp" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Design & Build</Link>
+                <Link href="/design&build" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Design & Build</Link>
                 <Link href="/cloudconsulting" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Cloud Consulting</Link>
                 <Link href="/managedservice" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Advisory & Managed Services</Link>
                 <Link href="/sfdc" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Salesforce Services</Link>

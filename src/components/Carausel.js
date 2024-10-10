@@ -3,13 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import { initializeAOS } from '@/utils/AosSetup';
 import Link from 'next/link';
-import AOS from 'aos'; // Ensure AOS is imported
+import AOS from 'aos'; 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import "aos/dist/aos.css"; // AOS CSS
+import "aos/dist/aos.css"; 
 
 const CarouselComponent = () => {
   useEffect(() => {
-    AOS.init(); // Initialize AOS
+    AOS.init(); 
     const cleanupAOS = initializeAOS();
     return cleanupAOS;
   }, []);
@@ -19,7 +19,7 @@ const CarouselComponent = () => {
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
-      AOS.refresh(); // Refresh AOS on resize
+      AOS.refresh(); 
     };
 
     window.addEventListener('resize', handleResize);
@@ -29,7 +29,7 @@ const CarouselComponent = () => {
   }, []);
 
   const handleCarouselChange = () => {
-    AOS.refresh(); // Refresh AOS on slide change
+    AOS.refresh();
   };
 
   const containerStyle = {
@@ -105,12 +105,12 @@ const CarouselComponent = () => {
       autoPlay={true}
       interval={4000}
       swipeable={false}
-      onChange={handleCarouselChange} // Refresh AOS on slide change
+      onChange={handleCarouselChange} 
     >
       {/* First Section */}
       <div style={containerStyle}>
         <div style={textContainerStyle}>
-          <h1 className="carousel-text mt-24 mb-4" style={headingStyle}>
+          <h1 className="carousel-text mt-32 mb-4" style={headingStyle}>
             Our Expertise
           </h1>
           <h1 className="carousel-text mt-12 mb-4" style={middleTextStyle} data-aos="zoom-in">
@@ -140,7 +140,7 @@ const CarouselComponent = () => {
           )}
           <br />
           <Link href="/sfdc">
-            <button style={buttonStyle}>Learn More</button>
+          <button className='mb-3' style={buttonStyle}>Learn More</button>
           </Link>
         </div>
         {!isMobile && <img src={'od-removebg.png'} alt='Service Image' style={imageStyle} />}
@@ -149,7 +149,7 @@ const CarouselComponent = () => {
       {/* Second Section */}
       <div style={containerStyle}>
         <div style={textContainerStyle}>
-          <h1 className="carousel-text mt-28 mb-4" style={headingStyle}>
+          <h1 className="carousel-text mt-32 mb-4" style={headingStyle}>
             Resource Hub
           </h1>
           <h1 className="carousel-text mt-12" style={middleTextStyle} data-aos="fade-up">
