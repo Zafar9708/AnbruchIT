@@ -2,6 +2,7 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
+import Scroll from '@/components/Scroll';
 import OurLeader from '@/components/OurLeader';
 import OurStory from '@/components/OurStory';
 import ServiceProvide from '@/components/ServiceProvide';
@@ -17,60 +18,62 @@ const About = () => {
       }, []);
     
       const [isFormVisible, setFormVisible] = useState(false);
-      const [isLoading, setLoading] = useState(false);
-      const formRef = useRef();
-    
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-    
-        const formData = {
-          company_name: e.target.company_name.value,
-          your_name: e.target.your_name.value,
-          phone: e.target.phone.value,
-          email: e.target.email.value,
-          message: e.target.message.value,
-        };
-    
-        try {
-          const response = await fetch('/api/email-send', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData),
-          });
-    
-          if (!response.ok) {
-            const errorResponse = await response.json();
-            throw new Error(errorResponse.error || 'An error occurred.');
-          }
-    
-          alert('Message sent successfully!');
-          e.target.reset();
-          setFormVisible(false);
-        } catch (error) {
-          console.error('Fetch error:', error);
-          alert(`Error: ${error.message}`);
-        } finally {
-          setLoading(false);
-        }
-      };
-    
-      const handleClickOutside = (event) => {
-        if (formRef.current && !formRef.current.contains(event.target)) {
-          setFormVisible(false);
-        }
-      };
-    
-      useEffect(() => {
-        if (isFormVisible) {
-          document.addEventListener('mousedown', handleClickOutside);
-        } else {
-          document.removeEventListener('mousedown', handleClickOutside);
-        }
-        return () => {
-          document.removeEventListener('mousedown', handleClickOutside);
-        };
-      }, [isFormVisible]);
+  const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const formRef = useRef();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    const formData = {
+      company_name: e.target.company_name.value,
+      your_name: e.target.your_name.value,
+      phone: e.target.phone.value,
+      email: e.target.email.value,
+      message: e.target.message.value,
+    };
+
+    try {
+      const response = await fetch('/api/email-send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.error || 'An error occurred.');
+      }
+
+      alert('Message sent successfully!');
+      e.target.reset();
+      setFormVisible(false);
+    } catch (error) {
+      console.error('Fetch error:', error);
+      setError(`Error: ${error.message}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleClickOutside = (event) => {
+    if (formRef.current && !formRef.current.contains(event.target)) {
+      setFormVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isFormVisible) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isFormVisible]);
 
     // Styles for the container
     const containerStyle = {
@@ -87,6 +90,7 @@ const About = () => {
         <div>
             <Header />
             <Navbar />
+            <Scroll />
             <div className="relative bg-blue-50 text-gray-950 overflow-hidden" data-aos="zoom-in-up">
                 <div className="absolute inset-0">
                     <div className="absolute inset-0 bg-blue-50 opacity-50"></div>
@@ -219,7 +223,7 @@ const About = () => {
                             fontSize: '0.875rem',
                             fontWeight: '500',
                             backgroundColor: 'blue',
-                            color: 'black',
+                            color: 'white',
                             borderRadius: '0.5rem',
                             border: '1px solid #E5E7EB',
                             transition: 'background-color 0.2s, color 0.2s, transform 0.2s',
@@ -237,17 +241,20 @@ const About = () => {
             <form
               ref={formRef}
               onSubmit={handleSubmit}
-              className="bg-white p-4 rounded-lg w-full max-w-sm mx-4 " style={{paddingLeft:"30px",paddingRight:"30px"}}
+              className="bg-white p-4 rounded-lg w-full max-w-sm mx-4" style={{paddingLeft:"40px",paddingRight:"40px"}}
               data-aos="zoom-in-up"
             >
               <button
                 type="button"
                 className="absolute top- right-2 text-gray-600 hover:text-gray-800 text-lg"
                 onClick={() => setFormVisible(false)}
+                aria-label="Close form"
               >
                 &times;
               </button>
               <h2 className="text-lg font-semibold mb-2 text-center text-blue-700">Contact Us</h2>
+
+              {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
               <div className="mb-4">
                 <label className="flex items-center mb-1">

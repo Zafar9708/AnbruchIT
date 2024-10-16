@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
+import Scroll from '@/components/Scroll';
 import Footer from '@/components/Footer';
 import { initializeAOS } from '@/utils/AosSetup';
 import { HiOutlineOfficeBuilding, HiOutlineUser, HiOutlinePhone, HiOutlineMail } from 'react-icons/hi';
@@ -107,6 +108,7 @@ const OdooCustomAppPage = () => {
     <div>
       <Header />
       <Navbar />
+      <Scroll />
 
       <main className="bg-white">
         {/* Hero Section */}

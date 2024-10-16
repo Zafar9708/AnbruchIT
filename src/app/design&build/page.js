@@ -3,6 +3,7 @@ import Footer from '@/components/Footer';
 import { initializeAOS } from '@/utils/AosSetup';
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
+import Scroll from '@/components/Scroll';
 import React, { useEffect, useState, useRef } from 'react';
 import { HiOutlineOfficeBuilding, HiOutlineUser, HiOutlinePhone, HiOutlineMail } from 'react-icons/hi';
 
@@ -74,6 +75,7 @@ const MobileAppDevelopmentPage = () => {
     <div className='bg-white'>
       <Header />
       <Navbar />
+      <Scroll />
       <header className="relative bg-blue-50 text-gray-800 py-8 bg-cover bg-center" style={{ backgroundImage: "url('https://example.com/your-background-image.jpg')" }}>
         <div className="relative z-10 container mx-auto text-center mt-24 mb-1">
           <h1 className="text-5xl font-extrabold leading-tight relative">

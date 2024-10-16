@@ -4,6 +4,7 @@ import { initializeAOS } from '@/utils/AosSetup';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
+import Scroll from '@/components/Scroll';
 import { HiOutlineOfficeBuilding, HiOutlineUser, HiOutlinePhone, HiOutlineMail } from 'react-icons/hi';
 
 const ManagedServicesPage = () => {
@@ -109,6 +110,7 @@ const ManagedServicesPage = () => {
     <div>
       <Header />
       <Navbar />
+      <Scroll />
       <div className="bg-gray-100">
 
         {/* Hero Section */}
@@ -159,37 +161,37 @@ const ManagedServicesPage = () => {
           <div className="container mx-auto px-4" data-aos="zoom-in-up">
             <h2 className="text-4xl font-extrabold mb-10 text-center text-gray-800">Benefits of Managed Services</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-              <div className="bg-blue-950 p-8 rounded-lg shadow-lg">
+              <div className="bg-blue-950 p-8 rounded-lg shadow-lg" data-aos="zoom-in-up">
                 <h3 className="text-2xl font-semibold mb-4 text-white">Cost Efficiency</h3>
                 <p className="text-white">
                   Managed services offer predictable costs with fixed monthly fees, helping businesses budget effectively and avoid unexpected expenses related to IT issues.
                 </p>
               </div>
-              <div className="bg-blue-950 p-8 rounded-lg shadow-lg">
+              <div className="bg-blue-950 p-8 rounded-lg shadow-lg" data-aos="zoom-in-up">
                 <h3 className="text-2xl font-semibold mb-4 text-white">Expertise and Experience</h3>
                 <p className="text-white">
                   Gain access to a team of IT professionals with specialized skills and experience, ensuring high-quality service and the latest technological advancements.
                 </p>
               </div>
-              <div className="bg-blue-950 p-8 rounded-lg shadow-lg">
+              <div className="bg-blue-950 p-8 rounded-lg shadow-lg" data-aos="zoom-in-up">
                 <h3 className="text-2xl font-semibold mb-4 text-white">Focus on Core Business</h3>
                 <p className="text-white">
                   By outsourcing IT management, you can focus on your core business activities and strategic initiatives, rather than dealing with day-to-day IT operations.
                 </p>
               </div>
-              <div className="bg-blue-950 p-8 rounded-lg shadow-lg">
+              <div className="bg-blue-950 p-8 rounded-lg shadow-lg" data-aos="zoom-in-up">
                 <h3 className="text-2xl font-semibold mb-4 text-white">Enhanced Security</h3>
                 <p className="text-white">
                   Managed services providers implement robust security measures to protect your data and infrastructure from cyber threats and unauthorized access.
                 </p>
               </div>
-              <div className="bg-blue-950 p-8 rounded-lg shadow-lg">
+              <div className="bg-blue-950 p-8 rounded-lg shadow-lg" data-aos="zoom-in-up">
                 <h3 className="text-2xl font-semibold mb-4 text-white">Scalability</h3>
                 <p className="text-white">
                   Easily scale your IT resources up or down based on your business needs without the need for significant capital investment.
                 </p>
               </div>
-              <div className="bg-blue-950 p-8 rounded-lg shadow-lg">
+              <div className="bg-blue-950 p-8 rounded-lg shadow-lg" data-aos="zoom-in-up">
                 <h3 className="text-2xl font-semibold mb-4 text-white">24/7 Support</h3>
                 <p className="text-white">
                   Enjoy round-the-clock support from a dedicated team, ensuring that any IT issues are resolved promptly and minimizing downtime.
@@ -203,7 +205,7 @@ const ManagedServicesPage = () => {
        
 
         {/* Custom Contact Section */}
-        <div className="flex flex-col items-center justify-center p-20" style={{ backgroundColor: 'rgb(243 244 246)' }}>
+        <div className="flex flex-col items-center justify-center p-20" style={{ backgroundColor: 'rgb(243 244 246)' }} data-aos="zoom-in-up">
           <h1 className="text-3xl md:text-4xl font-extrabold mb-4">
             Streamlining Your Operations with Managed Services
           </h1>

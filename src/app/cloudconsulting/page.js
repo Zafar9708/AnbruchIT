@@ -4,6 +4,7 @@ import { initializeAOS } from '@/utils/AosSetup';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
+import Scroll from '@/components/Scroll';
 import { HiOutlineOfficeBuilding, HiOutlineUser, HiOutlinePhone, HiOutlineMail } from 'react-icons/hi';
 
 const CloudConsultingPage = () => {
@@ -110,6 +111,7 @@ const CloudConsultingPage = () => {
     <div className="bg-white">
       <Header />
       <Navbar />
+      <Scroll />
 
       <main>
         <section className="text-center bg-blue-50 mb-8 py-28">
@@ -211,7 +213,65 @@ const CloudConsultingPage = () => {
         </div>
       </main>
 
-      <div style={containerStyle}>
+      <section className="text-center mb-3 py-8 bg-gray-100">
+  <h2 className="text-4xl font-bold mb-4 text-black">Our Cloud Consulting Offerings</h2>
+  <p className="text-2xl font-semibold text-black max-w-3xl mx-auto mb-6">
+    Explore our comprehensive range of services designed to elevate your cloud journey:
+  </p>
+  
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+    {/* Innovative Solutions Card */}
+    <div className="bg-blue-950 border border-gray-300 rounded-lg shadow-lg p-12 hover:shadow-xl transition-shadow duration-300" data-aos="zoom-in-up">
+      <h3 className="text-2xl font-semibold mb-3 text-white">Innovative Solutions</h3>
+      <p className="text-white mb-4">
+        Explore cutting-edge cloud solutions tailored to meet the unique needs of your business.
+      </p>
+    </div>
+
+    {/* Cost Management Card */}
+    <div className="bg-blue-950 border border-gray-300 rounded-lg shadow-lg p-12 hover:shadow-xl transition-shadow duration-300" data-aos="zoom-in-up">
+      <h3 className="text-2xl font-semibold mb-3 text-white">Cost Management</h3>
+      <p className="text-white mb-4">
+        Optimize your cloud spending with strategic cost management and budgeting techniques.
+      </p>
+    </div>
+
+    {/* Compliance & Governance Card */}
+    <div className="bg-blue-950 border border-gray-300 rounded-lg shadow-lg p-12 hover:shadow-xl transition-shadow duration-300" data-aos="zoom-in-up">
+      <h3 className="text-2xl font-semibold mb-3 text-white">Compliance & Governance</h3>
+      <p className="text-white mb-4">
+        Ensure your cloud environment adheres to industry regulations and best practices.
+      </p>
+    </div>
+
+    {/* Multi-Cloud Strategy Card */}
+    <div className="bg-blue-950 border border-gray-300 rounded-lg shadow-lg p-12 hover:shadow-xl transition-shadow duration-300" data-aos="zoom-in-up">
+      <h3 className="text-2xl font-semibold mb-3 text-white">Multi-Cloud Strategy</h3>
+      <p className="text-white mb-4">
+        Leverage the benefits of multiple cloud providers to enhance flexibility and avoid vendor lock-in.
+      </p>
+    </div>
+
+    {/* Disaster Recovery Card */}
+    <div className="bg-blue-950 border border-gray-300 rounded-lg shadow-lg p-12 hover:shadow-xl transition-shadow duration-300" data-aos="zoom-in-up">
+      <h3 className="text-2xl font-semibold mb-3 text-white">Disaster Recovery</h3>
+      <p className="text-white mb-4">
+        Develop robust disaster recovery plans to ensure business continuity in the face of disruptions.
+      </p>
+    </div>
+
+    {/* Industry-Specific Solutions Card */}
+    <div className="bg-blue-950 border border-gray-300 rounded-lg shadow-lg p-12 hover:shadow-xl transition-shadow duration-300" data-aos="zoom-in-up">
+      <h3 className="text-2xl font-semibold mb-3 text-white">Industry-Specific Solutions</h3>
+      <p className="text-white mb-4">
+        Tailor cloud solutions that address the unique challenges and opportunities within your industry.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+      <div style={containerStyle} data-aos="zoom-in-up">
         <h2 className="text-4xl font-bold text-gray-800">Elevating Your Business with Cloud Solutions</h2>
         <p className="text-xl mt-6 text-gray-600 mb-6">
         Expert cloud consulting services designed to optimize your operations, enhance scalability.

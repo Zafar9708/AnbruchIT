@@ -4,6 +4,7 @@ import { initializeAOS } from '@/utils/AosSetup';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
+import Scroll from '@/components/Scroll';
 import { HiOutlineOfficeBuilding, HiOutlineUser, HiOutlinePhone, HiOutlineMail } from 'react-icons/hi';
 
 const AnalyticsPage = () => {
@@ -83,6 +84,7 @@ const AnalyticsPage = () => {
     <div>
       <Header />
       <Navbar />
+      <Scroll />
 
       <main>
         {/* Hero Section */}
@@ -217,7 +219,7 @@ const AnalyticsPage = () => {
         </section>
 
         {/* Call to Action Section */}
-        <section className="py-12 text-center">
+        <section className="py-12 text-center" data-aos="zoom-in-up">
           <h2 className="text-3xl font-bold mb-4 text-black">Ready to Get Started?</h2>
           <p className="text-lg text-gray-700 mb-8">
             Contact us today to learn how our analytics services can benefit your business.

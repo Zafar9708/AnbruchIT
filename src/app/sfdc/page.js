@@ -4,6 +4,7 @@ import { initializeAOS } from '@/utils/AosSetup';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
+import Scroll from '@/components/Scroll';
 import { HiOutlineOfficeBuilding, HiOutlineUser, HiOutlinePhone, HiOutlineMail } from 'react-icons/hi';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -78,7 +79,7 @@ const SfdcPage = () => {
   }, [isFormVisible]);
 
   const containerStyle = {
-    backgroundColor: 'rgb(243 244 246)',
+    backgroundColor: 'rgb(239 246 255)',
     height: '350px',
     display: 'flex',
     justifyContent: 'center',
@@ -91,6 +92,7 @@ const SfdcPage = () => {
     <div>
       <Header />
       <Navbar />
+      <Scroll />
 
       {/* Hero Section */}
       <section className="relative bg-blue-50 text-black py-20">
@@ -146,6 +148,55 @@ const SfdcPage = () => {
         </div>
       </section>
 
+    {/* Industry Solutions Section */}
+<section className="py-16 bg-gray-50" data-aos="zoom-in-up">
+  <div className="container px-4 text-center" data-aos="zoom-in-up">
+    <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-black">Salesforce for Every Industry</h2>
+    <p className="text-lg mb-12 font-semibold max-w-3xl mx-auto">
+      Tailored solutions for various industries to leverage Salesforce's full potential.
+    </p>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+      {/* Card 1 */}
+      <div className="bg-blue-50 p-8 rounded-lg shadow-lg" data-aos="zoom-in-up">
+        <h3 className="text-2xl font-semibold mb-4 text-gray-950">Healthcare</h3>
+        <p className="text-gray-950 mb-2">Streamline patient care and enhance engagement through integrated solutions.</p>
+        <p className="text-gray-950">Utilize patient data to improve treatment plans, manage appointments effectively, and provide personalized care experiences.</p>
+      </div>
+      {/* Card 2 */}
+      <div className="bg-blue-50 p-8 rounded-lg shadow-lg" data-aos="zoom-in-up">
+        <h3 className="text-2xl font-semibold mb-4 text-gray-950">Finance</h3>
+        <p className="text-gray-950 mb-2">Boost customer relationships while ensuring compliance with industry regulations.</p>
+        <p className="text-gray-950">Leverage Salesforce tools to automate reporting, enhance customer insights, and streamline financial processes.</p>
+      </div>
+      {/* Card 3 */}
+      <div className="bg-blue-50 p-8 rounded-lg shadow-lg" data-aos="zoom-in-up">
+        <h3 className="text-2xl font-semibold mb-4 text-gray-950">Retail</h3>
+        <p className="text-gray-950 mb-2">Enhance sales with personalized marketing strategies and superior customer service.</p>
+        <p className="text-gray-950">Utilize analytics to track consumer behavior, manage inventory, and deliver tailored promotions to drive sales.</p>
+      </div>
+      {/* Card 4 */}
+      <div className="bg-blue-50 p-8 rounded-lg shadow-lg" data-aos="zoom-in-up">
+        <h3 className="text-2xl font-semibold mb-4 text-gray-950">Manufacturing</h3>
+        <p className="text-gray-950 mb-2">Optimize supply chain management and improve production efficiency.</p>
+        <p className="text-gray-950">Implement real-time tracking, predictive maintenance, and streamlined communication to enhance operations.</p>
+      </div>
+      {/* Card 5 */}
+      <div className="bg-blue-50 p-8 rounded-lg shadow-lg" data-aos="zoom-in-up">
+        <h3 className="text-2xl font-semibold mb-4 text-gray-950">Education</h3>
+        <p className="text-gray-950 mb-2">Enhance student engagement and streamline administration for better learning outcomes.</p>
+        <p className="text-gray-950">Use Salesforce to manage enrollment, track student performance, and improve communication with parents.</p>
+      </div>
+      {/* Card 6 */}
+      <div className="bg-blue-50 p-8 rounded-lg shadow-lg" data-aos="zoom-in-up">
+        <h3 className="text-2xl font-semibold mb-4 text-gray-950">Non-Profit</h3>
+        <p className="text-gray-950 mb-2">Manage donations and improve outreach efforts effectively with Salesforce solutions.</p>
+        <p className="text-gray-950">Track donor engagement, optimize fundraising campaigns, and enhance community impact through better data management.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
       {/* Case Studies */}
       <section className="py-14 bg-gray-100">
         <div className="container mx-auto px-4 text-center" data-aos="zoom-in-up">
@@ -187,7 +238,7 @@ const SfdcPage = () => {
       </section>
 
       {/* Contact Section */}
-      <section style={containerStyle}>
+      <section style={containerStyle} data-aos="zoom-in-up">
         <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
         <p className="text-lg mb-8">Contact us today to learn how Salesforce can transform your business.</p>
         <button

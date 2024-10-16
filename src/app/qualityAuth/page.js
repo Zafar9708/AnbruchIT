@@ -4,6 +4,7 @@ import { initializeAOS } from '@/utils/AosSetup';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
+import Scroll from '@/components/Scroll';
 import { HiOutlineOfficeBuilding, HiOutlineUser, HiOutlinePhone, HiOutlineMail } from 'react-icons/hi';
 
 const QualityAutoPage = () => {
@@ -84,6 +85,7 @@ const QualityAutoPage = () => {
     <div className="bg-white">
       <Header />
       <Navbar />
+      <Scroll />
 
       {/* Hero Section */}
       <section className="relative bg-blue-50 text-black py-24">

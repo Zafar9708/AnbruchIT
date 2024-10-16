@@ -4,6 +4,7 @@ import { initializeAOS } from '@/utils/AosSetup';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
+import Scroll from '@/components/Scroll';
 import { HiOutlineOfficeBuilding, HiOutlineUser, HiOutlinePhone, HiOutlineMail } from 'react-icons/hi';
 
 const StaffAugmentationServices = () => {
@@ -83,6 +84,7 @@ const StaffAugmentationServices = () => {
     <div className="bg-gray-100">
       <Header />
       <Navbar />
+      <Scroll />
 
       {/* Hero Section */}
       <section className="bg-blue-50 text-gray-900 py-24" data-aos="zoom-in-up">
@@ -141,7 +143,7 @@ const StaffAugmentationServices = () => {
       <section className="py-12 bg-gray-50" data-aos="zoom-in-up">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-extrabold mb-6 text-center text-gray-800">Key Benefits of Staff Augmentation</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" data-aos="zoom-in-up">
             {[
               {
                 title: "Access to Top Talent",
@@ -184,7 +186,7 @@ const StaffAugmentationServices = () => {
           <p className="text-lg mb-8 text-center text-gray-800">
             Stay informed and make better decisions with our curated insights and resources on staff augmentation. Explore industry trends, best practices, and valuable content to enhance your understanding of how staff augmentation can benefit your organization.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12" data-aos="zoom-in-up">
             {[
               {
                 title: "Industry Trends",
@@ -209,7 +211,7 @@ const StaffAugmentationServices = () => {
       </section>
 
       {/* Custom Contact Section */}
-      <div className="py-24 bg-blue-50 text-center">
+      <div className="py-24 bg-blue-50 text-center" data-aos="zoom-in-up">
         <h1 className="text-3xl md:text-4xl font-extrabold mt-4 mb-6">Ready to Enhance Your Team?</h1>
         <p className="text-lg md:text-lg mb-8">
           Get in touch with us today to learn more about our staff augmentation services and how we can help you achieve your business objectives with the right talent.

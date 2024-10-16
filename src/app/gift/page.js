@@ -1,13 +1,21 @@
 'use client';
+import React, { useEffect, useState } from 'react';
+
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import Scroll from '@/components/Scroll';
 import Link from 'next/link'; // Import Link
-import React, { useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { initializeAOS } from '@/utils/AosSetup';
+
 
 const GiftCardPage = () => {
+  useEffect(() => {
+    const cleanupAOS = initializeAOS();
+    return cleanupAOS;
+  }, []);
   const giftCards = [
     {
       id: 1,
@@ -114,6 +122,7 @@ const GiftCardPage = () => {
   return (
     <div>
       <Navbar />
+      <Scroll />
 
       {/* Carousel Section */}
       {/* Carousel Section */}
@@ -126,7 +135,7 @@ const GiftCardPage = () => {
             src={card.image}
             alt={card.title}
             className="w-full h-96 object-cover object-center rounded-lg"
-            style={{ imageRendering: 'crisp-edges' }} // Optional: improve rendering
+            style={{ imageRendering: 'crisp-edges' }} data-aos="zoom-in-up" // Optional: improve rendering
           />
         </Link>
       </div>
@@ -136,12 +145,12 @@ const GiftCardPage = () => {
 
 
       {/* Gift Cards Section */}
-      <div className="max-w-8xl py-8 mx-auto p-0 mb-12">
+      <div className="max-w-8xl py-8 mx-auto p-0 mb-12" data-aos="zoom-in-up">
         <h1 className="text-3xl font-bold text-left mb-6">Hot Deals and Best Sellers</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2" data-aos="zoom-in-up">
           {giftCards.slice(0, visibleCards).map((card) => (
             <Link key={card.id} href="/contact">
-              <div className="relative border rounded-lg overflow-hidden shadow-lg cursor-pointer">
+              <div className="relative border rounded-lg overflow-hidden shadow-lg cursor-pointer" data-aos="zoom-in-up">
                 <img
                   src={card.image}
                   alt={card.title}
@@ -173,7 +182,7 @@ const GiftCardPage = () => {
       </div>
 
       {/* Buy One Get One Section */}
-      <div className="max-w-8xl mx-auto my-4">
+      <div className="max-w-8xl mx-auto my-4" data-aos="zoom-in-up">
         <h2 className="text-2xl font-bold text-left mb-4">Buy One Get One</h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           <Link href="/contact">
