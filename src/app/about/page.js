@@ -87,6 +87,7 @@ const About = () => {
     };
 
     return (
+      <div>
         <div>
             <Header />
             <Navbar />
@@ -205,34 +206,18 @@ const About = () => {
 
 
             {/* Custom Contact Section */}
-            <div style={containerStyle} data-aos="zoom-in-up">
-            <div className="relative container mx-auto text-center py-18 px-4">
-           <h1 className="text-3xl md:text-4xl font-extrabold mt-12 mb-6">
-                     Transforming Businesses Through Technology
-                     </h1>
-                 <p className="text-lg md:text-lg mb-8">
-                    Tailored IT solutions designed to streamline your processes and drive growth in a digital-first world.
-                </p>
-            </div>
-
-                <div>
-                    <button
-                        type="button"
-                        style={{
-                            padding: '0.75rem 2.5rem',
-                            fontSize: '0.875rem',
-                            fontWeight: '500',
-                            backgroundColor: 'blue',
-                            color: 'white',
-                            borderRadius: '0.5rem',
-                            border: '1px solid #E5E7EB',
-                            transition: 'background-color 0.2s, color 0.2s, transform 0.2s',
-                        }}
-                        onClick={() => setFormVisible(true)}
-                    >
-                        CONTACT
-                    </button>
-                </div>
+            <section className="py-20 bg-gray-100 text-center mb-2 mt-4" data-aos="zoom-in-up">
+        <h2 className="text-4xl font-semibold mb-4">Transforming Buisness Through Technology</h2>
+        <p className="text-lg md:text-xl max-w-2xl mx-auto font-medium leading-relaxed">
+          Tailored IT Solution designed to streamline your
+        </p>
+        <button
+          onClick={() => setFormVisible(true)}
+          className="bg-blue-950 text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors duration-300 mt-4"
+        >
+          Contact Us
+        </button>
+      </section>
 
                 {isFormVisible && (
         <>
@@ -335,5 +320,6 @@ const About = () => {
         </div>
     );
 }
+
 
 export default About;
